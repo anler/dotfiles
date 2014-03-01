@@ -1,23 +1,23 @@
 * Bin
 ** dmenu_run
-#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/dmenu_run :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/dmenu_run :mkdirp true
   /usr/bin/dmenu_run -p "ϟ" -fn "DejaVu Sans Mono-9:antialias=true"
 #+END_SRC
 ** Screen layouts
 *** Default
-#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
   xrandr --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output VGA1 --off
 #+END_SRC
 *** At home
-#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
   xrandr --output HDMI1 --primary --mode 1920x1080 --output eDP1 --mode 1920x1080 --right-of HDMI1
 #+END_SRC
 *** At work
-#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
   xrandr --output HDMI1 --off --output VIRTUAL1 --off --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output VGA1 --off
 #+END_SRC
 ** Emacs diff tool
-#+BEGIN_SRC sh :shebang #/bin/bash :tangle ~/local/bin/ediff :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/local/bin/ediff :mkdirp true
   if [ ! ${#} -ge 2 ]; then
       echo 1>&2 "Usage: ${0} LOCAL REMOTE [MERGED BASE]"
       echo 1>&2 "       (LOCAL, REMOTE, MERGED, BASE can be provided by \`git mergetool'.)"
@@ -75,7 +75,7 @@
   exit 0
 #+END_SRC
 ** Enumerate
-#+BEGIN_SRC sh :shebang #/bin/bash :tangle ~/local/bin/enum :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/local/bin/enum :mkdirp true
   #
   # examples:
   # enumerate filename
@@ -119,7 +119,7 @@
 #+END_SRC
 ** Wallpaper
 Set a random wallpaper:
-#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/wallpaper.sh :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/wallpaper.sh :mkdirp true
   IMAGES_DIR=$HOME/pictures
   
   feh --bg-scale $IMAGES_DIR/`ls $IMAGES_DIR | sort -R | tail -n 1`
@@ -127,7 +127,7 @@ Set a random wallpaper:
 ** Capture screen
 Capture screen with scrot. If an argument is provided the screenshot
 will be named *<argument>.png*, else it's going to be *last-capture.png*:
-#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/capture :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/capture :mkdirp true
   if [ $# -eq 1 ]; then
       filename=$1
   else
@@ -142,6 +142,36 @@ will be named *<argument>.png*, else it's going to be *last-capture.png*:
   ln -s dropbox.py bin/dropbox
 #+END_SRC
 *** dropboxd
-#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/dropboxd :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/dropboxd :mkdirp true
   source ~/.dropbox-dist/dropboxd
+#+END_SRC
+** Tangle
+Tangle all the org files in a directory:
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/tangle :mkdirp true
+  if [ $# -eq 0 ]; then
+      dir=`pwd`
+  else
+      dir=$1
+  fi
+  
+  FILES=""
+  # wrap each argument in the code required to call tangle on it
+  for i in `ls | grep \.org`; do
+      FILES="$FILES \"$i\""
+  done
+  
+  read -r -d '' TANGLE <<EOF
+  (progn
+       (require 'org)
+       (require 'org-exp)
+       (require 'ob)
+       (require 'ob-tangle)
+       (mapc (lambda (file)
+               (find-file (expand-file-name file "$dir"))
+               (org-babel-tangle)
+               (kill-buffer))
+             '($FILES)))
+  EOF
+  
+  emacs -Q --batch --eval "$TANGLE"
 #+END_SRC
