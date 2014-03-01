@@ -1,0 +1,6 @@
+*
+!.gitignore
+!*.org
+!*.png
+!dropbox.py
+!tangle
