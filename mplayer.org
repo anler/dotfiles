@@ -1,0 +1,71 @@
+* MPlayer
+:PROPERTIES:
+:tangle: ~/.mplayer/config
+:mkdirp: true
+:END:
+
+#+BEGIN_SRC conf
+  # Write your default config options here!
+  
+  # default configuration that applies to every file
+  [default]
+  
+  # use X11 for video output, use a framebuffer as fallback
+  vo=xv,directfb
+  
+  # use alsa for audio output, choose oss4 as fallback
+  ao=alsa,oss
+  mixer-channel="Master"
+  
+  # multithreaded decoding of H264/MPEG-1/2 (valid: 1-8)
+  lavdopts=threads=2
+  
+  # prefer using six channels audio
+  channels = 6
+  
+  # scale the subtitles to the 3% of the screen size
+  subfont-text-scale = 3
+  
+  # never use font config
+  nofontconfig = 1
+  
+  # set the window title using the media filename, when not set with --title.
+  use-filename-title=yes
+  
+  # add black borders so the movies have the same aspect ratio of the monitor
+  # for wide screen monitors
+  vf-add=expand=::::1:16/9:16
+  
+  # for non wide screen traditional monitors
+  #vf-add=expand=::::1:4/3:16
+  
+  # disable screensaver
+  heartbeat-cmd="xscreensaver-command -deactivate &" # stop xscreensaver
+  stop-xscreensaver="yes" # stop gnome-screensaver
+  
+  # correct pitch when speed is faster or slower than 1.0
+  af=scaletempo
+  
+  # allow to seek in a file which is still downloading whilst watching it
+  idx=yes
+  
+  # allow to increase the maximal volume
+  #softvol=1
+  #softvol-max=600
+  
+  # skip displaying some frames to maintain A/V sync on slow systems
+  framedrop=yes
+  
+  # more intense frame dropping (breaks decoding)
+  #hardframedrop=yes
+  
+  # profile for up-mixing two channels audio to six channels
+  # use -profile 2chto6ch to activate
+  [2chto6ch]
+  af-add=pan=6:1:0:.4:0:.6:2:0:1:0:.4:.6:2
+  
+  # profile to down-mixing six channels audio to two channels
+  # use -profile 6chto2ch to activate
+  [6chto2ch]
+  af-add=pan=2:0.7:0:0:0.7:0.5:0:0:0.5:0.6:0.6:0:0
+#+END_SRC

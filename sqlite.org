@@ -1,0 +1,14 @@
+* SQLite
+:PROPERTIES:
+:tangle: ~/.sqliterc
+:END:
+
+#+BEGIN_SRC conf
+  .echo on
+  -- print column names
+  .header on
+  -- change default separator to tab
+  .separator "\t"
+  -- print the word "null" rather than having empty fields
+  .nullvalue "null"
+#+END_SRC

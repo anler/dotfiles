@@ -1,0 +1,10 @@
+* CTags
+:PROPERTIES:
+:tangle: ~/.ctags.org
+:END:
+
+#+BEGIN_SRC conf
+  --python-kinds=-iv
+  --exclude=build
+  --exclude=dist
+#+END_SRC

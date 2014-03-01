@@ -1,0 +1,17 @@
+[[file:org-mode-logo.png]]
+
+Sometime ago, a good friend of a good friend of mine told him about
+emacs, org-mode and literate programming, then he told me about
+literate programming and I deliberately built these dotfiles on top of
+his.
+
+This is the result.
+
+- [[bin.org][Bin]]
+- [[ctags.org][CTags]]
+- [[git.org][Git]]
+- [[mplayer.org][MPlayer]]
+- [[shell.org][Shell]]
+- [[sqlite.org][SQLite]]
+- [[wm.org][Window Manager]]
+- [[xinitrc.org][Xinitrc]]

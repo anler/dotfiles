@@ -1,0 +1,147 @@
+* Bin
+** dmenu_run
+#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/dmenu_run :mkdirp true
+  /usr/bin/dmenu_run -p "ϟ" -fn "DejaVu Sans Mono-9:antialias=true"
+#+END_SRC
+** Screen layouts
+*** Default
+#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
+  xrandr --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output VGA1 --off
+#+END_SRC
+*** At home
+#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
+  xrandr --output HDMI1 --primary --mode 1920x1080 --output eDP1 --mode 1920x1080 --right-of HDMI1
+#+END_SRC
+*** At work
+#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
+  xrandr --output HDMI1 --off --output VIRTUAL1 --off --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output VGA1 --off
+#+END_SRC
+** Emacs diff tool
+#+BEGIN_SRC sh :shebang #/bin/bash :tangle ~/local/bin/ediff :mkdirp true
+  if [ ! ${#} -ge 2 ]; then
+      echo 1>&2 "Usage: ${0} LOCAL REMOTE [MERGED BASE]"
+      echo 1>&2 "       (LOCAL, REMOTE, MERGED, BASE can be provided by \`git mergetool'.)"
+      exit 1
+  fi
+  
+  # tools
+  _EMACSCLIENT=`which emacsclient`
+  _BASENAME=`basename`
+  _CP=`cp`
+  _EGREP=`egrep`
+  _MKTEMP=`mktemp`
+  
+  # args
+  _LOCAL=${1}
+  _REMOTE=${2}
+  if [ ${3} ] ; then
+      _MERGED=${3}
+  else
+      _MERGED=${_REMOTE}
+  fi
+  if [ ${4} -a -r ${4} ] ; then
+      _BASE=${4}
+      _EDIFF=ediff-merge-files-with-ancestor
+      _EVAL="${_EDIFF} \"${_LOCAL}\" \"${_REMOTE}\" \"${_BASE}\" nil \"${_MERGED}\""
+  elif [ ${_REMOTE} = ${_MERGED} ] ; then
+      _EDIFF=ediff
+      _EVAL="${_EDIFF} \"${_LOCAL}\" \"${_REMOTE}\""
+  else
+      _EDIFF=ediff-merge-files
+      _EVAL="${_EDIFF} \"${_LOCAL}\" \"${_REMOTE}\" nil \"${_MERGED}\""
+  fi
+  
+  # console vs. X
+  if [ "${TERM}" = "linux" ]; then
+      unset DISPLAY
+      _EMACSCLIENTOPTS="-t"
+  else
+      _EMACSCLIENTOPTS="-c"
+  fi
+  
+  # run emacsclient
+  ${_EMACSCLIENT} ${_EMACSCLIENTOPTS} -a "" -e "(${_EVAL})" 2>&1
+  
+  # check modified file
+  if [ ! $(egrep -c '^(<<<<<<<|=======|>>>>>>>|####### Ancestor)' ${_MERGED}) = 0 ]; then
+      _MERGEDSAVE=$(${_MKTEMP} --tmpdir `${_BASENAME} ${_MERGED}`.XXXXXXXXXX)
+      ${_CP} ${_MERGED} ${_MERGEDSAVE}
+      echo 1>&2 "Oops! Conflict markers detected in $_MERGED."
+      echo 1>&2 "Saved your changes to ${_MERGEDSAVE}"
+      echo 1>&2 "Exiting with code 1."
+      exit 1
+  fi
+  
+  exit 0
+#+END_SRC
+** Enumerate
+#+BEGIN_SRC sh :shebang #/bin/bash :tangle ~/local/bin/enum :mkdirp true
+  #
+  # examples:
+  # enumerate filename
+  # ... | enumerate
+  # enumerate <(...)
+  #
+  
+  NAME=`basename $0`
+  
+  function show_usage {
+      echo <<EOF
+  usage: $NAME filename
+  
+  Examples:
+  enum filename
+  ... | enum
+  enum <(...)
+  EOF
+      exit 1
+  }
+  
+  counter=1
+  function enumerate {
+      while read line; do
+          echo "$((counter++)): $line"
+      done
+  }
+  
+  if [ $# -eq 0 ]; then
+      enumerate
+  elif [ ! -e $1 ]; then
+      echo "$NAME: file doesn't exist."
+      show_usage
+  else
+      # redefine stdin to come from whatever file is named by the first
+      # command-line argument
+      exec 0<$1
+  
+      enumerate
+  fi
+#+END_SRC
+** Wallpaper
+Set a random wallpaper:
+#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/wallpaper.sh :mkdirp true
+  IMAGES_DIR=$HOME/pictures
+  
+  feh --bg-scale $IMAGES_DIR/`ls $IMAGES_DIR | sort -R | tail -n 1`
+#+END_SRC
+** Capture screen
+Capture screen with scrot. If an argument is provided the screenshot
+will be named *<argument>.png*, else it's going to be *last-capture.png*:
+#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/capture :mkdirp true
+  if [ $# -eq 1 ]; then
+      filename=$1
+  else
+      filename='last-capture'
+  fi
+  
+  scrot -s -e "mv \$f ~/screenshots/$filename.png"
+#+END_SRC
+** Dropbox
+*** dropbox
+#+BEGIN_SRC sh
+  ln -s dropbox.py bin/dropbox
+#+END_SRC
+*** dropboxd
+#+BEGIN_SRC sh :shebang #/bin/sh :tangle ~/local/bin/dropboxd :mkdirp true
+  source ~/.dropbox-dist/dropboxd
+#+END_SRC

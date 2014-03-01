@@ -1,0 +1,175 @@
+* Shell
+I use [[http://www.zsh.org/][Zsh]] in conjunction with the [[https://github.com/robbyrussell/oh-my-zsh][oh-my-zsh]] framework.
+
+** Setup
+Install oh-my-zsh the manual way:
+
+#+BEGIN_SRC sh
+  if [ ! -d ~/.oh-my-zsh ]; then
+      git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  fi
+#+END_SRC
+
+** Zsh configuration
+:PROPERTIES:
+:tangle: ~/.zshrc
+:END:
+
+Path to my oh-my-zsh framework:
+#+BEGIN_SRC sh
+  export ZSH=$HOME/.oh-my-zsh
+#+END_SRC
+
+PATH global variable:
+#+BEGIN_SRC sh
+  export PATH=~/local/bin:/usr/local/bin:/usr/local/sbin:$PATH
+#+END_SRC
+
+Editor:
+#+BEGIN_SRC sh
+  export EDITOR=emacs
+  export PATH=$PATH:~/.cask/bin
+  alias em="emacsclient -n -a ''"
+  
+  function eman {
+      emacsclient -e "(man \"$@\")";
+  }
+#+END_SRC
+
+Zsh theme:
+#+BEGIN_SRC sh
+  ZSH_THEME="personal"
+#+END_SRC
+
+Zsh plugins:
+#+BEGIN_SRC sh
+  plugins=(git python django themes)
+#+END_SRC
+
+Python virtualenv plugin:
+#+BEGIN_SRC sh
+  VIRTUAL_ENV_DISABLE_PROMPT=false
+  plugins+=(virtualenv virtualenvwrapper)
+#+END_SRC
+
+Tmux plugin:
+#+BEGIN_SRC sh
+  ZSH_TMUX_AUTOSTART=false
+  ZSH_TMUX_AUTOQUIT=false
+  if which tmux &> /dev/null; then
+      plugins+=(tmux)
+  fi
+#+END_SRC
+
+Bootstrap oh-my-zsh:
+#+BEGIN_SRC sh
+  source $ZSH/oh-my-zsh.sh
+#+END_SRC
+
+SSH agent:
+#+BEGIN_SRC sh
+  envoy -t ssh-agent
+  source <(envoy -p)
+#+END_SRC
+
+Display more information in less statusline:
+#+BEGIN_SRC sh
+  export LESS='-erX -i-P%f (%i/%m) Line %lt/%L'
+#+END_SRC
+
+Git:
+#+BEGIN_SRC sh
+  HASH="%C(yellow)%h%C(reset)"
+  RELATIVE_TIME="%C(green)%ar%C(reset)"
+  AUTHOR="%C(bold blue)%an%C(reset)"
+  REFS="%C(red)%d%C(reset)"
+  SUBJECT="%s"
+  SEP="{"
+  FORMAT="$HASH$SEP$RELATIVE_TIME$SEP$AUTHOR$SEP$REFS $SUBJECT"
+  
+  function pretty_git_log() {
+    git log --graph --pretty="tformat:$FORMAT" $* |
+    column -t -s "$SEP" |
+    less -FXRS
+  }
+  
+  function git_diff_files() {
+    git diff | grep "+++ b/" | sed "s/b\///g" | cut -d " " -f 2
+  }
+  
+  function git_contributors() {
+    git shortlog -se | awk '{ print $2 $3 }'
+  }
+#+END_SRC
+
+Misc:
+#+BEGIN_SRC sh
+  export TERM='xterm-256color'
+  export LANG=en_US.UTF-8
+  
+  # Simple fuzzy finder
+  function s {
+      query="`echo $1 | fold -w1 | paste -s -d'.' | fold -w2 | paste -s -d'*'`.*"
+      ag -g "$query" | grep -v "py[co]$"
+  }
+
+  function off {
+      when=${1:-now}
+      sudo shutdown -h $when
+  }
+  
+  function restart {
+      sudo reboot
+  }
+#+END_SRC
+
+** Custom Zsh theme
+:PROPERTIES:
+:tangle: ~/.oh-my-zsh/themes/personal.zsh-theme
+:mkdirp: yes
+:END:
+
+Based on Geoffrey Grosenbach's peepcode zsh theme from
+https://github.com/topfunky/zsh-simple
+
+#+BEGIN_SRC sh
+  git_repo_path() {
+    git rev-parse --git-dir 2>/dev/null
+  }
+  
+  git_commit_id() {
+    git rev-parse --short HEAD 2>/dev/null
+  }
+  
+  git_mode() {
+    if [[ -e "$repo_path/BISECT_LOG" ]]; then
+      echo "+bisect"
+    elif [[ -e "$repo_path/MERGE_HEAD" ]]; then
+      echo "+merge"
+    elif [[ -e "$repo_path/rebase" || -e "$repo_path/rebase-apply" || -e "$repo_path/rebase-merge" || -e "$repo_path/../.dotest" ]]; then
+      echo "+rebase"
+    fi
+  }
+  
+  git_dirty() {
+    if [[ "$repo_path" != '.' && `git ls-files -m` != "" ]]; then
+      echo " %{$fg_bold[grey]%}✗%{$reset_color%}"
+    fi
+  }
+  
+  git_prompt() {
+    local cb=$(current_branch)
+    if [ -n "$cb" ]; then
+      local repo_path=$(git_repo_path)
+      echo " %{$fg_bold[yellow]%}$cb %{$fg[white]%}$(git_commit_id)%{$reset_color%}$(git_mode)$(git_dirty)"
+    fi
+  }
+  
+  local smiley="%(?,%{$fg[green]%}@%{$reset_color%},%{$fg[red]%}@%{$reset_color%})"
+  
+  PROMPT='
+  %~
+  ${smiley}  %{$reset_color%}'
+  
+  RPROMPT='%{$fg[white]%} $(git_prompt)%{$reset_color%}'
+#+END_SRC
