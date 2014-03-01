@@ -15,3 +15,17 @@ This is the result.
 - [[sqlite.org][SQLite]]
 - [[wm.org][Window Manager]]
 - [[xinitrc.org][Xinitrc]]
+
+*Installation*:
+1. Clone repo.
+   #+BEGIN_SRC sh
+     git clone https://github.com/ikame/dotfiles.git
+   #+END_SRC
+2. Go into repo.
+   #+BEGIN_SRC sh
+     cd dotfiles
+   #+END_SRC
+3. Tangle all ~*.org~ files.
+   #+BEGIN_SRC sh
+     sh tangle
+   #+END_SRC
