@@ -162,8 +162,6 @@
           }
   }
   
-  bindsym $mod+g exec ~/bin/wallpaper.sh
-  
   # Move the current workspace to the next output
   # (effectively toggles when you only have two outputs)
   bindsym $mod+x move workspace to output right
@@ -186,12 +184,42 @@
   bindsym $mod+equal exec amixer set Master playback 2%-
   
   hide_edge_borders both
-  
-  # Launch applications
-  exec --no-startup-id unclutter  # hide cursor when is not needed
-  exec --no-startup-id dropboxd   # dropbox daemon
-  exec --no-startup-id ~/bin/wallpaper.sh # use a random wallpaper
-  exec --no-startup-id compton -b --config ~/.compton.conf # composite manager
+#+END_SRC
+
+Easily switch back and forth between workspaces. Assume you are in
+workspace 1 and switch to 2, using ~mod+2~ again will switch you back
+to where you came from, that is 1, if you again press ~mod+2~ you will
+switch forth to workspace 2:
+#+BEGIN_SRC conf
+  workspace_auto_back_and_forth yes
+#+END_SRC
+
+Launch unclutter which is program that hides your X mouse cursor
+whenever you're not using it to prevent it from getting in the way.
+Moving the mouse restores the mouse cursor:
+#+BEGIN_SRC conf
+  exec --no-startup-id unclutter
+#+END_SRC
+
+Launch dropbox daemon:
+#+BEGIN_SRC conf
+  exec --no-startup-id dropboxd
+#+END_SRC
+
+Launch a shell script I have that randomly sets a wallpaper:
+#+BEGIN_SRC conf
+  exec --no-startup-id ~/bin/wallpaper.sh
+#+END_SRC
+Additionally set the key-binding ~mod+g~ to randomly select a
+wallpaper whenever we want:
+#+BEGIN_SRC conf
+  bindsym $mod+g exec ~/bin/wallpaper.sh
+#+END_SRC
+
+Launch [[https://github.com/chjj/compton][compton]] which is a compositor for X. I'm using the
+configuration file [[compton][defined below]]:
+#+BEGIN_SRC conf
+  exec --no-startup-id compton -b --config ~/.compton.conf
 #+END_SRC
 ** xmonad
 #+BEGIN_SRC haskell :tangle ~/.xmonad/xmonad.hs :mkdirp true
@@ -448,7 +476,7 @@
          , template = "} %StdinReader% { %date%"
          }
 #+END_SRC
-** Composition
+** compton
 :PROPERTIES:
 :tangle: ~/.compton.conf
 :END:
