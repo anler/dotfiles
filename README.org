@@ -14,7 +14,7 @@ This is the result.
 - [[shell.org][Shell]]
 - [[sqlite.org][SQLite]]
 - [[wm.org][Window Manager]]
-- [[xinitrc.org][Xinitrc]]
+- [[x.org][X]]
 
 *Installation*:
 1. Clone repo.

@@ -1,4 +1,4 @@
-* X Server
+* X
 ** xinitrc
 :PROPERTIES:
 :tangle: ~/.xinitrc
