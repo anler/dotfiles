@@ -9,11 +9,11 @@
   xrandr --output HDMI1 --off --output DP1 --off --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output VGA1 --off
 #+END_SRC
 *** At home
-#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/shome :mkdirp true
   xrandr --output HDMI1 --primary --mode 1920x1080 --output eDP1 --mode 1920x1080 --right-of HDMI1
 #+END_SRC
 *** At work
-#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/sdefault :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/swork :mkdirp true
   xrandr --output HDMI1 --off --output VIRTUAL1 --off --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output VGA1 --off
 #+END_SRC
 ** Emacs diff tool
@@ -119,7 +119,7 @@
 #+END_SRC
 ** Wallpaper
 Set a random wallpaper:
-#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/wallpaper.sh :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/random-wallpaper :mkdirp true
   IMAGES_DIR=$HOME/pictures
   
   feh --bg-scale $IMAGES_DIR/`ls $IMAGES_DIR | sort -R | tail -n 1`
@@ -137,10 +137,6 @@ will be named *<argument>.png*, else it's going to be *last-capture.png*:
   scrot -s -e "mv \$f ~/screenshots/$filename.png"
 #+END_SRC
 ** Dropbox
-*** dropbox
-#+BEGIN_SRC sh
-  ln -s dropbox.py bin/dropbox
-#+END_SRC
 *** dropboxd
 #+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/dropboxd :mkdirp true
   source ~/.dropbox-dist/dropboxd
