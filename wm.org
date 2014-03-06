@@ -158,8 +158,13 @@
           status_command i3status
   
           colors {
-                  background #004358
+                  background #002b36
                   statusline #ffa72c
+
+                  focused_workspace  #6c71c4 #545abf #ffffff
+                  active_workspace   #002b36 #002b36 #ffffff
+                  inactive_workspace #002b36 #002b36 #888888
+                  urgent_workspace   #2f343a #900000 #ffffff
           }
   }
   
