@@ -264,7 +264,7 @@ configuration file [[compton][defined below]]:
   order += "tztime local"
   
   wireless wlp1s0 {
-          format_up = "W: (%essid) %ip"
+          format_up = "W: (%quality at %essid, %bitrate) %ip"
           format_down = "W: down"
   }
   
