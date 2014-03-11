@@ -247,18 +247,18 @@ configuration file [[compton][defined below]]:
   order += "run_watch DHCP"
   order += "run_watch VPN"
   order += "ipv6"
-  order += "wireless wlp1s0"
-  order += "ethernet enp0s20u2"
+  order += "wireless wlan0"
+  order += "ethernet eth0"
   order += "battery 0"
   order += "load"
   order += "tztime local"
   
-  wireless wlp1s0 {
+  wireless wlan0 {
           format_up = "W: (%quality at %essid, %bitrate) %ip"
           format_down = "W: down"
   }
   
-  ethernet enp0s20u2 {
+  ethernet eth0 {
           # if you use %speed, i3status requires root privileges
           format_up = "E: %ip (%speed)"
           format_down = "E: down"
