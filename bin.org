@@ -159,7 +159,6 @@ Tangle all the org files in a directory:
   read -r -d '' TANGLE <<EOF
   (progn
        (require 'org)
-       (require 'org-exp)
        (require 'ob)
        (require 'ob-tangle)
        (mapc (lambda (file)
