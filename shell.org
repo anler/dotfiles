@@ -112,7 +112,7 @@ Misc:
       query="`echo $1 | fold -w1 | paste -s -d'.' | fold -w2 | paste -s -d'*'`.*"
       ag -g "$query" | grep -v "py[co]$"
   }
-
+  
   function off {
       when=${1:-now}
       sudo shutdown -h $when
@@ -120,6 +120,10 @@ Misc:
   
   function restart {
       sudo reboot
+  }
+  
+  function trunk {
+      echo -n '' | tee "$@" 2> /dev/null
   }
 #+END_SRC
 
