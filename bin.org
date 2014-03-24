@@ -10,7 +10,7 @@
 #+END_SRC
 *** At home
 #+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/shome :mkdirp true
-  xrandr --output HDMI1 --primary --mode 1920x1080 --output eDP1 --mode 1920x1080 --right-of HDMI1
+  xrandr --output HDMI1 --primary --mode 1920x1080 --output eDP1 --mode 1920x1080 --left-of HDMI1
 #+END_SRC
 *** At work
 #+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/local/bin/swork :mkdirp true
