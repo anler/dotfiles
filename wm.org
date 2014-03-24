@@ -223,6 +223,14 @@ configuration file [[compton][defined below]]:
 #+BEGIN_SRC conf
   exec --no-startup-id compton -b --config ~/.compton.conf
 #+END_SRC
+
+Keybindings for window borders:
+#+BEGIN_SRC conf
+  bindsym $mod+t border normal
+  bindsym $mod+y border 1pixel
+  bindsym $mod+u border none
+#+END_SRC
+
 *** i3 status bar
 :PROPERTIES:
 :tangle: ~/.i3status.conf
