@@ -22,7 +22,12 @@ Path to my oh-my-zsh framework:
 
 PATH global variable:
 #+BEGIN_SRC sh
-  export PATH=~/local/bin:/usr/local/bin:/usr/local/sbin:$PATH
+  export PATH=~/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH
+#+END_SRC
+
+INFOPATH global variable
+#+BEGIN_SRC sh
+  export INFOPATH=~/repos-readonly/emacs/info:~/.local/share/info:$INFOPATH
 #+END_SRC
 
 Editor:
@@ -46,10 +51,9 @@ Zsh plugins:
   plugins=(git python django themes)
 #+END_SRC
 
-Python virtualenv plugin:
+Python virtualenvwrapper:
 #+BEGIN_SRC sh
-  VIRTUAL_ENV_DISABLE_PROMPT=false
-  plugins+=(virtualenv virtualenvwrapper)
+  plugins+=(virtualenv)
 #+END_SRC
 
 Tmux plugin:
@@ -127,6 +131,19 @@ Misc:
   }
 #+END_SRC
 
+Projects:
+#+BEGIN_SRC sh
+  function practikalia {
+      repo=~/repos-private/practikalia
+
+      if [ ! -d $repo/venv ]; then
+          virtualenv venv
+      fi
+
+      source $repo/venv/bin/activate
+      cd $repo/src
+  }
+#+END_SRC
 ** Custom Zsh theme
 :PROPERTIES:
 :tangle: ~/.oh-my-zsh/themes/personal.zsh-theme
@@ -137,43 +154,10 @@ Based on Geoffrey Grosenbach's peepcode zsh theme from
 https://github.com/topfunky/zsh-simple
 
 #+BEGIN_SRC sh
-  git_repo_path() {
-    git rev-parse --git-dir 2>/dev/null
-  }
-  
-  git_commit_id() {
-    git rev-parse --short HEAD 2>/dev/null
-  }
-  
-  git_mode() {
-    if [[ -e "$repo_path/BISECT_LOG" ]]; then
-      echo "+bisect"
-    elif [[ -e "$repo_path/MERGE_HEAD" ]]; then
-      echo "+merge"
-    elif [[ -e "$repo_path/rebase" || -e "$repo_path/rebase-apply" || -e "$repo_path/rebase-merge" || -e "$repo_path/../.dotest" ]]; then
-      echo "+rebase"
-    fi
-  }
-  
-  git_dirty() {
-    if [[ "$repo_path" != '.' && `git ls-files -m` != "" ]]; then
-      echo " %{$fg_bold[grey]%}✗%{$reset_color%}"
-    fi
-  }
-  
-  git_prompt() {
-    local cb=$(current_branch)
-    if [ -n "$cb" ]; then
-      local repo_path=$(git_repo_path)
-      echo " %{$fg_bold[yellow]%}$cb %{$fg[white]%}$(git_commit_id)%{$reset_color%}$(git_mode)$(git_dirty)"
-    fi
-  }
-  
-  local smiley="%(?,%{$fg[green]%}@%{$reset_color%},%{$fg[red]%}@%{$reset_color%})"
-  
-  PROMPT='
-  %~
-  ${smiley}  %{$reset_color%}'
-  
-  RPROMPT='%{$fg[white]%} $(git_prompt)%{$reset_color%}'
+  PROMPT='%{$fg[green]%}%c$(git_prompt_info)$ % %{$reset_color%}'
+
+  ZSH_THEME_GIT_PROMPT_PREFIX="("
+  ZSH_THEME_GIT_PROMPT_SUFFIX=""
+  ZSH_THEME_GIT_PROMPT_DIRTY="*)"
+  ZSH_THEME_GIT_PROMPT_CLEAN=")"
 #+END_SRC
