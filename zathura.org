@@ -1,0 +1,9 @@
+* Zathura
+[[http://pwmt.org/projects/zathura/]]
+
+#+BEGIN_SRC conf :tangle ~/.config/zathura/zathurarc :mkdirp true
+  map <C-i> zoom in
+  map <C-o> zoom out
+
+  set selection-clipboard clipboard
+#+END_SRC
