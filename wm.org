@@ -196,13 +196,6 @@ switch forth to workspace 2:
   workspace_auto_back_and_forth yes
 #+END_SRC
 
-Launch unclutter which is program that hides your X mouse cursor
-whenever you're not using it to prevent it from getting in the way.
-Moving the mouse restores the mouse cursor:
-#+BEGIN_SRC conf
-  exec --no-startup-id unclutter
-#+END_SRC
-
 Launch dropbox daemon:
 #+BEGIN_SRC conf
   exec --no-startup-id dropboxd start
