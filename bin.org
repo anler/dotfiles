@@ -198,3 +198,21 @@ Tangle all the org files in a directory:
   
   emacs -Q --batch --eval "$TANGLE"
 #+END_SRC
+** Work IRC                                                           :crypt:
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
+
+hQEMAxWSuK3W+kssAQf+PSRz1Zq+Gq52C4uFZ+s9j3FF+CsA6Z7As/QMb00XsbCd
+zHInpoT7gvEffsXtRDGsEHTZCOaEa4dzaxSNc9U4BqJwJYS5yFZ/Xs6JGBjeSAWN
+smc3Fy7jajW/P+z2Xq0ZDikFcrogUmmk75YbOCb6SL15EvXPL5ScHl022gFHkMo8
+pEc26e3wcdbgCh4O9M6b1vnanEOXu7EmMG5jNjA0vQhQXAte25dascMeYbdt78Ze
+K7sodOWw2Hs7/r2kQBQ1qEOBUXU598gA0FQu9FM05fJXESUfGnwRZLEvhmP5QHhc
+6J6snoMrgfR1qW8a+KjylCpaUP9hXGD3LkXOHa9dkNLAZAF+d3+c2T0zxBVTraRI
+KftmUwGzPkWz+fZPv8Oc/PEgEjTeBetqBKTSbBu11VY+WGtgjRGSE05lBfRmNujk
+y4Dm3+865GXhvnoi4WjiBKesX7YMudzC/0X5rHGpQwmNwtdDkjrQTa7iqO6NF8OK
+LLbfHGcZGFfwPIkt4tfXyKjjko98hYYIEQ+iUpezag4WgTsy/42rfCWYzXvsfeBg
+a0vWBPasMd37XGWSZ43gYt3KfSVexvWQEeBQV6gUwFCkIWcVV96Q5nsvLBxWAEBf
+0cD7KMrKw4pWBzNWmKlgvu4kovF6y4VB1ZQ+c7+qpnY/s09EjjyCIXSJKPZOv/GF
+M4u5MUCCU8saOCvewxP9IyLACQKZUj4Hp1JouTqpANMCI4LLxkk=
+=CevY
+-----END PGP MESSAGE-----
