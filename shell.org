@@ -102,18 +102,18 @@ Automatically choose how to open Emacs:
 2. If there's a frame created, use that frame.
 3. Otherwise create a new frame and use it. 
 #+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/.local/bin/e
-  if [ -v $PS1 ]; then
+  if $(tty -s); then
       # Launch Emacs in the terminal if running in interactive mode
-      emacsclient -t -a $ALTERNATE_EDITOR $@
+      emacsclient -t -a "$ALTERNATE_EDITOR" $1
   else
       # When non-interactive.
       # Detect if there is an Emacs frame already created.
       if $(emacsclient -e "(frame-list)" | grep "<frame emacs@"); then
           # If there's one, use it.
-          emacsclient -n -a $ALTERNATE_EDITOR $@
+          emacsclient -n -a "$ALTERNATE_EDITOR" $1
       else
           # Otherwise create a new one.
-          emacsclient -c -n -a $ALTERNATE_EDITOR $@
+          emacsclient -c -n -a "$ALTERNATE_EDITOR" $1
       fi
   fi
 #+END_SRC
