@@ -23,6 +23,10 @@ Set the cursor:
   xsetroot -cursor_name left_ptr
 #+END_SRC
 
+#+BEGIN_SRC sh
+  setxkbmap -option ctrl:nocaps
+#+END_SRC
+
 Launch daemons:
 #+BEGIN_SRC sh
   if [ -d /etc/X11/xinit/xinitrc.d ]; then
@@ -60,7 +64,7 @@ Launch window manager:
   Xft.lcdfilter:              lcddefault
   Xft.embolden:               false
   Xft.render:                 true 
-  
+
   !-------------------------------------------------------------------------------
   ! URxvt settings
   !-------------------------------------------------------------------------------
@@ -68,7 +72,6 @@ Launch window manager:
   URxvt.depth:                32
   URxvt.geometry:             90x30
   URxvt.transparent:          false
-  URxvt.fading:               0
   ! URxvt.urgentOnBell:         true
   ! URxvt.visualBell:           true
   URxvt.loginShell:           true
@@ -96,31 +99,31 @@ Launch window manager:
    
   ! Perl extensions
   URxvt.perl-ext-common:      default,matcher,clipboard,url-select,keyboard-select
-  
+
   URxvt.url-select.launcher:  chromium
   URxvt.url-select.underline: true
   URxvt.keysym.M-u:           perl:url-select:select_next
   URxvt.keysym.M-Escape:      perl:keyboard-select:activate
   URxvt.keysym.M-s:           perl:keyboard-select:search
-  
+
   URxvt.copyCommand:          xclip -i -selection clipboard
   URxvt.pasteCommand:         xclip -o -selection clipboard
   URxvt.keysym.Shift-Control-C: perl:clipboard:copy
   URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-  
+
   URxvt.matcher.button:       1
   URxvt.urlLauncher:          chromium
    
   URxvt.print-pipe:           cat > $(echo urxvt.scrollback.$(date +'%Y-%m-%d.%H_%m_%S'))
-  
+
   URxvt.keysym.C-Right:       perl:font-size:increase
   URxvt.keysym.C-Left:        perl:font-size:decrease
   URxvt.keysym.C-S-Right:     perl:font-size:incglobal
   URxvt.keysym.C-S-Left:      perl:font-size:decglobal
-  
+
   URxvt*clipboard.autocopy:   true
   URxvt*dynamicColors:        on
-  
+
   ! Cursor
   URxvt.cursorBlink:          false
   URxvt.cursorColor:          #657b83
@@ -129,19 +132,19 @@ Launch window manager:
   ! Pointer
   URxvt.pointerBlank:         true
 
-  URxvt*fading:                  40
-  URxvt*background:        #333333
+  URxvt*fading:                  0
+  URxvt*background:        [85]#000000
   URxvt*foreground:        #cccccc
   URxvt*cursorColor:       #999999
   URxvt*colorBD:           #ffffff
   URxvt*colorUL:           #ffff99
-  
+
   !BLK
   URxvt*color0:           #666666
   URxvt*color8:           #999999
   !RED
   URxvt*color1:          #CC6699
-  URxvt*color9:	        #FF99CC
+  URxvt*color9:         #FF99CC
   !GRN
   URxvt*color2:           #99CC66
   URxvt*color10:         #CCFF99
@@ -160,9 +163,9 @@ Launch window manager:
   !WHT
   URxvt*color7:          #CCCCCC
   URxvt*color15:         #FFFFFF
-  
+
   Emacs.FontBackend:                    xft
-  
+
   URxvt.cutchars:                       "\\ `\"\'()*;<>[]{|}&,=?@^\:"
   URxvt*cursorBlink:                    false
   URxvt*jumpScroll:                     true
