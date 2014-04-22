@@ -31,9 +31,6 @@
   # Use Mouse+$mod to drag floating windows to their wanted position
   floating_modifier $mod
 
-  # start a terminal
-  bindsym $mod+Return exec i3-sensible-terminal
-
   # kill focused window
   bindsym $mod+q kill
 
@@ -163,24 +160,36 @@
   bindsym $mod+Shift+x move workspace to output left
   # bindsym $mod+x exec ~/.i3/swap-outputs.py
 
-  bindsym $mod+period [class="Emacs"] focus
-  bindsym $mod+comma [class="Chromium"] focus
-
-  # Make the currently focused window a scratchpad
-  bindsym $mod+Shift+minus move scratchpad
-
-  # Show the first scratchpad window
-  bindsym $mod+minus scratchpad show
-
-  # Show the sup-mail scratchpad window, if any.
-  # bindsym mod4+s [title="^Sup ::"] scratchpad show
-
   hide_edge_borders both
 
   for_window [class="^MPlayer"] floating enable
   for_window [class="^Thunar"] floating enable
 
   workspace_auto_back_and_forth yes
+#+END_SRC
+
+*** Applications
+**** Terminal
+***** Open
+#+BEGIN_SRC conf
+  bindsym $mod+Return exec i3-sensible-terminal
+#+END_SRC
+
+**** Chromium
+***** Open
+#+BEGIN_SRC conf
+  bindsym $mod+c exec chromium
+#+END_SRC
+
+***** Focus
+#+BEGIN_SRC conf
+  bindsym $mod+comma [class="Chromium"] focus
+#+END_SRC
+
+**** Emacs
+***** Focus
+#+BEGIN_SRC conf
+  bindsym $mod+period [class="Emacs"] focus
 #+END_SRC
 
 *** Volume
@@ -236,12 +245,23 @@ configuration file [[compton][defined below]]:
   exec --no-startup-id compton -b --config ~/.compton.conf
 #+END_SRC
 
-*** Keybindings
+*** Borders
 Keybindings for window borders:
 #+BEGIN_SRC conf
   bindsym $mod+t border normal
   bindsym $mod+y border 1pixel
   bindsym $mod+u border none
+#+END_SRC
+
+*** Scratchpad
+Make the currently focused window a scratchpad:
+#+BEGIN_SRC conf
+  bindsym $mod+Shift+minus move scratchpad
+#+END_SRC
+
+Show the first scratchpad window:
+#+BEGIN_SRC conf
+  bindsym $mod+minus scratchpad show
 #+END_SRC
 
 ** status bar
