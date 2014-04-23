@@ -264,6 +264,16 @@ Show the first scratchpad window:
   bindsym $mod+minus scratchpad show
 #+END_SRC
 
+** helpers
+*** focus
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/.local/bin/focus
+  i3-msg "[title=\"$1\"] focus"
+#+END_SRC
+
+*** scratchpad
+#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/.local/bin/spad
+  i3-msg "[title=\"$1\"] scratchpad show"
+#+END_SRC
 ** status bar
 :PROPERTIES:
 :tangle: ~/.i3status.conf
