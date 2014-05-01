@@ -1,0 +1,27 @@
+* stumpwm
+[[https://github.com/stumpwm/stumpwm][StumpWM]] is a window manager written in Common Lisp.
+
+#+BEGIN_SRC lisp :tangle ~/.stumpwmrc
+  ;;;; -*- Mode: Lisp -*-
+
+  (in-package :stumpwm)
+
+  (set-prefix-key (kbd "s-i"))
+
+  (defparameter WEB-BROWSER "exec firefox" "Default web browser")
+  (define-key *root-map* (kbd "s-f") WEB-BROWSER)
+
+  (defparameter X-TERM "exec urxvt" "Default terminal")
+  (define-key *root-map* (kbd "c") X-TERM)
+  (define-key *root-map* (kbd "C-c") X-TERM)
+
+  (setf *shell-program* (stumpwm:getenv "SHELL"))
+
+  (setf *message-window-gravity* :center)
+  (setf *input-window-gravity* :center)
+
+  (setf *mode-line-position* :bottom)
+  (toggle-mode-line (current-screen) (current-head))
+
+  (setf *mouse-focus-policy* :click)
+#+END_SRC

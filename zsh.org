@@ -1,0 +1,58 @@
+* Zsh
+I use [[http://www.zsh.org/][Zsh]] in conjunction with the [[https://github.com/robbyrussell/oh-my-zsh][oh-my-zsh]] framework.
+
+** Theme
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  ZSH_THEME="fox"
+#+END_SRC
+** Plugins
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  plugins=(git themes)
+#+END_SRC
+
+** Bootstrap
+Path to my oh-my-zsh framework:
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  export ZSH=$HOME/.oh-my-zsh
+  source $ZSH/oh-my-zsh.sh
+#+END_SRC
+
+** PATH
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  export PATH=~/.local/bin:~/.cask/bin:$PATH
+#+END_SRC
+
+** INFOPATH
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  export INFOPATH=~/repos-readonly/emacs/info:~/.local/share/info:$INFOPATH
+#+END_SRC
+
+** Environment
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  export TERM='xterm-256color'
+  export LANG=en_US.UTF-8
+#+END_SRC
+
+** Helper functions
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  # Simple fuzzy finder
+  function s {
+      query="`echo $1 | fold -w1 | paste -s -d'.' | fold -w2 | paste -s -d'*'`.*"
+      ag -g "$query" | grep -v "py[co]$"
+  }
+  
+  function off {
+      when=${1:-now}
+      sudo shutdown -h $when
+  }
+  
+  function restart {
+      sudo reboot
+  }
+  
+  function trunk {
+      echo -n '' | tee "$@" 2> /dev/null
+  }
+#+END_SRC
+
+

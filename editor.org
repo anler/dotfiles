@@ -1,0 +1,42 @@
+* Editor
+[[https://www.gnu.org/software/emacs/][Emacs]] as my editor.
+
+I use *e*, a wrapper around emacsclient as the default editor and
+emacs as the alternative.
+
+The *-a \quote\quote* option of emacsclient means: Start Emacs in
+daemon mode if not running and try to connect again. This is why
+*ALTERNATE_EDITOR* is set to empty string.
+
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  export ALTERNATE_EDITOR=""
+  export EDITOR=e
+#+END_SRC
+
+Open a manual inside an Emacs in daemon mode:
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  function eman {
+      emacsclient -e "(man \"$@\")";
+  }
+#+END_SRC
+
+Automatically choose how to open Emacs:
+1. If running in interactive terminal use the same terminal.
+2. If there's a frame created, use that frame.
+3. Otherwise create a new frame and use it. 
+#+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/.local/bin/e
+  if $(tty -s); then
+      # Launch Emacs in the terminal if running in interactive mode
+      emacsclient -t -a "$ALTERNATE_EDITOR" $1
+  else
+      # When non-interactive.
+      # Detect if there is an Emacs frame already created.
+      if $(emacsclient -e "(frame-list)" | grep "<frame emacs@"); then
+          # If there's one, use it.
+          emacsclient -n -a "$ALTERNATE_EDITOR" $1
+      else
+          # Otherwise create a new one.
+          emacsclient -c -n -a "$ALTERNATE_EDITOR" $1
+      fi
+  fi
+#+END_SRC

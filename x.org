@@ -1,33 +1,32 @@
-* X
-** xinitrc
+* xinitrc
 :PROPERTIES:
 :tangle: ~/.xinitrc
 :shebang: #!/bin/sh
 :END:
 
-Custom fonts:
+** Custom fonts
 #+BEGIN_SRC sh
   xset +fp /usr/share/fonts
-  xset +fp /usr/share/fonts/local/
   xset +fp /usr/share/fonts/TTF/
   xset fp rehash
 #+END_SRC
 
-Disable bell:
+** Disable bell
 #+BEGIN_SRC sh
   xset -b
 #+END_SRC
 
-Set the cursor:
+** Set the cursor
 #+BEGIN_SRC sh
   xsetroot -cursor_name left_ptr
 #+END_SRC
 
+** Map ctrl to capslock
 #+BEGIN_SRC sh
   setxkbmap -option ctrl:nocaps
 #+END_SRC
 
-Launch daemons:
+** Launch daemons
 #+BEGIN_SRC sh
   if [ -d /etc/X11/xinit/xinitrc.d ]; then
     for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -37,24 +36,26 @@ Launch daemons:
   fi
 #+END_SRC
 
-Misc:
+** Load .Xresources
 #+BEGIN_SRC sh
   xrdb -merge ~/.Xresources
 #+END_SRC
 
-Launch window manager:
+** Launch window manager
 #+BEGIN_SRC sh
-  exec i3
+  stumpwm
 #+END_SRC
-** xresources
+
+* xresources
 :PROPERTIES:
 :tangle: ~/.Xresources
 :END:
 #+BEGIN_SRC conf
+
   !-------------------------------------------------------------------------------
   ! Xft settings
   !-------------------------------------------------------------------------------
-   
+
   Xft.dpi:                    96
   Xft.antialias:              true
   Xft.rgba:                   rgb
@@ -66,213 +67,74 @@ Launch window manager:
   Xft.render:                 true 
 
   !-------------------------------------------------------------------------------
+  ! Emacs settings
+  !-------------------------------------------------------------------------------
+
+  Emacs.FontBackend:          xft
+
+  !-------------------------------------------------------------------------------
   ! URxvt settings
   !-------------------------------------------------------------------------------
    
   URxvt.depth:                32
   URxvt.geometry:             90x30
   URxvt.transparent:          false
-  ! URxvt.urgentOnBell:         true
-  ! URxvt.visualBell:           true
   URxvt.loginShell:           true
-  URxvt.saveLines:            50
+  URxvt.saveLines:            32767
   URxvt.internalBorder:       3
   URxvt.lineSpace:            0
   URxvt.iso14755:             off
   URxvt.iso14755_52:          off
   URxvt.meta8:                false
-  URxvt*loginShell:           true
      
   ! Fonts
   URxvt.allow_bold:           true
-  /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
-  URxvt*font:                 xft:DejaVu Sans Mono:pixelsize=16
-  URxvt*boldFont:             xft:DejaVu Sans Mono:bold:pixelsize=16
-  URxvt*italicFont:           xft:DejaVu Sans Mono:italic:pixelsize=16
-   
-  ! Fix font space
-  URxvt*letterSpace: -1
+  URxvt.font:     xft:bitstream vera sans mono:size=16:antialias=true
+  URxvt.boldFont: xft:bitstream vera sans mono:bold:size=16:antialias=true
+  URxvt.letterSpace: -1
    
   ! Scrollbar
   URxvt.scrollStyle:          rxvt
   URxvt.scrollBar:            false
    
   ! Perl extensions
-  URxvt.perl-ext-common:      default,matcher,clipboard,url-select,keyboard-select
+  URxvt.perl-ext-common:      default,matcher
 
-  URxvt.url-select.launcher:  chromium
-  URxvt.url-select.underline: true
-  URxvt.keysym.M-u:           perl:url-select:select_next
-  URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-  URxvt.keysym.M-s:           perl:keyboard-select:search
-
-  URxvt.copyCommand:          xclip -i -selection clipboard
-  URxvt.pasteCommand:         xclip -o -selection clipboard
-  URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-  URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-
-  URxvt.matcher.button:       1
-  URxvt.urlLauncher:          chromium
+  URxvt.urlLauncher:          firefox
+  URxvt.matcher.button:       2
+  URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
    
-  URxvt.print-pipe:           cat > $(echo urxvt.scrollback.$(date +'%Y-%m-%d.%H_%m_%S'))
-
-  URxvt.keysym.C-Right:       perl:font-size:increase
-  URxvt.keysym.C-Left:        perl:font-size:decrease
-  URxvt.keysym.C-S-Right:     perl:font-size:incglobal
-  URxvt.keysym.C-S-Left:      perl:font-size:decglobal
-
-  URxvt*clipboard.autocopy:   true
-  URxvt*dynamicColors:        on
-
   ! Cursor
   URxvt.cursorBlink:          false
-  URxvt.cursorColor:          #657b83
   URxvt.cursorUnderline:      false
    
   ! Pointer
   URxvt.pointerBlank:         true
 
-  URxvt*fading:                  0
-  URxvt*background:        [85]#000000
-  URxvt*foreground:        #cccccc
-  URxvt*cursorColor:       #999999
-  URxvt*colorBD:           #ffffff
-  URxvt*colorUL:           #ffff99
+  URxvt.cutchars:             "\\ `\"\'()*;<>[]{|}&,=?@^\:"
 
-  !BLK
-  URxvt*color0:           #666666
-  URxvt*color8:           #999999
-  !RED
-  URxvt*color1:          #CC6699
-  URxvt*color9:         #FF99CC
-  !GRN
-  URxvt*color2:           #99CC66
-  URxvt*color10:         #CCFF99
-  !YEL
-  URxvt*color3:          #CC9966
-  URxvt*color11:         #FFCC99
-  !BLU
-  URxvt*color4:          #6699CC
-  URxvt*color12:         #99CCFF
-  !MAG
-  URxvt*color5:           #9966CC
-  URxvt*color13:          #CC99FF
-  !CYN
-  URxvt*color6:          #66CC99
-  URxvt*color14:         #99FFCC
-  !WHT
-  URxvt*color7:          #CCCCCC
-  URxvt*color15:         #FFFFFF
-
-  Emacs.FontBackend:                    xft
-
-  URxvt.cutchars:                       "\\ `\"\'()*;<>[]{|}&,=?@^\:"
-  URxvt*cursorBlink:                    false
-  URxvt*jumpScroll:                     true
-  URxvt*scrollBar:                      off
-  URxvt*saveLines:                      20000
-  URxvt*scrollWithBuffer:               true
-  URxvt*scrollTtyOutput:                false
-  URxvt*scrollTtyKeypress:              true
-  URxvt*urgentOnBell:                   true
-  URxvt*visualBell:                     false
-#+END_SRC
-** colors
-*** space
-:PROPERTIES:
-:tangle: ~/.colors/space
-:mkdirp: true
-:END:
-#+BEGIN_SRC conf
-  ! vim:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
-  !
-  ! #########################################
-  ! SPACE COLORS
-  ! #########################################
-  
-  URxvt*cursorColor:              #d0d0d0
-  URxvt*colorIT:                  #c37561
-  URxvt*colorUL:                  #a0a57e
-  
-  !Background / Foreground
-  URxvt*background: #202020
-  URxvt*foreground: #ddccbb
-  !Black / Light black
-  URxvt*color0: #222222
-  URxvt*color8: #666666
-  !Red / Light red
-  URxvt*color1:  #cc4747
-  URxvt*color9:  #bf5858
-  !Green / Light green
-  URxvt*color2:  #a0cf5d
-  URxvt*color10: #b8d68c
-  !Yellow / Light yellow
-  URxvt*color3:  #e0a524
-  URxvt*color11: #edB85c
-  !Blue / Light blue
-  URxvt*color4:  #4194d9
-  URxvt*color12: #60aae6
-  !Purple / Light purple
-  URxvt*color5:  #cc2f6e
-  URxvt*color13: #db588c
-  !Cyan / Light cyan
-  URxvt*color6:  #6d878d
-  URxvt*color14:  #42717b
-  !White / Light white...?
-  URxvt*color7:  #dedede
-  URxvt*color15: #f2f2f2
-#+END_SRC
-*** erosionedit
-:PROPERTIES:
-:tangle: ~/.colors/erosionedit
-:END:
-#+BEGIN_SRC conf
-  ! vim:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
-  
-  urxvt*background: #181512
-  !!urxvt*foreground: #D6C3B6
-  urxvt*foreground: #bea492
-  urxvt*cursorColor: #93a1a1
-  urxvt*colorIT: #8c644c
-  urxvt*colorUL: #646a6d
-  urxvt*colorBD: #9a875f
-  
-  !! black dark/light
-  urxvt*color0: #332d29
-  urxvt*color8: #817267
-  
-  !! red dark/light
-  urxvt*color1: #8c644c
-  urxvt*color9: #9f7155
-  
-  !! green dark/light
-  urxvt*color2:  #746C48
-  urxvt*color10:  #857B52
-  
-  !! yellow dark/light
-  urxvt*color3:  #908A66
-  urxvt*color11:   #9C956E
-  !!urxvt*color11: #E0DAAC
-  
-  !! blue dark/light
-  urxvt*color4: #646a6d
-  urxvt*color12: #71777A
-  
-  !! magenta dark/light
-  !!urxvt*color5: #656565
-  !!urxvt*color13: #706D70
-  !!urxvt*color5: #463c3b
-  urxvt*color5: #605655
-  urxvt*color13: #656565
-  
-  !! cyan dark/light
-  !!urxvt*color6: #3b484a
-  !!urxvt*color14: #444d4e
-  urxvt*color6: #4B5C5E
-  urxvt*color14: #556D70
-  
-  
-  !! white dark/light
-  urxvt*color7: #504339
-  urxvt*color15: #9a875f
+  ! Zenburn colors
+  URxvt*termName: rxvt-256color
+  URxvt*xftAntialias: true
+  URxvt*background: #3f3f3f
+  URxvt*foreground: #dcdccc
+  URxvt*cursorColor: #aaaaaa
+  URxvt*colorUL: #366060
+  URxvt*underlineColor: #dfaf8f
+  URxvt*color0: #3f3f3f
+  URxvt*color1: #cc9393
+  URxvt*color2: #7f9f7f
+  URxvt*color3: #d0bf8f
+  URxvt*color4: #6ca0a3
+  URxvt*color5: #dc8cc3
+  URxvt*color6: #93e0e3
+  URxvt*color7: #dcdccc
+  URxvt*color8: #000000
+  URxvt*color9: #dca3a3
+  URxvt*color10: #bfebbf
+  URxvt*color11: #f0dfaf
+  URxvt*color12: #8cd0d3
+  URxvt*color13: #dc8cc3
+  URxvt*color14: #93e0e3
+  URxvt*color15: #ffffff
 #+END_SRC

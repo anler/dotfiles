@@ -11,10 +11,13 @@ This is the result.
 - [[ctags.org][CTags]]
 - [[git.org][Git]]
 - [[mplayer.org][MPlayer]]
-- [[shell.org][Shell]]
+- [[zsh.org][Zsh]]
+- [[file:editor.org][Editor]]
 - [[sqlite.org][SQLite]]
-- [[wm.org][Window Manager]]
-- [[x.org][X]]
+- [[stumpwm.org][StumpWM Window Manager]] (currently used)
+- [[file:i3.org][i3 Window Manager]]
+- [[file:xmonad.org][Xmonad Window Manager]]
+- [[x.org][X-Org]]
 
 *Installation*:
 1. Clone repo.
