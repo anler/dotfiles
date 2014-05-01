@@ -55,4 +55,7 @@ Path to my oh-my-zsh framework:
   }
 #+END_SRC
 
-
+** GPGKEY
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  export GPGKEY=12BF558E
+#+END_SRC
