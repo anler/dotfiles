@@ -89,8 +89,8 @@
      
   ! Fonts
   URxvt.allow_bold:           true
-  URxvt.font:     xft:bitstream vera sans mono:size=16:antialias=true
-  URxvt.boldFont: xft:bitstream vera sans mono:bold:size=16:antialias=true
+  URxvt.font:     xft:bitstream vera sans mono:size=13:antialias=true
+  URxvt.boldFont: xft:bitstream vera sans mono:bold:size=13:antialias=true
   URxvt.letterSpace: -1
    
   ! Scrollbar
@@ -98,12 +98,26 @@
   URxvt.scrollBar:            false
    
   ! Perl extensions
-  URxvt.perl-ext-common:      default,matcher
+  URxvt.perl-ext-common:      default,matcher,url-select,font-size,clipboard
 
+  ! URLs
   URxvt.urlLauncher:          firefox
   URxvt.matcher.button:       2
   URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-   
+
+  URxvt.keysym.M-u:           perl:url-select:select_next
+  URxvt.url-select.launcher:  /usr/bin/firefox -new-tab
+  URxvt.url-select.underline: true
+
+  ! Font size
+  URxvt.keysym.C-Up:      perl:font-size:increase
+  URxvt.keysym.C-Down:    perl:font-size:decrease
+
+  ! Clipboard
+  URxvt.keysym.C-c:       perl:clipboard.copy
+  URxvt.keysym.C-v:       perl:clipboard.paste
+  URxvt.keysym.C-M-c:     perl:clipboard.paste_escaped
+
   ! Cursor
   URxvt.cursorBlink:          false
   URxvt.cursorUnderline:      false
