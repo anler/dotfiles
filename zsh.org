@@ -64,6 +64,11 @@ daemon mode if not running and try to connect again. This is why
   }
 #+END_SRC
 
+** SSH Agent
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
+#+END_SRC
+
 ** GPGKEY
 #+BEGIN_SRC sh :tangle ~/.zshrc
   export GPGKEY=12BF558E
