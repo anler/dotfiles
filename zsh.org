@@ -7,7 +7,7 @@ I use [[http://www.zsh.org/][Zsh]] in conjunction with the [[https://github.com/
 #+END_SRC
 ** Plugins
 #+BEGIN_SRC sh :tangle ~/.zshrc
-  plugins=(git themes)
+  plugins=(git git-extras themes archlinux python systemd fabric pip fasd urltools vagrant)
 #+END_SRC
 
 ** Bootstrap
