@@ -1,23 +1,13 @@
 * Editor
 [[https://www.gnu.org/software/emacs/][Emacs]] as my editor.
 
-I use *e*, a wrapper around emacsclient as the default editor and
-emacs as the alternative.
-
-The *-a \quote\quote* option of emacsclient means: Start Emacs in
-daemon mode if not running and try to connect again. This is why
-*ALTERNATE_EDITOR* is set to empty string.
-
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  export ALTERNATE_EDITOR=""
-  export EDITOR=e
-#+END_SRC
-
 Open a manual inside an Emacs in daemon mode:
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  function eman {
+#+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/.local/bin/man
+  if $(test -n $INSIDE_EMACS); then
       emacsclient -e "(man \"$@\")";
-  }
+  else
+      /usr/bin/man $@
+  fi
 #+END_SRC
 
 Automatically choose how to open Emacs:
