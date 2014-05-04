@@ -1,27 +1,67 @@
 * stumpwm
+:PROPERTIES:
+:tangle: ~/.stumpwmrc
+:END:
 [[https://github.com/stumpwm/stumpwm][StumpWM]] is a window manager written in Common Lisp.
 
-#+BEGIN_SRC lisp :tangle ~/.stumpwmrc
-  ;;;; -*- Mode: Lisp -*-
-
+** General
+#+BEGIN_SRC lisp
   (in-package :stumpwm)
 
-  (set-prefix-key (kbd "s-i"))
+  (set-prefix-key (kbd "C-\\"))
 
+  (setf *message-window-gravity* :center
+        ,*input-window-gravity* :center
+        ,*debug-level* 10
+        ,*mode-line-position* :bottom
+        ,*mouse-focus-policy* :click)
+
+  (enable-mode-line (current-screen) (current-head) t)
+#+END_SRC
+
+** Utils
+#+BEGIN_SRC lisp
+  (defun global-set-key (key command)
+    "Define a global keybinding (use `*top-map*')"
+    (define-key *top-map* key command))
+  (setf *mouse-focus-policy* :click)
+
+  (defun cat (&rest strings)
+    "Concatenate strings like the Unix command 'cat'.
+  A shortcut for (concatenate 'string foo bar)."
+    (apply 'concatenate 'string strings))
+#+END_SRC
+
+** Programs
+*** Web browser
+#+BEGIN_SRC lisp
   (defparameter WEB-BROWSER "exec firefox" "Default web browser")
-  (define-key *root-map* (kbd "s-f") WEB-BROWSER)
 
+  (defcommand browse (&optional (url-string "")) ((:string "URL (optional): "))
+    "Browse URL-STRING using WEB-BROWSER"
+    (check-type url-string string)
+    (run-shell-command (cat WEB-BROWSER " " "\"" url-string "\"")))
+#+END_SRC
+
+*** Terminal
+#+BEGIN_SRC lisp
   (defparameter X-TERM "exec urxvt" "Default terminal")
   (define-key *root-map* (kbd "c") X-TERM)
   (define-key *root-map* (kbd "C-c") X-TERM)
 
   (setf *shell-program* (stumpwm:getenv "SHELL"))
+#+END_SRC
 
-  (setf *message-window-gravity* :center)
-  (setf *input-window-gravity* :center)
+*** Emacs
+#+BEGIN_SRC lisp
+  (defparameter EMACS "exec e" "Emacs executable")
+  (define-key *root-map* (kbd "e") EMACS)
+  (define-key *root-map* (kbd "C-e") EMACS)
+#+END_SRC
 
-  (setf *mode-line-position* :bottom)
-  (toggle-mode-line (current-screen) (current-head))
-
-  (setf *mouse-focus-policy* :click)
+** Control keys
+*** Volume
+#+BEGIN_SRC lisp
+  (global-set-key (kbd "XF86AudioRaiseVolume") "exec amixer set Master 2%+")
+  (global-set-key (kbd "XF86AudioLowerVolume") "exec amixer set Master 2%-")
 #+END_SRC
