@@ -1,10 +1,12 @@
 * Editor
 [[https://www.gnu.org/software/emacs/][Emacs]] as my editor.
 
-Open a manual inside an Emacs in daemon mode:
+Open a manual inside an Emacs in daemon mode.  *Important* you need to
+customize your Emacs man program and make it =/usr/bin/man= instead of
+just =man=.
 #+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/.local/bin/man
   if $(test -n $INSIDE_EMACS); then
-      emacsclient -e "(man \"$@\")";
+      emacsclient -e "(man \"$@\")" >/dev/null
   else
       /usr/bin/man $@
   fi
