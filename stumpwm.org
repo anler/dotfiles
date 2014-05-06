@@ -15,10 +15,21 @@
         ,*debug-level* 10
         ,*mode-line-position* :bottom
         ,*mouse-focus-policy* :click)
-
-  (enable-mode-line (current-screen) (current-head) t)
 #+END_SRC
 
+** Mode line
+A head is a physical monitor. A screen is a section of video memory
+that heads are mapped on to.  When using Xinerama you generally have 1
+screen and many heads.  When not using Xinerama each screen is a
+physical monitor so you have many screens with only one head on them.
+
+Turn on mode-line in all heads since I'm using Xinerama:
+#+BEGIN_SRC elisp
+  (if (not (head-mode-line (current-head)))
+      (enable-mode-line (current-screen) (current-head) t))
+#+END_SRC
+
+#+END_SRC
 ** Utils
 #+BEGIN_SRC lisp
   (defun global-set-key (key command)
