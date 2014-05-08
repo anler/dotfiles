@@ -88,3 +88,8 @@ Turn on mode-line in all heads since I'm using Xinerama:
   (global-set-key (kbd "XF86AudioRaiseVolume") "exec amixer set Master 2%+")
   (global-set-key (kbd "XF86AudioLowerVolume") "exec amixer set Master 2%-")
 #+END_SRC
+
+*** Switch windows
+#+BEGIN_SRC lisp
+  (global-set-key (kbd "s-Tab") "pull-hidden-next")
+#+END_SRC
