@@ -55,12 +55,15 @@ Turn on mode-line in all heads since I'm using Xinerama:
 ** Programs
 *** Web browser
 #+BEGIN_SRC lisp
-  (defparameter WEB-BROWSER "exec firefox" "Default web browser")
+    (defparameter WEB-BROWSER "exec firefox" "Default web browser")
 
-  (defcommand browse (&optional (url-string "")) ((:string "URL (optional): "))
-    "Browse URL-STRING using WEB-BROWSER"
-    (check-type url-string string)
-    (run-shell-command (cat WEB-BROWSER " " "\"" url-string "\"")))
+    (defcommand browse (&optional url-string) ((:string "URL (optional): "))
+      "Browse URL-STRING using WEB-BROWSER"
+      (check-type url-string string)
+      (let ((cmd (if (> (length url-string) 0)
+                     (cat WEB-BROWSER " " "\"" url-string "\"")
+                   WEB-BROWSER)))
+        (run-shell-command cmd)))
 #+END_SRC
 
 *** Terminal
