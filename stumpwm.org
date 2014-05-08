@@ -50,6 +50,13 @@ Turn on mode-line in all heads since I'm using Xinerama:
     "Concatenate strings like the Unix command 'cat'.
   A shortcut for (concatenate 'string foo bar)."
     (apply 'concatenate 'string strings))
+
+  (defun shell-command (command)
+    "Run a shell command and display output to screen.
+  This must be used in a functional side-effects-free style! If a program does not
+  exit of its own accord, Stumpwm might hang!"
+    (check-type command string)
+    (echo-string (current-screen) (run-shell-command command t)))
 #+END_SRC
 
 ** Programs
@@ -82,6 +89,17 @@ Turn on mode-line in all heads since I'm using Xinerama:
   (define-key *root-map* (kbd "C-e") EMACS)
 #+END_SRC
 
+*** Stats
+#+BEGIN_SRC lisp
+  (defparameter *disk-usage-command*
+    "df -h | grep home | tr -s '[:blank:]' ' ' | cut -d ' ' -f2-5")
+
+  (defcommand disk-usage () ()
+    "Show disk usage in the screen."
+    (shell-command *disk-usage-command*))
+
+  (define-key *root-map* (kbd "u") "disk-usage")
+#+END_SRC
 ** Control keys
 *** Volume
 #+BEGIN_SRC lisp
