@@ -173,6 +173,14 @@ Tangle all the org files in a directory:
   
   emacs -Q --batch --eval "$TANGLE"
 #+END_SRC
+* Clipboard
+#+BEGIN_SRC sh :tangle ~/.local/bin/cb :shebang #!/bin/sh
+  if [ -t 0 ]; then
+      xclip -o
+  else
+      cat | xclip -i
+   fi
+#+END_SRC
 * Work IRC                                                            :crypt:
 -----BEGIN PGP MESSAGE-----
 Version: GnuPG v2.0.22 (GNU/Linux)
