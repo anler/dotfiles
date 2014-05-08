@@ -38,7 +38,7 @@
 
 ** Load .Xresources
 #+BEGIN_SRC sh
-  xrdb -merge ~/.Xresources
+  [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 #+END_SRC
 
 ** Launch window manager
@@ -83,8 +83,8 @@
   URxvt.saveLines:            32767
   URxvt.internalBorder:       3
   URxvt.lineSpace:            0
-  URxvt.iso14755:             off
-  URxvt.iso14755_52:          off
+  URxvt.iso14755:             false
+  URxvt.iso14755_52:          false
   URxvt.meta8:                false
      
   ! Fonts
@@ -114,9 +114,11 @@
   URxvt.keysym.C-Down:    perl:font-size:decrease
 
   ! Clipboard
-  URxvt.keysym.C-c:       perl:clipboard.copy
-  URxvt.keysym.C-v:       perl:clipboard.paste
-  URxvt.keysym.C-M-c:     perl:clipboard.paste_escaped
+  URxvt*clipboard.autocopy:     true
+  URxvt*clipboard.copycmd:      xclip -i -selection clipboard
+  URxvt*clipboard.pastecmd:     xclip -o -selection clipboard
+  URxvt*keysym.M-c:             perl:clipboard:copy
+  URxvt*keysym.M-v:             perl:clipboard:paste
 
   ! Cursor
   URxvt.cursorBlink:          false
