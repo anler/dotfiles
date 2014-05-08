@@ -17,6 +17,15 @@
         ,*mouse-focus-policy* :click)
 #+END_SRC
 
+** Key bindings
+#+BEGIN_SRC elisp
+  (defcommand (fprev tile-group) () ()
+    "Cycle through the frame tree to the previous frame."
+    (focus-prev-frame (current-group)))
+
+  (define-key *root-map* (kbd "O") "fprev")
+#+END_SRC
+
 ** Mode line
 A head is a physical monitor. A screen is a section of video memory
 that heads are mapped on to.  When using Xinerama you generally have 1
