@@ -17,6 +17,12 @@ Path to my oh-my-zsh framework:
   source $ZSH/oh-my-zsh.sh
 #+END_SRC
 
+** Source helper scripts
+#+BEGIN_SRC sh
+  for script in ~/helpers/*; do
+      source $script
+  done
+#+END_SRC
 ** EDITOR
 The *-a \quote\quote* option of emacsclient means: Start Emacs in
 daemon mode if not running and try to connect again. This is why
