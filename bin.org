@@ -176,9 +176,9 @@ Tangle all the org files in a directory:
 * Clipboard
 #+BEGIN_SRC sh :tangle ~/.local/bin/cb :shebang #!/bin/sh
   if [ -t 0 ]; then
-      xclip -o
+      xclip -o -selection clipboard
   else
-      cat | xclip -i
+      cat | xclip -i -selection clipboard
    fi
 #+END_SRC
 * Work IRC                                                            :crypt:
