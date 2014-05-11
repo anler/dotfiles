@@ -1,0 +1,128 @@
+* Conkeror configuration
+:PROPERTIES:
+:tangle: ~/.conkerorrc
+:END:
+
+** Appearance
+I'm using ivoarch's [[https://github.com/ivoarch/conkeror-theme-zenburn][conkeror-theme-zenburn]].
+
+#+BEGIN_SRC js
+  theme_load_paths.push("~/.conkeror/themes");
+  theme_unload("default");
+  theme_load("conkeror-theme-zenburn");
+#+END_SRC
+
+** Urls from command line
+- Load urls from the command line in new buffers instead of new windows.
+#+BEGIN_SRC js
+  url_remoting_fn = load_url_in_new_buffer;
+#+END_SRC
+
+** Enable history navigation
+- =h= Find url from history in a new buffer.
+- =H= Find url from history in the current buffer.
+
+#+BEGIN_SRC js
+  define_browser_object_class(
+      "history-url", null, 
+      function (I, prompt) {
+          check_buffer (I.buffer, content_buffer);
+          var result = yield I.buffer.window.minibuffer.read_url(
+              $prompt = prompt,  $use_webjumps = false, $use_history = true, $use_bookmarks = false);
+          yield co_return (result);
+      });
+
+  interactive("find-url-from-history",
+              "Find a page from history in the current buffer",
+              "find-url",
+              $browser_object = browser_object_history_url);
+
+  interactive("find-url-from-history-new-buffer",
+              "Find a page from history in the current buffer",
+              "find-url-new-buffer",
+              $browser_object = browser_object_history_url);
+
+  define_key(content_buffer_normal_keymap, "h", "find-url-from-history-new-buffer");
+  define_key(content_buffer_normal_keymap, "H", "find-url-from-history");
+#+END_SRC
+
+** Use Emacs as external editor
+- View source with external editor.
+- Use Emacs as the external editor.
+
+#+BEGIN_SRC js
+  view_source_use_external_editor = true;
+  editor_shell_command = "urxvt -e emacs -nw";
+#+END_SRC
+
+** Enable auto-save session
+- Enable auto save session and make it load automatically.
+- Set the expiration date after 15 days.
+
+#+BEGIN_SRC js
+  require("session.js");
+  session_auto_save_auto_load = true;
+  session_pref("broser.history_expire_days", 15);
+#+END_SRC
+
+** Default download directory
+#+BEGIN_SRC js
+  cwd = get_home_directory();
+  cwd.append("Downloads");
+#+END_SRC
+
+** Modeline
+*** Buffer count
+- Show how many buffers are in the current window.
+#+BEGIN_SRC js
+  add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
+#+END_SRC
+
+*** Remove clock
+#+BEGIN_SRC js
+  remove_hook("mode_line_hook", mode_line_adder(clock_widget));
+#+END_SRC
+
+*** Downloads status
+- Show the active download count.
+#+BEGIN_SRC js
+  add_hook("mode_line_hook", mode_line_adder(downloads_status_widget));
+#+END_SRC
+
+*** Enable favicons
+- Enable favicons in the mode-line.
+- Enable favicons in the read_buffer completions list.
+
+#+BEGIN_SRC js
+  require("favicon");
+  add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true);
+  read_buffer_show_icons = true;
+#+END_SRC
+
+*** Enable everything else
+#+BEGIN_SRC js
+  add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true);
+  add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
+  add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
+  add_hook("mode_line_hook", mode_line_adder(zoom_widget));
+  add_hook("mode_line_hook", mode_line_adder(downloads_status_widget));
+#+END_SRC
+** Mimetypes
+Launch external programs fro handling various mime types.
+*** PDFs
+- Open with zathura.
+#+BEGIN_SRC js
+  external_content_handlers.set("application/pdf", "zathura");
+#+END_SRC
+
+*** Videos
+- Open with mplayer.
+#+BEGIN_SRC js
+  external_content_handlers.set("video/*", "urxvtc -e mplayer");
+#+END_SRC
+
+** xkcd
+- Let xkcd-mode put the funny alt text into the page.
+#+BEGIN_SRC js
+  xkcd_add_title = true;
+#+END_SRC
