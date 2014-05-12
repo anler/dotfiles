@@ -12,6 +12,11 @@ I'm using ivoarch's [[https://github.com/ivoarch/conkeror-theme-zenburn][conkero
   theme_load("conkeror-theme-zenburn");
 #+END_SRC
 
+** Random Wikipedia homepage
+#+BEGIN_SRC js
+  homepage = "http://en.wikipedia.org/wiki/Special:Random";
+#+END_SRC
+
 ** Urls from command line
 - Load urls from the command line in new buffers instead of new windows.
 #+BEGIN_SRC js
