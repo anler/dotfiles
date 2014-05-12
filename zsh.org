@@ -79,3 +79,8 @@ daemon mode if not running and try to connect again. This is why
 #+BEGIN_SRC sh :tangle ~/.zshrc
   export GPGKEY=12BF558E
 #+END_SRC
+** Aliases
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  alias -g G="| grep -i"
+  alias python=ipython
+#+END_SRC
