@@ -17,6 +17,15 @@ I'm using ivoarch's [[https://github.com/ivoarch/conkeror-theme-zenburn][conkero
   homepage = "http://en.wikipedia.org/wiki/Special:Random";
 #+END_SRC
 
+** Duplicate buffer
+- Interactive command for duplicating a buffer.
+#+BEGIN_SRC js
+  interactive("duplicate-buffer", "Duplicate buffer",
+              function(I) {
+                  browser_object_follow(I.buffer, OPEN_NEW_BUFFER, I.buffer.current_uri.spec)
+              });
+#+END_SRC
+
 ** Urls from command line
 - Load urls from the command line in new buffers instead of new windows.
 #+BEGIN_SRC js
