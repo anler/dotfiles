@@ -143,3 +143,22 @@ Launch external programs fro handling various mime types.
 #+BEGIN_SRC js
   xkcd_add_title = true;
 #+END_SRC
+
+** Order buffers by access time
+#+BEGIN_SRC js
+  interactive("switch-to-recent-buffer",
+              "Prompt for a buffer and switch to it, displaying the list in last-visited order.",
+              function (I) {
+                  switch_to_buffer(
+                      I.window,
+                      (yield I.minibuffer.read_buffer(
+                          $prompt = "Switch to buffer:",
+                          $buffers = I.window.buffers.buffer_history,
+                          $default = (I.window.buffers.count > 1 ?
+                                      I.window.buffers.buffer_history[1] :
+                                      I.buffer))));
+              });
+
+  define_key(default_global_keymap, "C-x b", "switch-to-recent-buffer");
+#+END_SRC
+
