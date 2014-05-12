@@ -33,10 +33,13 @@ I'm using ivoarch's [[https://github.com/ivoarch/conkeror-theme-zenburn][conkero
 #+END_SRC
 
 ** Enable history navigation
+- Make =find-url= prompt include history urls in its completions.
 - =h= Find url from history in a new buffer.
 - =H= Find url from history in the current buffer.
 
 #+BEGIN_SRC js
+  url_completion_use_history = true;
+
   define_browser_object_class(
       "history-url", null, 
       function (I, prompt) {
