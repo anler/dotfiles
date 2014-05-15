@@ -18,7 +18,7 @@
 #+END_SRC
 
 ** Key bindings
-#+BEGIN_SRC elisp
+#+BEGIN_SRC lisp
   (defcommand (fprev tile-group) () ()
     "Cycle through the frame tree to the previous frame."
     (focus-prev-frame (current-group)))
@@ -26,6 +26,23 @@
   (define-key *root-map* (kbd "O") "fprev")
 #+END_SRC
 
+** Emacs-like keybindings
+*** List buffers/windows
+#+BEGIN_SRC lisp
+  (define-key *root-map* (kbd "b") "windowlist")
+  (define-key *root-map* (kbd "C-b") "windowlist")
+
+  (define-key *groups-map* (kbd "b") "grouplist")
+  (define-key *groups-map* (kbd "C-b") "grouplist")
+#+END_SRC
+
+*** Split frame
+#+BEGIN_SRC lisp
+  (define-key *root-map* (kbd "3") "hsplit")
+  (define-key *root-map* (kbd "2") "vsplit")
+  (define-key *root-map* (kbd "1") "only")
+  (define-key *root-map* (kbd "0") "remove")
+#+END_SRC
 ** Mode line
 A head is a physical monitor. A screen is a section of video memory
 that heads are mapped on to.  When using Xinerama you generally have 1
