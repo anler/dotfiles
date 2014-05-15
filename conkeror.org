@@ -178,3 +178,11 @@ Launch external programs fro handling various mime types.
   interactive("darken-page", "Darken the page in an attempt to save your eyes.",
               darken_page);
 #+END_SRC
+
+** Remember the last save directory for downloads
+#+BEGIN_SRC sh
+  function update_save_path (info) {
+      cwd = info.target_file.parent;
+  }
+  add_hook("download_added_hook", update_save_path);
+#+END_SRC
