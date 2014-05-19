@@ -186,3 +186,87 @@ Launch external programs fro handling various mime types.
   }
   add_hook("download_added_hook", update_save_path);
 #+END_SRC
+** Page Modes
+*** xkcd
+- Let xkcd-mode put the funny alt text into the page.
+#+BEGIN_SRC js
+  xkcd_add_title = true;
+  page_mode_activate(xkcd_mode);
+#+END_SRC
+
+*** github
+| key | what?               |
+|-----+---------------------|
+| ?   | Show help           |
+| s   | Focus site search   |
+| /   | focus issues search | 
+  
+#+BEGIN_SRC js
+  require("github");
+#+END_SRC
+
+*** gmail
+Gmail mode sets up a number of fallthrough keys to allow you to use
+Gmail's keyboard shortcuts. It also provides the command
+=gmail-label-goto= on =C-c C-g= to jump to a specific label. To use
+it, put the following in your rc:
+#+BEGIN_SRC js
+  require("gmail");
+#+END_SRC
+
+With gmail-mode enabled, the following code enables gmailtex: 
+#+BEGIN_SRC js
+  var gmailtexjs = "URL-TO-GMAILTEX.JS-HERE";
+
+  function gmailtex_enable (buffer) {
+      var doc = buffer.document
+          .getElementById("canvas_frame")
+          .contentDocument;
+      if (doc && (! doc.querySelector("script[src='"+gmailtexjs+"']"))) {
+          var s = doc.createElement("script");
+          s.setAttribute("type", "text/javascript");
+          s.setAttribute("src", gmailtexjs);
+          doc.getElementsByTagName('head')[0].appendChild(s);
+      }
+  }
+  add_hook('gmail_mode_enable_hook', gmailtex_enable);
+#+END_SRC
+
+*** youtube
+=youtube-player-mode= allows you to control the html5 video
+player. Right now it supports playing, pausing, (un)muting, switching
+to fullscreen mode and altering playback speed. It should load
+automatically by default. Make sure you've enabled html5 by visiting
+http://youtube.com/html5.
+
+| key     | what?      |
+|---------+------------|
+| C-c RET | play/pause |
+| C-c C-m | (un)mute   |
+| C-c C-f | fullscreen |
+
+#+BEGIN_SRC js
+  require("youtube");
+#+END_SRC
+
+*** duckduckgo
+This page-mode provides most of DuckDuckGo's keyboard shortcuts, but
+by means of Conkeror's input system, so that they do not conflict with
+Conkeror's keys, and can easily be customized. To use this mode
+correctly, make sure you have DuckDuckGo's keyboard shortcuts
+disabled; this can be done either through the Settings panel on
+DuckDuckGo, or by passing the query variable kk=-1 in the url. The
+built-in DuckDuckGo webjump does this automatically.
+
+| key | what?          |
+|-----+----------------|
+| j   | down           |
+| k   | up             |
+| /   | focus search   |
+| r   | related topics |
+| m   | main results   |
+| !   | bang dropdown  |
+
+#+BEGIN_SRC js
+  require("duckduckgo");
+#+END_SRC
