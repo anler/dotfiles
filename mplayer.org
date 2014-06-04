@@ -15,7 +15,7 @@
   
   # use alsa for audio output, choose oss4 as fallback
   ao=alsa,oss
-  mixer-channel="Master"
+  # mixer-channel="Master"
   
   # multithreaded decoding of H264/MPEG-1/2 (valid: 1-8)
   lavdopts=threads=2

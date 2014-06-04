@@ -14,7 +14,7 @@ This is the result.
 - [[zsh.org][Zsh]]
 - [[file:editor.org][Editor]]
 - [[sqlite.org][SQLite]]
-- [[stumpwm.org][StumpWM Window Manager]] (currently used)
+- [[stumpwm.org][StumpWM Window Manager]]
 - [[file:i3.org][i3 Window Manager]]
 - [[file:xmonad.org][Xmonad Window Manager]]
 - [[x.org][X-Org]]

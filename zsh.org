@@ -82,5 +82,7 @@ daemon mode if not running and try to connect again. This is why
 ** Aliases
 #+BEGIN_SRC sh :tangle ~/.zshrc
   alias -g G="| grep -i"
-  alias python=ipython
+  alias py=ipython
+
+  alias play_digitalis="mplayer -quiet -playlist http://somafm.com/digitalis.pls"
 #+END_SRC

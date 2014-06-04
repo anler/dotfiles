@@ -21,6 +21,10 @@
   xsetroot -cursor_name left_ptr
 #+END_SRC
 
+** Set wallpaper
+#+BEGIN_SRC sh
+  feh --bg-fill ~/wallpapers/sunset.jpg
+#+END_SRC
 ** Map ctrl to capslock
 #+BEGIN_SRC sh
   setxkbmap -option ctrl:nocaps
@@ -43,7 +47,7 @@
 
 ** Launch window manager
 #+BEGIN_SRC sh
-  stumpwm
+  exec i3
 #+END_SRC
 
 * xresources
