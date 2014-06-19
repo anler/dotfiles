@@ -79,10 +79,11 @@ daemon mode if not running and try to connect again. This is why
 #+BEGIN_SRC sh :tangle ~/.zshrc
   export GPGKEY=12BF558E
 #+END_SRC
+
 ** Aliases
 #+BEGIN_SRC sh :tangle ~/.zshrc
   alias -g G="| grep -i"
   alias py=ipython
-
+  alias uemacs="emacs -nw -Q"
   alias play_digitalis="mplayer -quiet -playlist http://somafm.com/digitalis.pls"
 #+END_SRC
