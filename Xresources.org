@@ -1,61 +1,4 @@
-* xinitrc
-:PROPERTIES:
-:tangle: ~/.xinitrc
-:shebang: #!/bin/sh
-:END:
-
-** Custom fonts
-#+BEGIN_SRC sh
-  xset +fp /usr/share/fonts
-  xset +fp /usr/share/fonts/TTF/
-  xset fp rehash
-#+END_SRC
-
-** Disable bell
-#+BEGIN_SRC sh
-  xset -b
-#+END_SRC
-
-** Set the cursor
-#+BEGIN_SRC sh
-  xsetroot -cursor_name left_ptr
-#+END_SRC
-
-** Set wallpaper
-#+BEGIN_SRC sh
-  feh --bg-fill ~/wallpapers/sunset.jpg
-#+END_SRC
-** Map ctrl to capslock
-#+BEGIN_SRC sh
-  setxkbmap -option ctrl:nocaps
-#+END_SRC
-
-** Launch daemons
-#+BEGIN_SRC sh
-  if [ -d /etc/X11/xinit/xinitrc.d ]; then
-    for f in /etc/X11/xinit/xinitrc.d/*; do
-      [ -x "$f" ] && . "$f"
-    done
-    unset f
-  fi
-#+END_SRC
-
-** Load .Xresources
-#+BEGIN_SRC sh
-  [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-#+END_SRC
-
-** Launch window manager
-#+BEGIN_SRC sh
-  exec i3
-#+END_SRC
-
-* xresources
-:PROPERTIES:
-:tangle: ~/.Xresources
-:END:
-#+BEGIN_SRC conf
-
+#+BEGIN_SRC conf :tangle ~/.Xresources
   !-------------------------------------------------------------------------------
   ! Xft settings
   !-------------------------------------------------------------------------------
@@ -85,18 +28,16 @@
   URxvt.transparent:          false
   URxvt.loginShell:           true
   URxvt.saveLines:            32767
-  URxvt.internalBorder:       3
+  URxvt.internalBorder:       12
   URxvt.lineSpace:            0
   URxvt.iso14755:             false
   URxvt.iso14755_52:          false
   URxvt.meta8:                false
      
   ! Fonts
-  URxvt.allow_bold:           true
-  URxvt.font:     xft:bitstream vera sans mono:size=13:antialias=true
-  URxvt.boldFont: xft:bitstream vera sans mono:bold:size=13:antialias=true
-  URxvt.letterSpace: -1
-   
+  URxvt.font:                  xft:DejaVu Sans Mono:size=11:antialias=true
+  URxvt.boldFont:              xft:DejaVu Sans Mono:bold:size=11:antialias=true
+
   ! Scrollbar
   URxvt.scrollStyle:          rxvt
   URxvt.scrollBar:            false
@@ -133,28 +74,44 @@
 
   URxvt.cutchars:             "\\ `\"\'()*;<>[]{|}&,=?@^\:"
 
-  ! Zenburn colors
-  URxvt*termName: rxvt-256color
-  URxvt*xftAntialias: true
-  URxvt*background: #3f3f3f
-  URxvt*foreground: #dcdccc
-  URxvt*cursorColor: #aaaaaa
-  URxvt*colorUL: #366060
-  URxvt*underlineColor: #dfaf8f
-  URxvt*color0: #3f3f3f
-  URxvt*color1: #cc9393
-  URxvt*color2: #7f9f7f
-  URxvt*color3: #d0bf8f
-  URxvt*color4: #6ca0a3
-  URxvt*color5: #dc8cc3
-  URxvt*color6: #93e0e3
-  URxvt*color7: #dcdccc
-  URxvt*color8: #000000
-  URxvt*color9: #dca3a3
-  URxvt*color10: #bfebbf
-  URxvt*color11: #f0dfaf
-  URxvt*color12: #8cd0d3
-  URxvt*color13: #dc8cc3
-  URxvt*color14: #93e0e3
-  URxvt*color15: #ffffff
+  ! Colors
+
+  ! Midnight Blue-Black
+  ! URxvt*color0:           #34495e
+  ! URxvt*color8:           #2c3e50
+  !URxvt.background :       #2c3e50
+
+  ! real Black
+  URxvt*color0:           #2B2B2B
+  URxvt*color8:           #252525
+  URxvt.background :      #252525
+
+  ! Red
+  URxvt*color1:           #FF0033
+  URxvt*color9:           #C0392B
+
+  ! Green
+  URxvt*color2:           #2ecc71
+  URxvt*color10:          #27ae60
+
+  ! Yellow
+  URxvt*color3:           #f1c40f
+  URxvt*color11:          #f39c12
+
+  ! Blue
+  URxvt*color4:           #3498db
+  URxvt*color12:          #2980b9
+
+  ! Magenta
+  URxvt*color5:           #9b59b6
+  URxvt*color13:          #8e44ad
+
+  ! Cyan
+  URxvt*color6:           #1abc9c
+  URxvt*color14:          #16a085
+
+  ! White
+  URxvt*color7:           #ecf0f1
+  URxvt*color15:          #bdc3c7
+  URxvt.foreground :      #bdc3c7
 #+END_SRC
