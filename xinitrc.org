@@ -9,8 +9,6 @@
 
   xsetroot -cursor_name left_ptr
 
-  compton --config ~/.config/compton/compton.conf &
-
   dunst --config ~/.config/dunst/dunstrc &
 
   feh --bg-fill ~/wallpapers/sunset.jpg
