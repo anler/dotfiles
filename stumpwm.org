@@ -24,6 +24,8 @@
     (focus-prev-frame (current-group)))
 
   (define-key *root-map* (kbd "O") "fprev")
+  (define-key *root-map* (kbd "C-O") "fprev")
+  (define-key *root-map* (kbd "C-o") "fnext")
 #+END_SRC
 
 ** Emacs-like keybindings
@@ -43,6 +45,7 @@
   (define-key *root-map* (kbd "1") "only")
   (define-key *root-map* (kbd "0") "remove")
 #+END_SRC
+
 ** Mode line
 A head is a physical monitor. A screen is a section of video memory
 that heads are mapped on to.  When using Xinerama you generally have 1
@@ -55,7 +58,6 @@ Turn on mode-line in all heads since I'm using Xinerama:
       (enable-mode-line (current-screen) (current-head) t))
 #+END_SRC
 
-#+END_SRC
 ** Utils
 #+BEGIN_SRC lisp
   (defun global-set-key (key command)
@@ -79,15 +81,20 @@ Turn on mode-line in all heads since I'm using Xinerama:
 ** Programs
 *** Web browser
 #+BEGIN_SRC lisp
-    (defparameter WEB-BROWSER "exec firefox" "Default web browser")
+  (defparameter WEB-BROWSER "exec firefox" "Default web browser")
 
-    (defcommand browse (&optional url-string) ((:string "URL (optional): "))
-      "Browse URL-STRING using WEB-BROWSER"
-      (check-type url-string string)
-      (let ((cmd (if (> (length url-string) 0)
-                     (cat WEB-BROWSER " " "\"" url-string "\"")
-                   WEB-BROWSER)))
-        (run-shell-command cmd)))
+  (defcommand browse (&optional url-string) ((:string "URL (optional): "))
+    "Browse URL-STRING using WEB-BROWSER"
+    (check-type url-string string)
+    (let ((cmd (if (> (length url-string) 0)
+                   (cat WEB-BROWSER " " "\"" url-string "\"")
+                 WEB-BROWSER)))
+      (run-shell-command cmd)))
+
+  (defcommand firefox ()
+    ()
+    "Run firefox"
+    (run-or-raise "firefox" '(:class "Firefox")))
 #+END_SRC
 
 *** Terminal
@@ -127,4 +134,5 @@ Turn on mode-line in all heads since I'm using Xinerama:
 *** Switch windows
 #+BEGIN_SRC lisp
   (global-set-key (kbd "s-Tab") "pull-hidden-next")
+  (global-set-key (kbd "M-Tab") "pull-hidden-next")
 #+END_SRC

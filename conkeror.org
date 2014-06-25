@@ -3,6 +3,13 @@
 :tangle: ~/.conkerorrc
 :END:
 
+Read more http://emacs-fu.blogspot.com.es/2010/12/conkeror-web-browsing-emacs-way.html
+TODO:
+Password management with keepassx
+Set browser in Emacs
+Dictionaries
+Bookmarks
+
 ** Appearance
 I'm using ivoarch's [[https://github.com/ivoarch/conkeror-theme-zenburn][conkeror-theme-zenburn]].
 
@@ -69,17 +76,17 @@ I'm using ivoarch's [[https://github.com/ivoarch/conkeror-theme-zenburn][conkero
 
 #+BEGIN_SRC js
   view_source_use_external_editor = true;
-  editor_shell_command = "urxvt -e emacs -nw";
+  editor_shell_command = "urxvt -e emacsclient -nw";
 #+END_SRC
 
-** Enable auto-save session
-- Enable auto save session and make it load automatically.
-- Set the expiration date after 15 days.
+** Disable auto-save session
+- Disable auto save session and make it load automatically.
+- Set the expiration date after 15 days.B
 
 #+BEGIN_SRC js
   require("session.js");
-  session_auto_save_auto_load = true;
-  session_pref("broser.history_expire_days", 15);
+  session_auto_save_auto_load = false;
+  session_pref("browser.history_expire_days", 15);
 #+END_SRC
 
 ** Default download directory
@@ -136,12 +143,6 @@ Launch external programs fro handling various mime types.
 - Open with mplayer.
 #+BEGIN_SRC js
   external_content_handlers.set("video/*", "urxvtc -e mplayer");
-#+END_SRC
-
-** xkcd
-- Let xkcd-mode put the funny alt text into the page.
-#+BEGIN_SRC js
-  xkcd_add_title = true;
 #+END_SRC
 
 ** Order buffers by access time
@@ -203,33 +204,6 @@ Launch external programs fro handling various mime types.
   
 #+BEGIN_SRC js
   require("github");
-#+END_SRC
-
-*** gmail
-Gmail mode sets up a number of fallthrough keys to allow you to use
-Gmail's keyboard shortcuts. It also provides the command
-=gmail-label-goto= on =C-c C-g= to jump to a specific label. To use
-it, put the following in your rc:
-#+BEGIN_SRC js
-  require("gmail");
-#+END_SRC
-
-With gmail-mode enabled, the following code enables gmailtex: 
-#+BEGIN_SRC js
-  var gmailtexjs = "URL-TO-GMAILTEX.JS-HERE";
-
-  function gmailtex_enable (buffer) {
-      var doc = buffer.document
-          .getElementById("canvas_frame")
-          .contentDocument;
-      if (doc && (! doc.querySelector("script[src='"+gmailtexjs+"']"))) {
-          var s = doc.createElement("script");
-          s.setAttribute("type", "text/javascript");
-          s.setAttribute("src", gmailtexjs);
-          doc.getElementsByTagName('head')[0].appendChild(s);
-      }
-  }
-  add_hook('gmail_mode_enable_hook', gmailtex_enable);
 #+END_SRC
 
 *** youtube
