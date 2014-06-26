@@ -21,7 +21,7 @@
 
 ** Start dmenu (a program launcher)
 #+BEGIN_SRC conf
-  bindsym $mod+p exec quickswitch.py -d dmenu_run
+  bindsym $mod+p exec quickswitch.py -d "dmenu_run -p 'launch :>' -fn 'DejaVu Sans Mono-9' -sb '#0088CC'"
 #+END_SRC
 
 ** Switch between windows
