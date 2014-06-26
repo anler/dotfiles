@@ -1,41 +1,40 @@
-* i3
-** window manager
+* window manager
 :PROPERTIES:
 :tangle: ~/.i3/config
 :mkdirp: true
 :END:
-*** Set $mod and font
+** Set $mod and font
 #+BEGIN_SRC conf
   set $mod Mod4
-  font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+  font pango:DejaVu Sans Mono 9
 #+END_SRC
 
-*** Use Mouse+$mod to drag floating windows to their wanted position
+** Use Mouse+$mod to drag floating windows to their wanted position
 #+BEGIN_SRC conf
   floating_modifier $mod
 #+END_SRC
 
-*** Kill focused window
+** Kill focused window
 #+BEGIN_SRC conf
   bindsym $mod+q kill
 #+END_SRC
 
-*** Start dmenu (a program launcher)
+** Start dmenu (a program launcher)
 #+BEGIN_SRC conf
   bindsym $mod+p exec quickswitch.py -d dmenu_run
 #+END_SRC
 
-*** Switch between windows
+** Switch between windows
 #+BEGIN_SRC conf
   bindsym $mod+o exec quickswitch.py
 #+END_SRC
 
-*** Switch between windows in scratchpad
+** Switch between windows in scratchpad
 #+BEGIN_SRC conf
   bindsym $mod+Shift+o exec quickswitch.py -s
 #+END_SRC
 
-*** Change focus
+** Change focus
 #+BEGIN_SRC conf
   bindsym $mod+j focus left
   bindsym $mod+k focus down
@@ -43,7 +42,7 @@
   bindsym $mod+semicolon focus right
 #+END_SRC
 
-*** Move focused window
+** Move focused window
 #+BEGIN_SRC conf
   bindsym $mod+Shift+j move left
   bindsym $mod+Shift+k move down
@@ -51,35 +50,35 @@
   bindsym $mod+Shift+semicolon move right
 #+END_SRC
 
-*** Split in horizontal/vertical orientation
+** Split in horizontal/vertical orientation
 #+BEGIN_SRC conf
   bindsym $mod+h split h
   bindsym $mod+v split v
 #+END_SRC
 
-*** Enter fullscreen mode for the focused container
+** Enter fullscreen mode for the focused container
 #+BEGIN_SRC conf
   bindsym $mod+f fullscreen
 #+END_SRC
 
-*** Change container layout (stacked, tabbed, toggle split)
+** Change container layout (stacked, tabbed, toggle split)
 #+BEGIN_SRC conf
   bindsym $mod+s layout stacking
   bindsym $mod+w layout tabbed
   bindsym $mod+e layout toggle split
 #+END_SRC
 
-*** Toggle tiling / floating
+** Toggle tiling / floating
 #+BEGIN_SRC conf
   bindsym $mod+Shift+space floating toggle
 #+END_SRC
 
-*** Change focus between tiling / floating windows
+** Change focus between tiling / floating windows
 #+BEGIN_SRC conf
   bindsym $mod+space focus mode_toggle
 #+END_SRC
 
-*** Setup workspaces
+** Setup workspaces
 #+BEGIN_SRC conf
   # workspace defines
   set $w1 1:main
@@ -93,13 +92,13 @@
   set $w9 9:reading
   set $w0 10:watching
 #+END_SRC
-*** Focus the parent/child container
+** Focus the parent/child container
 #+BEGIN_SRC conf
   bindsym $mod+a focus parent
-  bindsym $mod+d focus child
+  bindsym $mod+Shift+a focus child
 #+END_SRC
 
-*** Focus workspaces
+** Focus workspaces
 #+BEGIN_SRC conf
   bindsym $mod+1 workspace $w1
   bindsym $mod+2 workspace $w2
@@ -113,7 +112,7 @@
   bindsym $mod+0 workspace $w10
 #+END_SRC
 
-*** Move focused container to workspace
+** Move focused container to workspace
 #+BEGIN_SRC conf
   bindsym $mod+Shift+1 move container to workspace $w1
   bindsym $mod+Shift+2 move container to workspace $w2
@@ -127,21 +126,21 @@
   bindsym $mod+Shift+0 move container to workspace $w10
 #+END_SRC
 
-*** Open some programs on specific workspaces
+** Open some programs on specific workspaces
 #+BEGIN_SRC conf
   assign [class="Spotify"] $w6
   assign [class="KeepassX"] $w7
   assign [class="Pidgin"] $w8
 #+END_SRC
 
-*** Reload/restart/exit i3
+** Reload/restart/exit i3
 #+BEGIN_SRC conf
   bindsym $mod+Shift+c reload
   bindsym $mod+Shift+r restart
-  bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+  bindsym $mod+Shift+e exec i3-msg exit
 #+END_SRC
 
-*** Resize window (you can also use the mouse for that)
+** Resize window (you can also use the mouse for that)
 #+BEGIN_SRC conf
   mode "resize" {
           bindsym Left resize shrink width 10 px or 10 ppt
@@ -157,47 +156,65 @@
   bindsym $mod+r mode "resize"
 #+END_SRC
 
-*** Start i3bar
+** Start i3bar and color theme
 #+BEGIN_SRC conf
   bar {
-      status_command i3status
+    status_command i3status
+    colors {
+      separator #666666
+      background #222222
+      statusline #dddddd
+      focused_workspace #0088CC #0088CC #ffffff
+      active_workspace #333333 #333333 #ffffff
+      inactive_workspace #333333 #333333 #888888
+      urgent_workspace #2f343a #900000 #ffffff
+    }
   }
+
+  client.focused #0088CC #0088CC #ffffff #dddddd
+  client.focused_inactive #333333 #333333 #888888 #292d2e
+  client.unfocused #333333 #333333 #888888 #292d2e
+  client.urgent #2f343a #900000 #ffffff #900000
 #+END_SRC
 
-*** Move the current workspace to the next output
+** Move the current workspace to the next output
 #+BEGIN_SRC conf
   bindsym $mod+x move workspace to output right
   bindsym $mod+Shift+x move workspace to output left
 #+END_SRC
 
-*** Borders
+** Borders
 #+BEGIN_SRC conf
-  hide_edge_borders both
   bindsym $mod+t border normal
   bindsym $mod+y border 1pixel
   bindsym $mod+u border none
 #+END_SRC
 
-*** Floating applications
+** Floating applications
 #+BEGIN_SRC conf
   for_window [class="^MPlayer"] floating enable
   for_window [class="^Thunar"] floating enable
   for_window [class="^Spotify"] floating enable
 #+END_SRC
 
-*** Open terminal
+** Open terminal
 #+BEGIN_SRC conf
-  bindsym $mod+Return exec i3-sensible-terminal
+  bindsym $mod+Return exec ZSH_TMUX_AUTOSTART=true i3-sensible-terminal
 #+END_SRC
 
-*** Raise/Lower/Mute audio
+** Raise/Lower/Mute audio
 #+BEGIN_SRC conf
-  bindsym XF86AudioRaiseVolume exec amixer set Master playback 2%+
-  bindsym XF86AudioLowerVolume exec amixer set Master playback 2%-
-  bindsym XF86AudioMute exec amixer set Master toggle
+  bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '3%+'"
+  bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master '1%-'"
+
+  bindsym $mod+i exec "amixer -D pulse sset Master '3%+'"
+  bindsym $mod+d exec "amixer -D pulse sset Master '1%-'"
+
+  bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
+  bindsym XF86AudioMicMute exec "amixer -D pulse sset Capture toggle"
 #+END_SRC
 
-*** Workspaces
+** Workspaces
 Easily switch back and forth between workspaces. Assume you are in
 workspace 1 and switch to 2, using ~mod+2~ again will switch you back
 to where you came from, that is 1, if you again press ~mod+2~ you will
@@ -206,17 +223,26 @@ switch forth to workspace 2:
   workspace_auto_back_and_forth yes
 #+END_SRC
 
-*** Make the currently focused window a scratchpad
+** Make the currently focused window a scratchpad
 #+BEGIN_SRC conf
   bindsym $mod+Shift+minus move scratchpad
 #+END_SRC
 
-*** Show the scratchpad windows
+** Show the scratchpad windows
 #+BEGIN_SRC conf
   bindsym $mod+minus scratchpad show
 #+END_SRC
 
-** status bar
+** Special scratchpad
+Emulate a second scratchpad with only one terminal.
+#+BEGIN_SRC conf
+  exec --no-startup-id i3-msg "exec urxvt -name scratch"
+
+  for_window [class="urxvt" instance="^scratch"] move scratchpad
+  bindsym $mod+grave [instance="^scratch"] scratchpad show
+#+END_SRC
+
+* status bar
 :PROPERTIES:
 :tangle: ~/.i3status.conf
 :END:
@@ -226,58 +252,58 @@ switch forth to workspace 2:
           colors = true
           interval = 1
   }
-  
+
   order += "wireless wlp1s0"
-  order += "ethernet eth0"
+  order += "ethernet enp0s20u2"
   order += "volume master"
   order += "load"
   order += "disk /"
   order += "disk /home"
   order += "battery 0"
   order += "tztime local"
-  
+
   wireless wlp1s0 {
           format_up = "W: (%quality at %essid, %bitrate) %ip"
           format_down = "W: down"
   }
-  
-  ethernet eth0 {
+
+  ethernet enp0s20u2 {
           # if you use %speed, i3status requires root privileges
           format_up = "E: %ip (%speed)"
           format_down = "E: down"
   }
-  
+
   battery 0 {
           format = "☀ %status %percentage"
   }
-  
+
   run_watch DHCP {
           pidfile = "/var/run/dhclient*.pid"
   }
-  
+
   run_watch VPN {
           pidfile = "/var/run/vpnc/pid"
   }
-  
+
   tztime local {
           format = "%a %b %d %Y %H:%M"
   }
-  
+
   load {
           format = "☰ %1min"
   }
-  
+
   disk "/" {
           format = "/ +%avail"
   }
-  
+
   disk "/home" {
           format = "/home +%avail"
   }
 
   volume master {
           format = "♪: %volume"
-          device = "default"
+          device = "pulse"
           mixer = "Master"
           mixer_idx = 0
   }
