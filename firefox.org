@@ -1,0 +1,9 @@
+* Ugly fonts
+[[https://bbs.archlinux.org/viewtopic.php?id%3D135939][Link]] to original source.
+#+BEGIN_QUOTE
+Maybe because github lists helvetica as the first font to use, which is symlinked to a bitmap font provided by xorg-fonts-100dpi / xorg-fonts-75dpi
+#+END_QUOTE
+
+#+BEGIN_SRC sh
+  sudo ln -s /etc/fonts/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d
+#+END_SRC
