@@ -229,13 +229,11 @@ switch forth to workspace 2:
 #+END_SRC
 
 ** Show the scratchpad windows
-#+BEGIN_SRC conf
-  bindsym $mod+minus scratchpad show
-#+END_SRC
+Also emulate a second scratchpad with only one terminal.
 
-** Special scratchpad
-Emulate a second scratchpad with only one terminal.
 #+BEGIN_SRC conf
+  bindsym $mod+minus [instance="^(.(?<!scratch))*?$"] scratchpad show
+
   exec --no-startup-id i3-msg "exec urxvt -name scratch"
 
   for_window [class="urxvt" instance="^scratch"] move scratchpad
