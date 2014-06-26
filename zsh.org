@@ -7,7 +7,7 @@ I use [[http://www.zsh.org/][Zsh]] in conjunction with the [[https://github.com/
 #+END_SRC
 ** Plugins
 #+BEGIN_SRC sh :tangle ~/.zshrc
-  plugins=(git git-extras themes archlinux python systemd fabric pip fasd urltools vagrant)
+  plugins=(git git-extras themes archlinux python systemd fabric pip fasd urltools vagrant tmux)
 #+END_SRC
 
 ** Bootstrap
@@ -70,11 +70,6 @@ daemon mode if not running and try to connect again. This is why
   }
 #+END_SRC
 
-** SSH Agent
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  eval $(keychain --eval --agents ssh -Q --quiet id_rsa)
-#+END_SRC
-
 ** GPGKEY
 #+BEGIN_SRC sh :tangle ~/.zshrc
   export GPGKEY=12BF558E
@@ -83,6 +78,7 @@ daemon mode if not running and try to connect again. This is why
 ** Aliases
 #+BEGIN_SRC sh :tangle ~/.zshrc
   alias -g G="| grep -i"
+  alias -g L="| less"
   alias py=ipython
   alias uemacs="emacs -nw -Q"
   alias play_digitalis="mplayer -quiet -playlist http://somafm.com/digitalis.pls"
