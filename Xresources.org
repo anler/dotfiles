@@ -35,8 +35,8 @@
   URxvt.meta8:                false
      
   ! Fonts
-  URxvt.font:                  xft:DejaVu Sans Mono:size=11:antialias=true
-  URxvt.boldFont:              xft:DejaVu Sans Mono:bold:size=11:antialias=true
+  URxvt.font:                  xft:DejaVu Sans Mono:size=9:antialias=true
+  URxvt.boldFont:              xft:DejaVu Sans Mono:bold:size=9:antialias=true
 
   ! Scrollbar
   URxvt.scrollStyle:          rxvt
