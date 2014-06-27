@@ -236,8 +236,15 @@ Also emulate a second scratchpad with only one terminal.
 
   exec --no-startup-id i3-msg "exec urxvt -name scratch"
 
-  for_window [class="urxvt" instance="^scratch"] move scratchpad
+  for_window [instance="^scratch$"] move scratchpad
+  for_window [instance="^scratch$"] border 1pixel
+
   bindsym $mod+grave [instance="^scratch"] scratchpad show
+#+END_SRC
+
+** launch thunar
+#+BEGIN_SRC conf
+  bindsym $mod+n exec thunar
 #+END_SRC
 
 * status bar
