@@ -56,15 +56,6 @@ daemon mode if not running and try to connect again. This is why
       ag -g "$query" | grep -v "py[co]$"
   }
   
-  function off {
-      when=${1:-now}
-      sudo shutdown -h $when
-  }
-  
-  function restart {
-      sudo reboot
-  }
-  
   function trunk {
       echo -n '' | tee "$@" 2> /dev/null
   }
@@ -82,4 +73,7 @@ daemon mode if not running and try to connect again. This is why
   alias py=ipython
   alias uemacs="emacs -nw -Q"
   alias play_digitalis="mplayer -quiet -playlist http://somafm.com/digitalis.pls"
+  alias poweroff="systemctl poweroff"
+  alias reboot="systemctl reboot"
+  alias suspend="systemctl suspend"
 #+END_SRC
