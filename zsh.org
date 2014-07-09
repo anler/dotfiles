@@ -3,11 +3,17 @@ I use [[http://www.zsh.org/][Zsh]] in conjunction with the [[https://github.com/
 
 ** Theme
 #+BEGIN_SRC sh :tangle ~/.zshrc
-  ZSH_THEME="fox"
+  ZSH_THEME="pure"
 #+END_SRC
+
 ** Plugins
 #+BEGIN_SRC sh :tangle ~/.zshrc
-  plugins=(git git-extras themes archlinux python systemd fabric pip fasd urltools vagrant tmux)
+  plugins=(git git-extras themes command-not-found archlinux python systemd fabric pip fasd urltools vagrant tmux)
+#+END_SRC
+
+*** tmux
+#+BEGIN_SRC sh :tangle ~/.zshrc
+  ZSH_TMUX_AUTOSTART=true
 #+END_SRC
 
 ** Bootstrap
@@ -19,10 +25,11 @@ Path to my oh-my-zsh framework:
 
 ** Source helper scripts
 #+BEGIN_SRC sh
-  for script in ~/helpers/*; do
+  for script in ~/.helper-scripts/*; do
       source $script
   done
 #+END_SRC
+
 ** EDITOR
 The *-a \quote\quote* option of emacsclient means: Start Emacs in
 daemon mode if not running and try to connect again. This is why
@@ -32,14 +39,10 @@ daemon mode if not running and try to connect again. This is why
   export ALTERNATE_EDITOR=""
   export EDITOR=emacs
 #+END_SRC
-** PATH
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  export PATH=~/.local/bin:~/.cask/bin:$PATH
-#+END_SRC
 
-** INFOPATH
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  export INFOPATH=~/repos-readonly/emacs/info:~/.local/share/info:$INFOPATH
+** PATH
+#+BEGIN_SRC sh :tangle ~/.profile
+  export PATH=~/.local/bin:~/.cask/bin:$PATH
 #+END_SRC
 
 ** Environment
