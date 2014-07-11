@@ -14,6 +14,7 @@ I use [[http://www.zsh.org/][Zsh]] in conjunction with the [[https://github.com/
 *** tmux
 #+BEGIN_SRC sh :tangle ~/.zshrc
   ZSH_TMUX_AUTOSTART=true
+  ZSH_TMUX_AUTOQUIT=false
 #+END_SRC
 
 ** Bootstrap
@@ -41,7 +42,7 @@ daemon mode if not running and try to connect again. This is why
 #+END_SRC
 
 ** PATH
-#+BEGIN_SRC sh :tangle ~/.profile
+#+BEGIN_SRC sh :tangle ~/.zshrc
   export PATH=~/.local/bin:~/.cask/bin:$PATH
 #+END_SRC
 
