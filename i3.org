@@ -130,7 +130,7 @@
 #+BEGIN_SRC conf
   assign [class="Spotify"] $w6
   assign [class="KeepassX"] $w7
-  assign [class="Pidgin"] $w8
+  assign [class="Empathy"] $w8
 #+END_SRC
 
 ** Reload/restart/exit i3
@@ -188,13 +188,6 @@
   bindsym $mod+t border normal
   bindsym $mod+y border 1pixel
   bindsym $mod+u border none
-#+END_SRC
-
-** Floating applications
-#+BEGIN_SRC conf
-  for_window [class="^MPlayer"] floating enable
-  for_window [class="^Thunar"] floating enable
-  for_window [class="^Spotify"] floating enable
 #+END_SRC
 
 ** Open terminal
@@ -258,8 +251,8 @@ Also emulate a second scratchpad with only one terminal.
           interval = 1
   }
 
-  order += "wireless wlp1s0"
-  order += "ethernet enp0s20u2"
+  order += "wireless wlan0"
+  order += "ethernet eth0"
   order += "volume master"
   order += "load"
   order += "disk /"
@@ -267,12 +260,12 @@ Also emulate a second scratchpad with only one terminal.
   order += "battery 0"
   order += "tztime local"
 
-  wireless wlp1s0 {
+  wireless wlan0 {
           format_up = "W: (%quality at %essid, %bitrate) %ip"
           format_down = "W: down"
   }
 
-  ethernet enp0s20u2 {
+  ethernet eth0 {
           # if you use %speed, i3status requires root privileges
           format_up = "E: %ip (%speed)"
           format_down = "E: down"
