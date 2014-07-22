@@ -181,21 +181,3 @@ Tangle all the org files in a directory:
       cat | xclip -i -selection clipboard
    fi
 #+END_SRC
-* Work IRC                                                            :crypt:
------BEGIN PGP MESSAGE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-hQEMAxWSuK3W+kssAQf/fnAtKs2i+hfoTZM2Zj2mqGF3W+L1GG+Pk1Cj6zdpwPnq
-I8toDKbPbQ6IH70E6NUk6ZajOKu2eMh2NMXgQF7qM83jRsvWlRxztc2udRyxQUKU
-Kb1XrE47MtGree6gToiUeX6hfn4QQ5ljsL7COZCC/b9f2oOGYnjWhX4KdrZZLL4C
-efZVGNGBxkLQ90ZqMDvUKQMzYSS8i3rtTHJdofka4+nPHg+4whriKcb4d/P57hlr
-gTuYAZ+nv7KniR19CM+MKzq1xg30df9C+9MHZwbQP9scz3IDhm6IAi4a/X3zzXJO
-xY0EDv9s44mTGdpl1PI4Vc4l7XrkxefzVRq0bgW/2NLAYQFraYYSHGg3GnYqTjNd
-xC6MJzt6X4tzHFId8ietAzCp4HqhQsxl0LJdnILqk661P0QnEdLdmkakeFT9Th2Z
-CkZ0sXAK+0dWsUM35becZR/pn0TK1+poz7W0uVjxBNu0Qa74R+5IDmvHF4j8wfkj
-FqHerc6GQArVVv8UlsJVIHN6EY6XT7NBVKfeSCip8vW4v/SACwXPTgVULk9q501h
-aBeyqNP1BG1r3tpAP190uos0OlUZW0WXlND4RpMvsaHeP/38t8R+yJZdc5DaRt1q
-y49pWUE4mJnzgIlru/ut/NcbEeiDhl4pt7bNO8c9ET/6AD31IVWxBzKBS4qff13D
-Lh6Um1Mmz31Xt5ltW4O4vcnFGfcyJaHSLKOBrJ7m8j1uJrs=
-=CkTN
------END PGP MESSAGE-----
