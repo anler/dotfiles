@@ -57,7 +57,7 @@
   exit 0
 #+END_SRC
 * Emacs pipe tool
-#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/.local/bin/emp :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/.local/bin/emp :mkdirp true
     # -*- coding: utf-8 -*-
     # -*- Shell -*-
 
@@ -135,7 +135,7 @@
 * Capture screen
 Capture screen with scrot. If an argument is provided the screenshot
 will be named *<argument>.png*, else it's going to be *last-capture.png*:
-#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/.local/bin/capture :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/.local/bin/capture :mkdirp true
   if [ $# -eq 1 ]; then
       filename=$1
   else
@@ -146,7 +146,7 @@ will be named *<argument>.png*, else it's going to be *last-capture.png*:
 #+END_SRC
 * Tangle
 Tangle all the org files in a directory:
-#+BEGIN_SRC sh :shebang #!/bin/sh :tangle ~/.local/bin/tangle :mkdirp true
+#+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/.local/bin/tangle :mkdirp true
   if [ $# -eq 0 ]; then
       dir=`pwd`
   else
@@ -174,10 +174,14 @@ Tangle all the org files in a directory:
   emacs -Q --batch --eval "$TANGLE"
 #+END_SRC
 * Clipboard
-#+BEGIN_SRC sh :tangle ~/.local/bin/cb :shebang #!/bin/sh
+#+BEGIN_SRC sh :tangle ~/.local/bin/cb :shebang #!/bin/bash
   if [ -t 0 ]; then
       xclip -o -selection clipboard
   else
       cat | xclip -i -selection clipboard
    fi
+#+END_SRC
+* Kill process on port
+#+BEGIN_SRC sh :tangle ~/.local/bin/kill-on-port :shebang #!/bin/bash
+  lsof -i tcp:$1 | grep LISTEN | cut -d' ' -f3 | xargs kill
 #+END_SRC
