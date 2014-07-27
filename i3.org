@@ -11,7 +11,7 @@
 
 ** Font
 #+BEGIN_SRC conf
-  font pango:DejaVu Sans Mono 9
+  font pango:Ubuntu 11
 #+END_SRC
 
 ** Use Mouse+$mod to drag floating windows to their wanted position
@@ -219,6 +219,7 @@ to where you came from, that is 1, if you again press ~mod+2~ you will
 switch forth to workspace 2:
 #+BEGIN_SRC conf
   workspace_auto_back_and_forth yes
+  bindsym $mod+Tab workspace back_and_forth
 #+END_SRC
 
 ** Make the currently focused window a scratchpad
@@ -243,6 +244,22 @@ Also emulate a second scratchpad with only one terminal.
 ** launch file manager
 #+BEGIN_SRC conf
   bindsym $mod+n exec $filemanager
+#+END_SRC
+
+** network manager
+#+BEGIN_SRC conf
+  exec --no-startup-id nm-applet
+#+END_SRC
+
+** ubuntu unity settings
+#+BEGIN_SRC conf
+  exec --no-startup-id /usr/lib/unity-settings-daemon/unity-settings-daemon
+  exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+#+END_SRC
+
+** dropbox
+#+BEGIN_SRC conf
+  exec --no-startup-id dropbox start
 #+END_SRC
 
 * status bar
