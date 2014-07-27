@@ -7,18 +7,6 @@ his.
 
 This is the result.
 
-- [[bin.org][Bin]]
-- [[ctags.org][CTags]]
-- [[git.org][Git]]
-- [[mplayer.org][MPlayer]]
-- [[zsh.org][Zsh]]
-- [[file:editor.org][Editor]]
-- [[sqlite.org][SQLite]]
-- [[stumpwm.org][StumpWM Window Manager]]
-- [[file:i3.org][i3 Window Manager]]
-- [[file:xmonad.org][Xmonad Window Manager]]
-- [[x.org][X-Org]]
-
 *Installation*:
 1. Clone repo.
    #+BEGIN_SRC sh
