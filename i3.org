@@ -194,7 +194,10 @@
   bindsym $mod+y border 1pixel
   bindsym $mod+u border none
 #+END_SRC
-
+** Border for new windows
+#+BEGIN_SRC conf
+  new_window pixel 1
+#+END_SRC
 ** Open terminal
 #+BEGIN_SRC conf
   bindsym $mod+Return exec ZSH_TMUX_AUTOSTART=true i3-sensible-terminal
