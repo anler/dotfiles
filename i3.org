@@ -11,7 +11,7 @@
 
 ** Font
 #+BEGIN_SRC conf
-  font pango:Ubuntu 11
+  font pango:Ubuntu 9
 #+END_SRC
 
 ** Use Mouse+$mod to drag floating windows to their wanted position
