@@ -1,4 +1,5 @@
 #+BEGIN_SRC conf :tangle ~/.Xresources
+
   !-------------------------------------------------------------------------------
   ! Xft settings
   !-------------------------------------------------------------------------------
@@ -35,36 +36,13 @@
   URxvt.meta8:                false
      
   ! Fonts
-  URxvt.font:                  xft:DejaVu Sans Mono:size=9:antialias=true
-  URxvt.boldFont:              xft:DejaVu Sans Mono:bold:size=9:antialias=true
+  URxvt.font:                  xft:Fantasque Sans Mono:size=11:antialias=true
+  URxvt.boldFont:              xft:Fantasque Sans Mono:bold:size=11:antialias=true
 
   ! Scrollbar
   URxvt.scrollStyle:          rxvt
   URxvt.scrollBar:            false
    
-  ! Perl extensions
-  URxvt.perl-ext-common:      default,matcher,url-select,font-size,clipboard
-
-  ! URLs
-  URxvt.urlLauncher:          firefox
-  URxvt.matcher.button:       2
-  URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-
-  URxvt.keysym.M-u:           perl:url-select:select_next
-  URxvt.url-select.launcher:  /usr/bin/firefox -new-tab
-  URxvt.url-select.underline: true
-
-  ! Font size
-  URxvt.keysym.C-Up:      perl:font-size:increase
-  URxvt.keysym.C-Down:    perl:font-size:decrease
-
-  ! Clipboard
-  URxvt*clipboard.autocopy:     true
-  URxvt*clipboard.copycmd:      xclip -i -selection clipboard
-  URxvt*clipboard.pastecmd:     xclip -o -selection clipboard
-  URxvt*keysym.M-c:             perl:clipboard:copy
-  URxvt*keysym.M-v:             perl:clipboard:paste
-
   ! Cursor
   URxvt.cursorBlink:          false
   URxvt.cursorUnderline:      false
@@ -75,11 +53,6 @@
   URxvt.cutchars:             "\\ `\"\'()*;<>[]{|}&,=?@^\:"
 
   ! Colors
-
-  ! Midnight Blue-Black
-  ! URxvt*color0:           #34495e
-  ! URxvt*color8:           #2c3e50
-  !URxvt.background :       #2c3e50
 
   ! real Black
   URxvt*color0:           #2B2B2B
