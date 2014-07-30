@@ -19,10 +19,6 @@
   # You probably need to do this too:
   export GPG_AGENT_INFO SSH_AUTH_SOCK
 
-  feh --bg-fill ~/wallpapers/planet.png
-
-  hdmi-script.sh
-
   if [ -d /etc/X11/xinit/xinitrc.d ]; then
     for f in /etc/X11/xinit/xinitrc.d/*; do
       [ -x "$f" ] && . "$f"
