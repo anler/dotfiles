@@ -43,7 +43,7 @@ daemon mode if not running and try to connect again. This is why
 
 ** PATH
 #+BEGIN_SRC sh :tangle ~/.zshrc
-  export PATH=~/.local/bin:~/.cask/bin:$PATH
+  export PATH=~/.local/bin:~/.cask/bin:~/.cabal/bin:$PATH
 #+END_SRC
 
 ** Environment
