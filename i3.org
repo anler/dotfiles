@@ -263,7 +263,7 @@ Also emulate a second scratchpad with only one terminal.
 ** dropbox
 #+BEGIN_SRC conf
   exec --no-startup-id dropbox start
-
+#+END_SRC
 ** ssh keyring
 #+BEGIN_SRC conf
   exec --no-startup-id ssh-add
