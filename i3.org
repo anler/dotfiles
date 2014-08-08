@@ -166,20 +166,35 @@
   bar {
     status_command i3status
     colors {
-      separator #666666
-      background #222222
-      statusline #dddddd
-      focused_workspace #0088CC #0088CC #ffffff
-      active_workspace #333333 #333333 #ffffff
-      inactive_workspace #333333 #333333 #888888
-      urgent_workspace #2f343a #900000 #ffffff
+      # Arch theme
+      # separator #666666
+      # background #222222
+      # statusline #dddddd
+      # focused_workspace #0088CC #0088CC #ffffff
+      # active_workspace #333333 #333333 #ffffff
+      # inactive_workspace #333333 #333333 #888888
+      # urgent_workspace #2f343a #900000 #ffffff
+      
+      background #171a1f
+      focused_workspace #171a1f #171a1f #95C7AE
+      inactive_workspace #171a1f #171a1f #63637a
+      separator #171a1f
+      statusline #aaaaaa
     }
   }
 
-  client.focused #0088CC #0088CC #ffffff #dddddd
-  client.focused_inactive #333333 #333333 #888888 #292d2e
-  client.unfocused #333333 #333333 #888888 #292d2e
-  client.urgent #2f343a #900000 #ffffff #900000
+  # Window colours                border  backgr  text
+  # Arch theme
+  # client.focused                  #0088CC #0088CC #ffffff #dddddd
+  # client.focused_inactive         #333333 #333333 #888888 #292d2e
+  # client.unfocused                #333333 #333333 #888888 #292d2e
+  # client.urgent                   #2f343a #900000 #ffffff #900000
+  
+  client.focused                  #999999 #999999 #9ac0cd
+  client.unfocused                #996E6E #996E6E #9ac0cd
+  client.focused_inactive         #996E6E #996E6E #9ac0cd
+  client.urgent                   #212121 #303030 #ee0000
+ 
 #+END_SRC
 
 ** Move the current workspace to the next output
