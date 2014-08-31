@@ -1,22 +1,3 @@
 [[file:org-mode-logo.png]]
 
-Sometime ago, a good friend of a good friend of mine told him about
-emacs, org-mode and literate programming, then he told me about
-literate programming and I deliberately built these dotfiles on top of
-his.
-
-This is the result.
-
-*Installation*:
-1. Clone repo.
-   #+BEGIN_SRC sh
-     git clone https://github.com/ikame/dotfiles.git
-   #+END_SRC
-2. Go into repo.
-   #+BEGIN_SRC sh
-     cd dotfiles
-   #+END_SRC
-3. Tangle all ~*.org~ files.
-   #+BEGIN_SRC sh
-     sh tangle
-   #+END_SRC
+My configuration files using a /literate-programming/ style.

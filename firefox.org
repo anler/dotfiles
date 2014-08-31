@@ -1,3 +1,4 @@
+#+STARTUP: showall
 * Ugly fonts in Arch linux
 [[https://bbs.archlinux.org/viewtopic.php?id%3D135939][Link]] to original source.
 

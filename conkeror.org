@@ -1,14 +1,14 @@
+#+STARTUP: showall
 * Conkeror configuration
 :PROPERTIES:
 :tangle: ~/.conkerorrc
 :END:
 
 Read more http://emacs-fu.blogspot.com.es/2010/12/conkeror-web-browsing-emacs-way.html
-TODO:
-Password management with keepassx
-Set browser in Emacs
-Dictionaries
-Bookmarks
+*TODO*
+- [ ] Password management with keepassx
+- [ ] Dictionaries
+- [ ] Bookmarks
 
 ** Appearance
 I'm using ivoarch's [[https://github.com/ivoarch/conkeror-theme-zenburn][conkeror-theme-zenburn]].

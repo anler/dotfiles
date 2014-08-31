@@ -1,16 +1,16 @@
+#+STARTUP: showall
 * Git
 :PROPERTIES:
 :tangle: ~/.gitconfig-public
 :END:
 
-Add the following to your =.gitconfig= file:
-
+Keep sensitive that in =.gitconfig= and include this with:
 #+BEGIN_SRC gitconfig :tangle no
   [include]
-      path = /path/to/file
+      path = ~/.gitconfig-public
 #+END_SRC
 
-** editor
+** Editor
 #+BEGIN_SRC gitconfig
   [core]
           editor = emacs
@@ -18,13 +18,13 @@ Add the following to your =.gitconfig= file:
           autocrlf = input
 #+END_SRC
 
-** color
+** Coloring
 #+BEGIN_SRC gitconfig
   [color]
           ui = auto
 #+END_SRC
 
-** aliases
+** Aliases
 #+BEGIN_SRC gitconfig
   [alias]
           st = status -sb
@@ -41,27 +41,29 @@ Add the following to your =.gitconfig= file:
           root = rev-parse --show-toplevel
           pushall = push --recurse-submodules=on-demand
           contributors = "!bash source ~/.git-helpers && git_contributors'"
-          yesterday = log --since 1.day.ago --decorate --oneline --pretty=format:'%Cred%h %C(bold blue)<%an> %Cgreen(%cr) %Creset -%C(yellow)%d%Creset %s%Creset' --author anler86@gmail.com
 #+END_SRC
 
-** push
+** Push
 #+BEGIN_SRC gitconfig
   [push]
           default = tracking
 #+END_SRC
 
 * Helper functions
-#+BEGIN_SRC sh :tangle ~/.git-helpers
+:PROPERTIES:
+:tangle: ~/.git-helpers
+:END:
+** Pretty log
+#+BEGIN_SRC sh
   function pretty_git_log() {
     git log --graph --pretty="tformat:$FORMAT" $* |
     column -t -s "$SEP" |
     less -FXRS
   }
-  
-  function git_diff_files() {
-    git diff | grep "+++ b/" | sed "s/b\///g" | cut -d " " -f 2
-  }
-  
+#+END_SRC
+
+** Show contributors
+#+BEGIN_SRC sh
   function git_contributors() {
     git shortlog -se | awk '{ print $2 $3 }'
   }

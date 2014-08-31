@@ -1,79 +1,75 @@
+#+STARTUP: showall
 * Zsh
-I use [[http://www.zsh.org/][Zsh]] in conjunction with the [[https://github.com/robbyrussell/oh-my-zsh][oh-my-zsh]] framework.
-
-** Theme
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  ZSH_THEME="pure"
-#+END_SRC
-
-** Plugins
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  plugins=(git git-extras themes command-not-found archlinux python systemd fabric pip fasd urltools vagrant tmux)
-#+END_SRC
-
-*** tmux
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  # ZSH_TMUX_AUTOSTART=false
-  ZSH_TMUX_AUTOQUIT=false
-#+END_SRC
-
-** Bootstrap
-Path to my oh-my-zsh framework:
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  export ZSH=$HOME/.oh-my-zsh
-  source $ZSH/oh-my-zsh.sh
-#+END_SRC
-
-** Source helper scripts
-#+BEGIN_SRC sh
-  for script in ~/.helper-scripts/*; do
-      source $script
-  done
-#+END_SRC
+:PROPERTIES::tangle: ~/.zshrc
+:END:
 
 ** EDITOR
-The *-a \quote\quote* option of emacsclient means: Start Emacs in
+The -a "" option of emacsclient means: Start Emacs in
 daemon mode if not running and try to connect again. This is why
 *ALTERNATE_EDITOR* is set to empty string
 
-#+BEGIN_SRC sh :tangle ~/.zshrc
+#+BEGIN_SRC sh
   export ALTERNATE_EDITOR=""
   export EDITOR=emacs
 #+END_SRC
 
 ** PATH
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  export PATH=~/.local/bin:~/.cask/bin:~/.cabal/bin:$PATH
+*** cask
+#+BEGIN_SRC sh
+  export PATH=~/.cask/bin:$PATH
+#+END_SRC
+
+*** haskell/cabal
+#+BEGIN_SRC sh
+  export PATH=~/.cabal/bin:$PATH
+#+END_SRC
+
+*** local/bin
+#+BEGIN_SRC sh
+  export PATH=~/.local/bin:$PATH
 #+END_SRC
 
 ** Environment
-#+BEGIN_SRC sh :tangle ~/.zshrc
+#+BEGIN_SRC sh
   export TERM='xterm-256color'
   export LANG=en_US.UTF-8
 #+END_SRC
 
 ** Helper functions
-#+BEGIN_SRC sh :tangle ~/.zshrc
-  # Simple fuzzy finder
+*** fuzzy finder
+#+BEGIN_SRC sh
   function s {
       query="`echo $1 | fold -w1 | paste -s -d'.' | fold -w2 | paste -s -d'*'`.*"
       ag -g "$query" | grep -v "py[co]$"
   }
-  
-  function trunk {
+#+END_SRC
+
+*** truncate file
+#+BEGIN_SRC sh
+  function truncate {
       echo -n '' | tee "$@" 2> /dev/null
   }
 #+END_SRC
 
 ** GPGKEY
-#+BEGIN_SRC sh :tangle ~/.zshrc
+#+BEGIN_SRC sh
   export GPGKEY=12BF558E
 #+END_SRC
 
-** Aliases
-#+BEGIN_SRC sh :tangle ~/.zshrc
+** Global aliases
+#+BEGIN_QUOTE
+zsh has global aliases, which are substituted anywhere on a line. Global aliases can be used to abbreviate frequently-typed usernames, hostnames, etc.
+#+END_QUOTE
+
+Example, ~ps aux G zsh~ is equivalent to ~ps aux | grep zsh~.
+
+#+BEGIN_SRC sh
   alias -g G="| grep -i"
   alias -g L="| less"
+#+END_SRC
+
+** Normal aliases
+#+BEGIN_SRC sh
   alias py=ipython
   alias uemacs="emacs -nw -Q"
   alias play_digitalis="mplayer -quiet -playlist http://somafm.com/digitalis.pls"
@@ -81,6 +77,7 @@ daemon mode if not running and try to connect again. This is why
   alias reboot="systemctl reboot"
   alias suspend="systemctl suspend"
 #+END_SRC
+
 ** Python virtualenvwrapper
 #+BEGIN_SRC sh
   export WORKON_HOME=~/PythonEnvs

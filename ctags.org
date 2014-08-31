@@ -1,10 +1,17 @@
+#+STARTUP: showall
 * CTags
 :PROPERTIES:
 :tangle: ~/.ctags.org
 :END:
 
+** Don't index imports
+To see what else can be disabled run ~ctags --list-kinds=python~.
 #+BEGIN_SRC conf
-  --python-kinds=-iv
+  --python-kinds=-i
+#+END_SRC
+
+** Exclude special dirs
+#+BEGIN_SRC conf
   --exclude=build
   --exclude=dist
 #+END_SRC
