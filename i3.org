@@ -1,3 +1,4 @@
+#+STARTUP: showall
 * window manager
 :PROPERTIES:
 :tangle: ~/.i3/config
@@ -11,7 +12,7 @@
 
 ** Font
 #+BEGIN_SRC conf
-  font pango:Ubuntu 9
+  font pango:Fantasque Sans Mono 12
 #+END_SRC
 
 ** Use Mouse+$mod to drag floating windows to their wanted position
@@ -26,7 +27,7 @@
 
 ** Start dmenu (a program launcher)
 #+BEGIN_SRC conf
-  bindsym $mod+p exec quickswitch.py -d "dmenu_run -p 'launch :>' -fn 'DejaVu Sans Mono-9' -sb '#0088CC'"
+  bindsym $mod+p exec quickswitch.py -d "dmenu_run -p 'launch :>' -fn 'Fantasque Sans Mono-12' -sb '#0088CC'"
 #+END_SRC
 
 ** Switch between windows
