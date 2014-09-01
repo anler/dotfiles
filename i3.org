@@ -284,8 +284,8 @@ Also emulate a second scratchpad with only one terminal.
           interval = 1
   }
 
-  order += "wireless wlan0"
-  order += "ethernet eth0"
+  order += "wireless wlp1s0"
+  order += "ethernet enp0s20u2"
   order += "volume master"
   order += "load"
   order += "disk /"
@@ -293,12 +293,12 @@ Also emulate a second scratchpad with only one terminal.
   order += "battery 0"
   order += "tztime local"
 
-  wireless wlan0 {
+  wireless wlp1s0 {
           format_up = "W: (%quality at %essid, %bitrate) %ip"
           format_down = "W: down"
   }
 
-  ethernet eth0 {
+  ethernet enp0s20u2 {
           # if you use %speed, i3status requires root privileges
           format_up = "E: %ip (%speed)"
           format_down = "E: down"
