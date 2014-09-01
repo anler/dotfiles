@@ -253,24 +253,16 @@ Also emulate a second scratchpad with only one terminal.
   bindsym $mod+n exec $filemanager
 #+END_SRC
 
-** network manager
+** fedora/gnome settings
 #+BEGIN_SRC conf
-  exec --no-startup-id nm-applet
-#+END_SRC
-
-** ubuntu unity settings
-#+BEGIN_SRC conf
-  exec --no-startup-id /usr/lib/unity-settings-daemon/unity-settings-daemon
-  exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+ exec --no-startup-id /usr/bin/gnome-settings-daemon
+ exec --no-startup-id export $(gnome-keyring-daemon)
+ exec --no-startup-id feh --bg-scale /usr/share/backgrounds/gnome/Terraform-green.jpg
 #+END_SRC
 
 ** dropbox
 #+BEGIN_SRC conf
   exec --no-startup-id dropbox start
-#+END_SRC
-** ssh keyring
-#+BEGIN_SRC conf
-  exec --no-startup-id ssh-add
 #+END_SRC
 
 * status bar
