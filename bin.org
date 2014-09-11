@@ -11,9 +11,6 @@
 Emacs must be running in daemon mode.
 
 #+BEGIN_SRC sh :shebang #!/bin/bash :tangle ~/.local/bin/emp :mkdirp true
-    # -*- coding: utf-8 -*-
-    # -*- Shell -*-
-
     NAME=`basename $0`
     BUFFER="*stdin*"
     function show_usage {
@@ -134,7 +131,7 @@ Tangle all the org files in a directory:
 #+END_SRC
 
 * Clipboard
-#+BEGIN_SRC sh :tangle ~/.local/bin/cb :shebang #!/bin/bash
+#+BEGIN_SRC sh :tangle ~/.local/bin/cb :shebang #!/bin/bash :mkdirp true
   if [ -t 0 ]; then
       xclip -o -selection clipboard
   else
@@ -143,6 +140,29 @@ Tangle all the org files in a directory:
 #+END_SRC
 
 * Kill process on port
-#+BEGIN_SRC sh :tangle ~/.local/bin/kill-on-port :shebang #!/bin/bash
+#+BEGIN_SRC sh :tangle ~/.local/bin/kill-on-port :shebang #!/bin/bash :mkdirp true
   lsof -i tcp:$1 | grep LISTEN | cut -d' ' -f3 | xargs kill
+#+END_SRC
+
+* Lock screen
+#+BEGIN_SRC sh :tangle ~/.local/bin/lock :shebang #!/bin/bash :mkdirp true
+scrot /tmp/ikame/screenshot.png
+convert /tmp/ikame/screenshot.png -blur 0x5 /tmp/ikame/screenshot.png
+i3lock -i /tmp/ikame/screenshot.png
+#+END_SRC
+
+* Connect to Emacs server inside Vagrant box
+#+BEGIN_SRC sh :tangle ~/.local/bin/vemacs :shebang #!/bin/bash :mkdirp true
+  NAME=$(basename $0)
+
+  function show_usage {
+      echo "usage: $NAME <host>"
+      exit 1
+  }
+
+  if [ $# -eq 1 ]; then
+      show_usage
+  else
+      ssh -Y -i ~/.vagrant.d/insecure_private_key "$1" 'emacsclient -c -f ~/.emacs.d/server/server'
+  fi
 #+END_SRC

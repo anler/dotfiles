@@ -87,16 +87,16 @@
 ** Setup workspaces
 #+BEGIN_SRC conf
   # workspace defines
-  set $w1 1:main
-  set $w2 2:www
-  set $w3 3:monitor
-  set $w4 4:leisure
-  set $w5 5:tmp
-  set $w6 6:music
-  set $w7 7:misc
-  set $w8 8:chat
-  set $w9 9:reading
-  set $w0 10:watching
+  set $w1 1
+  set $w2 2
+  set $w3 3
+  set $w4 4
+  set $w5 5
+  set $w6 6
+  set $w7 7
+  set $w8 8
+  set $w9 9
+  set $w0 10
 #+END_SRC
 ** Focus the parent/child container
 #+BEGIN_SRC conf
@@ -132,13 +132,6 @@
   bindsym $mod+Shift+0 move container to workspace $w10
 #+END_SRC
 
-** Open some programs on specific workspaces
-#+BEGIN_SRC conf
-  assign [class="Spotify"] $w6
-  assign [class="KeepassX"] $w7
-  assign [class="Empathy"] $w8
-#+END_SRC
-
 ** Reload/restart/exit i3
 #+BEGIN_SRC conf
   bindsym $mod+Shift+c reload
@@ -164,26 +157,24 @@
 
 ** Start i3bar and color theme
 #+BEGIN_SRC conf
-  bar {
-    status_command i3status
-    colors {
-      # Arch theme
-      separator #666666
-      background #222222
-      statusline #dddddd
-      focused_workspace #0088CC #0088CC #ffffff
-      active_workspace #333333 #333333 #ffffff
-      inactive_workspace #333333 #333333 #888888
-      urgent_workspace #2f343a #900000 #ffffff
+    bar {
+      status_command i3status
+      colors {
+          background #000000
+          separator #666666
+          statusline #ffffff
+          focused_workspace #44bbff #3276E8 #ffffff
+          active_workspace #333333 #5f676a #ffffff
+          inactive_workspace #333333 #222222 #888888
+          urgent_workspace #2f343a #900000 #ffffff
+      }
     }
-  }
 
-  # Window colours                border  backgr  text
-  # Arch theme
-  client.focused                  #0088CC #0088CC #ffffff #dddddd
-  client.focused_inactive         #333333 #333333 #888888 #292d2e
-  client.unfocused                #333333 #333333 #888888 #292d2e
-  client.urgent                   #2f343a #900000 #ffffff #900000
+    # Window colours                border  backgr  text
+    client.focused #44bbff #3276E8 #ffffff #cccccc
+    client.focused_inactive #333333 #5f676a #ffffff #484e50
+    client.unfocused #333333 #222222 #888888 #292d2e
+    client.urgent #2f343a #900000 #ffffff #900000
 #+END_SRC
 
 ** Move the current workspace to the next output
@@ -192,31 +183,41 @@
   bindsym $mod+Shift+x move workspace to output left
 #+END_SRC
 
+** Hardware buttons
+#+BEGIN_SRC conf
+  bindsym XF86MonBrightnessUp exec /usr/bin/xbacklight -inc 10
+  bindsym XF86MonBrightnessDown exec /usr/bin/xbacklight -dec 5
+
+  bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '3%+'"
+  bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master '1%-'"
+  bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
+  bindsym XF86AudioMicMute exec "amixer -D pulse sset Capture toggle"
+
+  bindsym $mod+i exec "amixer -D pulse sset Master '3%+'"
+  bindsym $mod+d exec "amixer -D pulse sset Master '1%-'"
+#+END_SRC
+
+
 ** Borders
 #+BEGIN_SRC conf
   bindsym $mod+t border normal
   bindsym $mod+y border 1pixel
   bindsym $mod+u border none
 #+END_SRC
+
 ** Border for new windows
 #+BEGIN_SRC conf
   new_window pixel 1
 #+END_SRC
+
 ** Open terminal
 #+BEGIN_SRC conf
   bindsym $mod+Return exec ZSH_TMUX_AUTOSTART=true i3-sensible-terminal
 #+END_SRC
 
-** Raise/Lower/Mute audio
+** Lock screen
 #+BEGIN_SRC conf
-  bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '3%+'"
-  bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master '1%-'"
-
-  bindsym $mod+i exec "amixer -D pulse sset Master '3%+'"
-  bindsym $mod+d exec "amixer -D pulse sset Master '1%-'"
-
-  bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
-  bindsym XF86AudioMicMute exec "amixer -D pulse sset Capture toggle"
+  bindsym $mod+m exec lock
 #+END_SRC
 
 ** Workspaces
@@ -238,14 +239,17 @@ switch forth to workspace 2:
 Also emulate a second scratchpad with only one terminal.
 
 #+BEGIN_SRC conf
-  bindsym $mod+minus [instance="^(.(?<!scratch))*?$"] scratchpad show
+  bindsym $mod+minus [title="^(.(?<!quake))*?$"] scratchpad show
+  bindsym $mod+backslash [title="^(.(?<!quake))*?$"] scratchpad show
 
-  exec --no-startup-id i3-msg "exec urxvt -name scratch"
+  exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no gnome-terminal --title=quake"
 
-  for_window [instance="^scratch$"] move scratchpad
-  for_window [instance="^scratch$"] border 1pixel
+  for_window [title="^quake$"] move scratchpad
+  for_window [title="^quake$"] border none
 
-  bindsym $mod+grave [instance="^scratch"] scratchpad show
+  for_window [title="^quake$"] resize shrink height 10px or 10pt
+
+  bindsym $mod+grave [title="^quake$"] scratchpad show
 #+END_SRC
 
 ** launch file manager
@@ -255,9 +259,9 @@ Also emulate a second scratchpad with only one terminal.
 
 ** fedora/gnome settings
 #+BEGIN_SRC conf
- exec --no-startup-id /usr/bin/gnome-settings-daemon
+ exec --no-startup-id /usr/share/gnome-settings-daemon
  exec --no-startup-id export $(gnome-keyring-daemon)
- exec --no-startup-id feh --bg-scale /usr/share/backgrounds/gnome/Terraform-green.jpg
+ exec --no-startup-id feh --bg-scale ~/Pictures/space.jpg
 #+END_SRC
 
 ** dropbox
@@ -277,7 +281,7 @@ Also emulate a second scratchpad with only one terminal.
   }
 
   order += "wireless wlp1s0"
-  order += "ethernet enp0s20u2"
+  order += "ethernet enp0s20u1"
   order += "volume master"
   order += "load"
   order += "disk /"
@@ -287,13 +291,13 @@ Also emulate a second scratchpad with only one terminal.
 
   wireless wlp1s0 {
           format_up = "W: (%quality at %essid, %bitrate) %ip"
-          format_down = "W: down"
+          format_down = "W: -"
   }
 
-  ethernet enp0s20u2 {
+  ethernet enp0s20u1 {
           # if you use %speed, i3status requires root privileges
           format_up = "E: %ip (%speed)"
-          format_down = "E: down"
+          format_down = "E: -"
   }
 
   battery 0 {

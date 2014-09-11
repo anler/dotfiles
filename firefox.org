@@ -275,11 +275,11 @@ Maybe because github lists helvetica as the first font to use, which is symlinke
                   command.focusElement(command.elementsRetrieverTextarea, 0);
               }, 'Focus to the first textarea', true);
 
-  key.setViewKey('M-p', function (ev) {
+  key.setViewKey('M-n', function (ev) {
                   command.walkInputElement(command.elementsRetrieverButton, true, true);
               }, 'Focus to the next button');
 
-  key.setViewKey('M-n', function (ev) {
+  key.setViewKey('M-p', function (ev) {
                   command.walkInputElement(command.elementsRetrieverButton, false, true);
               }, 'Focus to the previous button');
 
@@ -549,3 +549,5 @@ Maybe because github lists helvetica as the first font to use, which is symlinke
               }, 'Focus to the previous button');
 
 #+END_SRC
+
+chrome://keysnail/content/pluginmanager.xul
