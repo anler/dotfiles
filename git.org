@@ -40,7 +40,8 @@ Keep sensitive that in =.gitconfig= and include this with:
 
           root = rev-parse --show-toplevel
           pushall = push --recurse-submodules=on-demand
-          contributors = "!bash source ~/.git-helpers && git_contributors'"
+          contributors = "! source ~/.git-helpers && git_contributors"
+          clean-branches = "! source ~/.git-helpers && git_clean_branches"
 #+END_SRC
 
 ** Push
@@ -55,16 +56,25 @@ Keep sensitive that in =.gitconfig= and include this with:
 :END:
 ** Pretty log
 #+BEGIN_SRC sh
-  function pretty_git_log() {
-    git log --graph --pretty="tformat:$FORMAT" $* |
-    column -t -s "$SEP" |
-    less -FXRS
+  function pretty_git_log {
+      git log --graph --pretty="tformat:$FORMAT" $* | column -t -s "$SEP" | less -FXRS
   }
 #+END_SRC
 
 ** Show contributors
 #+BEGIN_SRC sh
-  function git_contributors() {
-    git shortlog -se | awk '{ print $2 $3 }'
+  function git_contributors {
+      git shortlog -se | awk '{ print $2 $3 }' | uniq
   }
+#+END_SRC
+
+** Clean already merged branches
+Removes local branches which have already been merged into the current HEAD.
+#+BEGIN_SRC sh
+    function git_clean_branches {
+        branches=`git branch --merged | grep -v "\* "`
+        if [ -n "$branches" ]; then
+            echo $branches | xargs -n 1 git branch -d
+        fi
+    }
 #+END_SRC
