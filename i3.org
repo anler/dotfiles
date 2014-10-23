@@ -7,7 +7,7 @@
 ** Variables
 #+BEGIN_SRC conf
   set $mod Mod4
-  set $filemanager nautilus
+  set $filemanager dolphin
 #+END_SRC
 
 ** Font
@@ -27,7 +27,7 @@
 
 ** Start dmenu (a program launcher)
 #+BEGIN_SRC conf
-  bindsym $mod+p exec quickswitch.py -d "dmenu_run -p 'launch :>' -fn 'Fantasque Sans Mono-12' -sb '#0088CC'"
+  bindsym $mod+s exec quickswitch.py -d "dmenu_run -p 'launch :>' -fn 'Fantasque Sans Mono-12' -sb '#0088CC'"
 #+END_SRC
 
 ** Switch between windows
@@ -69,7 +69,7 @@
 
 ** Change container layout (stacked, tabbed, toggle split)
 #+BEGIN_SRC conf
-  bindsym $mod+s layout stacking
+  bindsym $mod+g layout stacking
   bindsym $mod+w layout tabbed
   bindsym $mod+e layout toggle split
 #+END_SRC
@@ -242,10 +242,10 @@ Also emulate a second scratchpad with only one terminal.
   bindsym $mod+minus [title="^(.(?<!quake))*?$"] scratchpad show
   bindsym $mod+backslash [title="^(.(?<!quake))*?$"] scratchpad show
 
-  exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no gnome-terminal --title=quake"
+  exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
 
   for_window [title="^quake$"] move scratchpad
-  for_window [title="^quake$"] border none
+  for_window [title="^quake$"] border 1px
 
   for_window [title="^quake$"] resize shrink height 10px or 10pt
 
@@ -259,14 +259,34 @@ Also emulate a second scratchpad with only one terminal.
 
 ** fedora/gnome settings
 #+BEGIN_SRC conf
- exec --no-startup-id /usr/share/gnome-settings-daemon
- exec --no-startup-id export $(gnome-keyring-daemon)
- exec --no-startup-id feh --bg-scale ~/Pictures/space.jpg
+ exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper-2392652.jpg
 #+END_SRC
 
 ** dropbox
 #+BEGIN_SRC conf
-  exec --no-startup-id dropbox start
+ exec --no-startup-id dropbox start
+#+END_SRC
+
+** keyboard
+#+BEGIN_SRC sh
+ exec --no-startup-id setxkbmap -layout us -variant altgr-intl
+#+END_SRC
+
+** ssh agent
+#+BEGIN_SRC sh
+exec --no-startup-id eval $(gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}"/.gpg-agent-info)
+#+END_SRC
+
+* ssh agent
+:PROPERTIES:
+:tangle: ~/.profile
+:END:
+#+BEGIN_SRC sh
+if [ -f "$HOME/.gpg-agent-info" ]; then
+    source "$HOME/.gpg-agent-info"
+    export GPG_AGENT_INFO SSH_AUTH_SOCK SSH_AGENT_PID
+fi
+ssh-add
 #+END_SRC
 
 * status bar
@@ -281,7 +301,7 @@ Also emulate a second scratchpad with only one terminal.
   }
 
   order += "wireless wlp1s0"
-  order += "ethernet enp0s20u1"
+  order += "ethernet enp0s20u2"
   order += "volume master"
   order += "load"
   order += "disk /"
@@ -294,7 +314,7 @@ Also emulate a second scratchpad with only one terminal.
           format_down = "W: -"
   }
 
-  ethernet enp0s20u1 {
+  ethernet enp0s20u2 {
           # if you use %speed, i3status requires root privileges
           format_up = "E: %ip (%speed)"
           format_down = "E: -"
