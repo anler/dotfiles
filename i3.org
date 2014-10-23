@@ -276,6 +276,15 @@ Also emulate a second scratchpad with only one terminal.
 #+BEGIN_SRC sh
 exec --no-startup-id eval $(gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}"/.gpg-agent-info)
 #+END_SRC
+* gnupg agent
+:PROPERTIES:
+:tangle: ~/.gnupg/gpg-agent.conf
+:END:
+#+BEGIN_SRC sh
+enable-ssh-support
+default-cache-ttl-ssh  86400
+max-cache-ttl-ssh      86400
+#+END_SRC
 
 * ssh agent
 :PROPERTIES:
