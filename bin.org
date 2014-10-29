@@ -146,9 +146,9 @@ Tangle all the org files in a directory:
 
 * Lock screen
 #+BEGIN_SRC sh :tangle ~/.local/bin/lock :shebang #!/bin/bash :mkdirp true
-scrot /tmp/ikame/screenshot.png
-convert /tmp/ikame/screenshot.png -blur 0x5 /tmp/ikame/screenshot.png
-i3lock -i /tmp/ikame/screenshot.png
+scrot "/tmp/$USER/screenshot.png"
+convert "/tmp/$USER/screenshot.png" -blur 0x5 "/tmp/$USER/screenshot.png"
+i3lock -i "/tmp/$USER/screenshot.png"
 #+END_SRC
 
 * Connect to Emacs server inside Vagrant box
