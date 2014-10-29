@@ -19,7 +19,6 @@
 :PROPERTIES:
 :tangle: ~/.globalrc
 :END:
-
 #+BEGIN_SRC conf
   #
   # Copyright (c) 1998, 1999, 2000, 2001, 2002, 2003, 2010, 2011, 2013
@@ -121,45 +120,45 @@
           :langmap=VHDL\:.vhdl.vhd:\
           :langmap=Vim\:.vim:\
           :langmap=YACC\:.y:\
-          :gtags_parser=Asm\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Asp\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Awk\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Basic\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=BETA\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=C\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=C++\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=C#\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Cobol\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=DosBatch\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Eiffel\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Erlang\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Flex\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Fortran\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=HTML\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Java\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=JavaScript\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Lisp\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Lua\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=MatLab\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=OCaml\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Pascal\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Perl\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=PHP\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Python\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=REXX\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Ruby\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Scheme\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Sh\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=SLang\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=SML\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=SQL\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Tcl\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Tex\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Vera\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Verilog\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=VHDL\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=Vim\:/usr/local/lib/gtags/exuberant-ctags.la:\
-          :gtags_parser=YACC\:/usr/local/lib/gtags/exuberant-ctags.la:
+          :gtags_parser=Asm\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Asp\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Awk\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Basic\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=BETA\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=C\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=C++\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=C#\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Cobol\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=DosBatch\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Eiffel\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Erlang\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Flex\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Fortran\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=HTML\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Java\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=JavaScript\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Lisp\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Lua\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=MatLab\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=OCaml\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Pascal\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Perl\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=PHP\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Python\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=REXX\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Ruby\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Scheme\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Sh\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=SLang\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=SML\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=SQL\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Tcl\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Tex\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Vera\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Verilog\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=VHDL\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=Vim\:/usr/lib64/gtags/exuberant-ctags.so:\
+          :gtags_parser=YACC\:/usr/lib64/gtags/exuberant-ctags.so:
 
   pygments-parser|Pygments plug-in parser:\
           :tc=common:\
