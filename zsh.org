@@ -12,14 +12,14 @@ contain commands that produce output or assume the shell is attached to a tty.
   typeset -gU cdpath fpath mailpath path
 
   path=(
-      /usr/local/{bin,sbin}
       $HOME/.local/bin
       $HOME/.cabal/bin
       $HOME/.cask/bin
+      /usr/local/{bin,sbin}
       $path
   )
 
-  export BROWSER='firefox'
+  export BROWSER='google-chrome'
   export ALTERNATE_EDITOR=''
   export EDITOR='emacs'
   export VISUAL='emacs'
@@ -33,6 +33,8 @@ contain commands that produce output or assume the shell is attached to a tty.
   # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
   # Remove -X and -F (exit if the content fits on one screen) to enable it.
   export LESS='-F -g -i -M -R -S -w -X -z-4'
+
+  export WORKON_HOME=~/virtualenvs-python
 #+END_SRC
 
 ** zprofile
@@ -80,127 +82,138 @@ application-specific settings.
 Main user configuration file, will be source when starting an interactive shell.
 
 #+BEGIN_SRC sh
-    autoload -U compinit promptinit colors zsh/terminfo select-word-style
-    compinit
-    promptinit
-    colors
-    select-word-style bash
+  autoload -U compinit promptinit colors zsh/terminfo select-word-style
+  compinit
+  promptinit
+  colors
+  select-word-style bash
 
-    setopt prompt_subst
-    autoload -Uz vcs_info
-    zstyle ':vcs_info:*' enable git hg
-    zstyle ':vcs_info:*' check-for-changes true
-    zstyle ':vcs_info:git*' actionformats "%s  %r/%S %b %m%u%c "
+  setopt prompt_subst
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:*' enable git hg
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:git*' actionformats "%s  %r/%S %b %m%u%c "
 
-    precmd() {
-        vcs_info
-    }
+  precmd() {
+      vcs_info
+  }
 
-    PROMPT='
+  PROMPT='
   %B %~ %b
   ${vcs_info_msg_0_} %f%# '
-    # prompt adam2
+  # prompt adam2
 
-    zstyle ':completion::complete:*' use-cache on               # completion caching, use rehash to clear
-    zstyle ':completion:*' cache-path ~/.zshcache               # cache path
-    zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # ignore case
-    zstyle ':completion:*' menu select=2                        # menu if nb items > 2
-    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}       # colorz !
-    zstyle ':completion:*::::' completer _expand _complete _ignored _approximate # list of completers to use
+  zstyle ':completion::complete:*' use-cache on               # completion caching, use rehash to clear
+  zstyle ':completion:*' cache-path ~/.zshcache               # cache path
+  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # ignore case
+  zstyle ':completion:*' menu select=2                        # menu if nb items > 2
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}       # colorz !
+  zstyle ':completion:*::::' completer _expand _complete _ignored _approximate # list of completers to use
 
-    zstyle ':completion:*' verbose yes
-    zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
-    zstyle ':completion:*:messages' format $'\e[00;31m%d'
-    zstyle ':completion:*' group-name ''
-    zstyle ':completion:*:manuals' separate-sections true
+  zstyle ':completion:*' verbose yes
+  zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
+  zstyle ':completion:*:messages' format $'\e[00;31m%d'
+  zstyle ':completion:*' group-name ''
+  zstyle ':completion:*:manuals' separate-sections true
 
-    zstyle ':completion:*:processes' command 'ps -au$USER'
-    zstyle ':completion:*:*:kill:*' menu yes select
-    zstyle ':completion:*:kill:*' force-list always
-    zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=29=34"
-    zstyle ':completion:*:*:killall:*' menu yes select
-    zstyle ':completion:*:killall:*' force-list always
-    users=(ikame root)           # because I don't care about others
-    zstyle ':completion:*' users $users
+  zstyle ':completion:*:processes' command 'ps -au$USER'
+  zstyle ':completion:*:*:kill:*' menu yes select
+  zstyle ':completion:*:kill:*' force-list always
+  zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=29=34"
+  zstyle ':completion:*:*:killall:*' menu yes select
+  zstyle ':completion:*:killall:*' force-list always
+  users=(ikame root)           # because I don't care about others
+  zstyle ':completion:*' users $users
 
-    #generic completion with --help
-    compdef _gnu_generic gcc
-    compdef _gnu_generic gdb
+  #generic completion with --help
+  compdef _gnu_generic gcc
+  compdef _gnu_generic gdb
 
-    setopt auto_pushd               # make cd push old dir in dir stack
-    setopt pushd_ignore_dups        # no duplicates in dir stack
-    setopt pushd_silent             # no dir stack after pushd or popd
-    setopt pushd_to_home            # `pushd` = `pushd $HOME`
+  setopt auto_pushd               # make cd push old dir in dir stack
+  setopt pushd_ignore_dups        # no duplicates in dir stack
+  setopt pushd_silent             # no dir stack after pushd or popd
+  setopt pushd_to_home            # `pushd` = `pushd $HOME`
 
-    HISTFILE=~/.zsh_history         # where to store zsh history
-    HISTSIZE=15000                  # big history
-    SAVEHIST=15000                  # big history
-    
-    setopt HIST_IGNORE_DUPS         # ignore history duplicates
-    setopt append_history           # append
-    setopt hist_ignore_all_dups     # no duplicate
-    unsetopt hist_ignore_space      # ignore space prefixed commands
-    setopt hist_reduce_blanks       # trim blanks
-    setopt hist_verify              # show before executing history commands
-    setopt inc_append_history       # add commands as they are typed, don't wait until shell exit 
-    setopt share_history            # share hist between sessions
-    setopt bang_hist       
+  HISTFILE=~/.zsh_history         # where to store zsh history
+  HISTSIZE=15000                  # big history
+  SAVEHIST=15000                  # big history
 
-    setopt auto_cd                  # if command is a path, cd into it
-    setopt auto_remove_slash        # self explicit
-    setopt chase_links              # resolve symlinks
-    setopt correct                  # try to correct spelling of commands
-    setopt extended_glob            # activate complex pattern globbing
-    setopt glob_dots                # include dotfiles in globbing
-    setopt print_exit_value         # print return value if non-zero
-    unsetopt beep                   # no bell on error
-    unsetopt bg_nice                # no lower prio for background jobs
-    unsetopt clobber                # must use >| to truncate existing files
-    unsetopt hist_beep              # no bell on error in history
-    unsetopt hup                    # no hup signal at shell exit
-    unsetopt ignore_eof             # do not exit on end-of-file
-    unsetopt list_beep              # no bell on ambiguous completion
-    unsetopt rm_star_silent         # ask for confirmation for `rm *' or `rm path/*'
-    setxkbmap -option compose:ralt  # compose-key
+  setopt HIST_IGNORE_DUPS         # ignore history duplicates
+  setopt append_history           # append
+  setopt hist_ignore_all_dups     # no duplicate
+  unsetopt hist_ignore_space      # ignore space prefixed commands
+  setopt hist_reduce_blanks       # trim blanks
+  setopt hist_verify              # show before executing history commands
+  setopt inc_append_history       # add commands as they are typed, don't wait until shell exit 
+  setopt share_history            # share hist between sessions
+  setopt bang_hist       
 
-    # avoid having to run `rehash` on each new executable in $PATH
-    setopt nohashdirs
+  setopt auto_cd                  # if command is a path, cd into it
+  setopt auto_remove_slash        # self explicit
+  setopt chase_links              # resolve symlinks
+  setopt correct                  # try to correct spelling of commands
+  setopt extended_glob            # activate complex pattern globbing
+  setopt glob_dots                # include dotfiles in globbing
+  setopt print_exit_value         # print return value if non-zero
+  unsetopt beep                   # no bell on error
+  unsetopt bg_nice                # no lower prio for background jobs
+  unsetopt clobber                # must use >| to truncate existing files
+  unsetopt hist_beep              # no bell on error in history
+  unsetopt hup                    # no hup signal at shell exit
+  unsetopt ignore_eof             # do not exit on end-of-file
+  unsetopt list_beep              # no bell on ambiguous completion
+  unsetopt rm_star_silent         # ask for confirmation for `rm *' or `rm path/*'
+  setxkbmap -option compose:ralt  # compose-key
 
-    watch=all                       # watch all logins
-    logcheck=30                     # every 30 seconds
-    WATCHFMT="%n from %M has %a tty%l at %T %W"
+  # avoid having to run `rehash` on each new executable in $PATH
+  setopt nohashdirs
 
-    autoload -U run-help
-    autoload run-help-git
-    unalias run-help
+  watch=all                       # watch all logins
+  logcheck=30                     # every 30 seconds
+  WATCHFMT="%n from %M has %a tty%l at %T %W"
 
-    alias help=run-help
+  autoload -U run-help
+  autoload run-help-git
+  unalias run-help
 
-    alias -g G="| grep -i"
-    alias -g L="| less"
+  alias help=run-help
 
-    alias ls="ls --color -F"
-    alias ll="ls --color -lh"
+  alias -g G="| grep -i"
+  alias -g L="| less"
 
-    alias uemacs="emacs -nw -Q"
-    alias play-digitalis="mplayer -quiet -playlist http://somafm.com/digitalis.pls"
+  alias ls="ls --color -F"
+  alias ll="ls --color -lh"
 
-    take() {
-        mkdir -p $1
-        if [ -d $1 ]; then
-            cd $1
-        fi
-    }
+  alias uemacs="emacs -nw -Q"
+  alias play-digitalis="mplayer -quiet -playlist http://somafm.com/digitalis.pls"
 
-    man() {
-        env \
-            LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-            LESS_TERMCAP_md=$(printf "\e[1;31m") \
-            LESS_TERMCAP_me=$(printf "\e[0m") \
-            LESS_TERMCAP_se=$(printf "\e[0m") \
-            LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-            LESS_TERMCAP_ue=$(printf "\e[0m") \
-            LESS_TERMCAP_us=$(printf "\e[1;32m") \
-            man "$@"
-    }
+  alias pytest="py.test"
+  alias runserver="./manage.py runserver"
+
+  source-safe() {
+      if hash $1 2>/dev/null; then
+          source $(which $1)
+      fi
+  }
+
+  take() {
+      mkdir -p $1
+      if [ -d $1 ]; then
+          cd $1
+      fi
+  }
+
+  man() {
+      env \
+          LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+          LESS_TERMCAP_md=$(printf "\e[1;31m") \
+          LESS_TERMCAP_me=$(printf "\e[0m") \
+          LESS_TERMCAP_se=$(printf "\e[0m") \
+          LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+          LESS_TERMCAP_ue=$(printf "\e[0m") \
+          LESS_TERMCAP_us=$(printf "\e[1;32m") \
+          man "$@"
+  }
+
+  source-safe projects.sh
 #+END_SRC
