@@ -272,30 +272,14 @@ Also emulate a second scratchpad with only one terminal.
  exec --no-startup-id setxkbmap -layout us -variant altgr-intl
 #+END_SRC
 
-** ssh agent
-#+BEGIN_SRC sh
-exec --no-startup-id eval $(gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}"/.gpg-agent-info)
-#+END_SRC
 * gnupg agent
 :PROPERTIES:
 :tangle: ~/.gnupg/gpg-agent.conf
 :END:
 #+BEGIN_SRC sh
 enable-ssh-support
-default-cache-ttl-ssh  86400
-max-cache-ttl-ssh      86400
-#+END_SRC
-
-* ssh agent
-:PROPERTIES:
-:tangle: ~/.profile
-:END:
-#+BEGIN_SRC sh
-if [ -f "$HOME/.gpg-agent-info" ]; then
-    source "$HOME/.gpg-agent-info"
-    export GPG_AGENT_INFO SSH_AUTH_SOCK SSH_AGENT_PID
-fi
-ssh-add
+default-cache-ttl-ssh  800
+max-cache-ttl-ssh      800
 #+END_SRC
 
 * status bar
