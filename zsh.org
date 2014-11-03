@@ -187,8 +187,8 @@ Main user configuration file, will be source when starting an interactive shell.
   alias uemacs="emacs -nw -Q"
   alias play-digitalis="mplayer -quiet -playlist http://somafm.com/digitalis.pls"
 
-  alias pytest="py.test"
-  alias runserver="./manage.py runserver"
+  alias ...="cd ../.."
+  alias ....="cd ../../.."
 
   source-safe() {
       if hash $1 2>/dev/null; then
