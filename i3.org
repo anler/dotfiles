@@ -12,7 +12,7 @@
 
 ** Font
 #+BEGIN_SRC conf
-  font pango:Fantasque Sans Mono 14
+  font pango:Fantasque Sans Mono 16
 #+END_SRC
 
 ** Use Mouse+$mod to drag floating windows to their wanted position
@@ -27,7 +27,7 @@
 
 ** Start dmenu (a program launcher)
 #+BEGIN_SRC conf
-  bindsym $mod+s exec quickswitch.py -d "dmenu_run -p 'launch :>' -fn 'Fantasque Sans Mono-14' -sb '#0088CC'"
+  bindsym $mod+s exec quickswitch.py -d "dmenu_run -p 'λ => ' -b -fn 'Fantasque Sans Mono-18' -sb '#66d9ef' -sf '#272822'"
 #+END_SRC
 
 ** Switch between windows
@@ -136,10 +136,9 @@
 #+BEGIN_SRC conf
   bindsym $mod+Shift+c reload
   bindsym $mod+Shift+r restart
-  bindsym $mod+Shift+e exec i3-msg exit
 #+END_SRC
 
-** Resize window (you can also use the mouse for that)
+** Mode - Resize window (you can also use the mouse for that)
 #+BEGIN_SRC conf
   mode "resize" {
           bindsym Left resize shrink width 10 px or 10 ppt
@@ -155,12 +154,43 @@
   bindsym $mod+r mode "resize"
 #+END_SRC
 
+** Mode - System actions
+#+BEGIN_SRC conf
+  set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+  mode "$mode_system" {
+       bindsym l exec --no-startup-id $i3_path/i3exit lock, mode "default"
+       bindsym e exec --no-startup-id $i3_path/i3exit logout, mode "default"
+       bindsym s exec --no-startup-id $i3_path/i3exit suspend, mode "default"
+       bindsym h exec --no-startup-id $i3_path/i3exit hibernate, mode "default"
+       bindsym r exec --no-startup-id $i3_path/i3exit reboot, mode "default"
+       bindsym Shift+s exec --no-startup-id $i3_path/i3exit shutdown, mode "default"
+
+       bindsym Return mode "default"
+       bindsym Escape mode "default"
+  }
+
+  bindsym $mod+Shift+e mode "$mode_system"
+#+END_SRC
+** Mode - Move workspace
+#+BEGIN_SRC conf
+  set $mode_external_pos External screen is on (l)eft or (r)right or the internal one?
+  mode "$mode_external_pos" {
+       bindsym r exec xrandr --output DP1 --mode 1920x1080 --right-of eDP1
+       bindsym l exec xrandr --output DP1 --mode 1920x1080 --left-of eDP1
+       bindsym Retun mode "default"
+       bindsym Escape mode "default"
+  }
+
+  bindsym $mod+Shift+s mode "$mode_external_pos"
+#+END_SRC
 ** Start i3bar and color theme
 #+BEGIN_SRC conf
   bar {
       status_command i3status
+      position top
+
       colors {
-	  background #272822
+          background #272822
           statusline #f8f8f2
           separator #f8f8f2
           focused_workspace #272822 #66d9ef
@@ -244,9 +274,8 @@ Also emulate a second scratchpad with only one terminal.
 
   exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
 
-  for_window [title="^quake$"] move scratchpad
-  for_window [title="^quake$"] border 25px
-  for_window [title="^quake$"] resize shrink height 10px or 10pt
+  for_window [title="^quake$"] move scratchpad; resize shrink right 31px or 31 ppt
+  for_window [title="^quake$"] border 5pixel
 
   bindsym $mod+grave [title="^quake$"] scratchpad show
 #+END_SRC
@@ -269,7 +298,7 @@ Also emulate a second scratchpad with only one terminal.
 
 ** keyboard
 #+BEGIN_SRC sh
- exec --no-startup-id setxkbmap -layout us -variant altgr-intl
+ exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 #+END_SRC
 
 * gnupg agent
