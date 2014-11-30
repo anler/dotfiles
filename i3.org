@@ -12,7 +12,7 @@
 
 ** Font
 #+BEGIN_SRC conf
-  font pango:Fantasque Sans Mono 12
+  font pango:Fantasque Sans Mono 14
 #+END_SRC
 
 ** Use Mouse+$mod to drag floating windows to their wanted position
@@ -27,7 +27,7 @@
 
 ** Start dmenu (a program launcher)
 #+BEGIN_SRC conf
-  bindsym $mod+s exec quickswitch.py -d "dmenu_run -p 'launch :>' -fn 'Fantasque Sans Mono-12' -sb '#0088CC'"
+  bindsym $mod+s exec quickswitch.py -d "dmenu_run -p 'launch :>' -fn 'Fantasque Sans Mono-14' -sb '#0088CC'"
 #+END_SRC
 
 ** Switch between windows
@@ -157,24 +157,23 @@
 
 ** Start i3bar and color theme
 #+BEGIN_SRC conf
-    bar {
+  bar {
       status_command i3status
       colors {
-          background #000000
-          separator #666666
-          statusline #ffffff
-          focused_workspace #44bbff #3276E8 #ffffff
-          active_workspace #333333 #5f676a #ffffff
-          inactive_workspace #333333 #222222 #888888
-          urgent_workspace #2f343a #900000 #ffffff
+	  background #272822
+          statusline #f8f8f2
+          separator #f8f8f2
+          focused_workspace #272822 #66d9ef
+          active_workspace #ffffff #333333
+          inactive_workspace #888888 #2e3436
+          urgent_workspace #f8f8f2 #f92672
       }
-    }
+  }
 
-    # Window colours                border  backgr  text
-    client.focused #44bbff #3276E8 #ffffff #cccccc
-    client.focused_inactive #333333 #5f676a #ffffff #484e50
-    client.unfocused #333333 #222222 #888888 #292d2e
-    client.urgent #2f343a #900000 #ffffff #900000
+  client.focused #272822 #66d9ef #272822 #f92672
+  client.focused_inactive #333333 #5f676a #ffffff #484e50
+  client.unfocused #333333 #222222 #888888 #292d2e
+  client.urgent #2f343a #de1b1b #ffffff #a40000
 #+END_SRC
 
 ** Move the current workspace to the next output
@@ -207,7 +206,8 @@
 
 ** Border for new windows
 #+BEGIN_SRC conf
-  new_window pixel 1
+  new_window pixel 3
+  new_float pixel 3
 #+END_SRC
 
 ** Open terminal
@@ -245,8 +245,7 @@ Also emulate a second scratchpad with only one terminal.
   exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
 
   for_window [title="^quake$"] move scratchpad
-  for_window [title="^quake$"] border 1px
-
+  for_window [title="^quake$"] border 25px
   for_window [title="^quake$"] resize shrink height 10px or 10pt
 
   bindsym $mod+grave [title="^quake$"] scratchpad show
@@ -259,7 +258,8 @@ Also emulate a second scratchpad with only one terminal.
 
 ** fedora/gnome settings
 #+BEGIN_SRC conf
- exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper-2392652.jpg
+  exec --no-startup-id feh --bg-scale `cat ~/.wallpaper`
+  exec --no-startup-id xinput set-prop "CyPS/2 Cypress Trackpad" "Synaptics Tap Action" 0, 0, 0, 0, 1, 3, 0
 #+END_SRC
 
 ** dropbox

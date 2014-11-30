@@ -19,7 +19,7 @@ contain commands that produce output or assume the shell is attached to a tty.
       $path
   )
 
-  export BROWSER='google-chrome'
+  export BROWSER='firefox'
   export ALTERNATE_EDITOR=''
   export EDITOR='emacs'
   export VISUAL='emacs'
@@ -70,8 +70,6 @@ application-specific settings.
       export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
       export SSH_AGENT_PID=$GNOME_KEYRING_PID
   fi
-
-  export TERMINAL='gnome-terminal'  # Used by i3wm
 #+END_SRC
 
 ** zshrc
@@ -144,9 +142,9 @@ Main user configuration file, will be source when starting an interactive shell.
   unsetopt hist_ignore_space      # ignore space prefixed commands
   setopt hist_reduce_blanks       # trim blanks
   setopt hist_verify              # show before executing history commands
-  setopt inc_append_history       # add commands as they are typed, don't wait until shell exit 
+  setopt inc_append_history       # add commands as they are typed, don't wait until shell exit
   setopt share_history            # share hist between sessions
-  setopt bang_hist       
+  setopt bang_hist
 
   setopt auto_cd                  # if command is a path, cd into it
   setopt auto_remove_slash        # self explicit
