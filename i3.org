@@ -158,12 +158,12 @@
 #+BEGIN_SRC conf
   set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
   mode "$mode_system" {
-       bindsym l exec --no-startup-id $i3_path/i3exit lock, mode "default"
-       bindsym e exec --no-startup-id $i3_path/i3exit logout, mode "default"
-       bindsym s exec --no-startup-id $i3_path/i3exit suspend, mode "default"
-       bindsym h exec --no-startup-id $i3_path/i3exit hibernate, mode "default"
-       bindsym r exec --no-startup-id $i3_path/i3exit reboot, mode "default"
-       bindsym Shift+s exec --no-startup-id $i3_path/i3exit shutdown, mode "default"
+       bindsym l exec --no-startup-id i3exit lock, mode "default"
+       bindsym e exec --no-startup-id i3exit logout, mode "default"
+       bindsym s exec --no-startup-id i3exit suspend, mode "default"
+       bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+       bindsym r exec --no-startup-id i3exit reboot, mode "default"
+       bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
        bindsym Return mode "default"
        bindsym Escape mode "default"
@@ -175,8 +175,8 @@
 #+BEGIN_SRC conf
   set $mode_external_pos External screen is on (l)eft or (r)right or the internal one?
   mode "$mode_external_pos" {
-       bindsym r exec xrandr --output DP1 --mode 1920x1080 --right-of eDP1
-       bindsym l exec xrandr --output DP1 --mode 1920x1080 --left-of eDP1
+       bindsym r exec xrandr --output DP-0 --mode 1920x1080 --right-of eDP-0
+       bindsym l exec xrandr --output DP-0 --mode 1920x1080 --left-of eDP-0
        bindsym Retun mode "default"
        bindsym Escape mode "default"
   }
@@ -376,6 +376,38 @@ max-cache-ttl-ssh      800
           mixer = "Master"
           mixer_idx = 0
   }
+#+END_SRC
+* Bin
+#+BEGIN_SRC sh :tangle ~/.local/bin/i3exit :shebang #!/bin/sh
+  lock() {
+      i3lock
+  }
+
+  case "$1" in
+      lock)
+          lock
+          ;;
+      logout)
+          i3-msg exit
+          ;;
+      suspend)
+          lock && systemctl suspend
+          ;;
+      hibernate)
+          lock && systemctl hibernate
+          ;;
+      reboot)
+          systemctl reboot
+          ;;
+      shutdown)
+          systemctl poweroff
+          ;;
+      ,*)
+          echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+          exit 2
+  esac
+
+  exit 0
 #+END_SRC
 * ubuntu
 ** Get rid of the nautilus desktop window
