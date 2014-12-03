@@ -12,7 +12,7 @@
 
 ** Font
 #+BEGIN_SRC conf
-  font pango:Fantasque Sans Mono 16
+  font pango:Fantasque Sans Mono 14
 #+END_SRC
 
 ** Use Mouse+$mod to drag floating windows to their wanted position
@@ -27,7 +27,7 @@
 
 ** Start dmenu (a program launcher)
 #+BEGIN_SRC conf
-  bindsym $mod+s exec quickswitch.py -d "dmenu_run -p 'λ => ' -b -fn 'Fantasque Sans Mono-18' -sb '#66d9ef' -sf '#272822'"
+  bindsym $mod+s exec quickswitch.py -d "dmenu_run -p 'λ=>' -b -fn 'Fantasque Sans Mono-18' -sb '#66d9ef' -sf '#272822'"
 #+END_SRC
 
 ** Switch between windows
@@ -146,7 +146,6 @@
           bindsym Up resize shrink height 10 px or 10 ppt
           bindsym Right resize grow width 10 px or 10 ppt
 
-          # back to normal: Enter or Escape
           bindsym Return mode "default"
           bindsym Escape mode "default"
   }
@@ -188,22 +187,18 @@
   bar {
       status_command i3status
       position top
-
       colors {
-          background #272822
-          statusline #f8f8f2
-          separator #f8f8f2
-          focused_workspace #272822 #66d9ef
-          active_workspace #ffffff #333333
-          inactive_workspace #888888 #2e3436
-          urgent_workspace #f8f8f2 #f92672
+          statusline #AAAAAA
+          focused_workspace #0080ff #0080ff #000000
+          inactive_workspace #00000 #000000 #AAAAAA
+          urgent_workspace #d33682 #d33682 #fdf6e3
       }
   }
 
-  client.focused #272822 #66d9ef #272822 #f92672
-  client.focused_inactive #333333 #5f676a #ffffff #484e50
-  client.unfocused #333333 #222222 #888888 #292d2e
-  client.urgent #2f343a #de1b1b #ffffff #a40000
+  client.focused #000000 #0080ff #000000 #000000
+  client.focused_inactive #000000 #000000 #aaaaaa #000000
+  client.unfocused #000000 #000000 #aaaaaa #000000
+  client.urgent #2f343a #900000 #ffffff #900000
 #+END_SRC
 
 ** Move the current workspace to the next output
@@ -228,13 +223,14 @@
 
 
 ** Borders
+*** Manually
 #+BEGIN_SRC conf
   bindsym $mod+t border normal
-  bindsym $mod+y border 1pixel
+  bindsym $mod+y border pixel 3
   bindsym $mod+u border none
 #+END_SRC
 
-** Border for new windows
+*** For new windows
 #+BEGIN_SRC conf
   new_window pixel 3
   new_float pixel 3
@@ -378,6 +374,7 @@ max-cache-ttl-ssh      800
   }
 #+END_SRC
 * Bin
+** Lock
 #+BEGIN_SRC sh :tangle ~/.local/bin/i3exit :shebang #!/bin/sh
   lock() {
       i3lock
@@ -408,6 +405,81 @@ max-cache-ttl-ssh      800
   esac
 
   exit 0
+#+END_SRC
+** Alternate Layout
+#+BEGIN_SRC python :tangle ~/.local/bin/i3layout :shebang #!/usr/bin/env python2
+  import sys
+  import re
+  import subprocess
+
+  import i3
+
+
+  def find_parent(window_id):
+      """Find the parent of a given window id"""
+      root_window = i3.get_tree()
+      result = [None]
+
+      def finder(n, p=None):
+          if result[0] is not None:
+              return
+          for node in n:
+              if node['id'] == window_id:
+                  result[0] = p
+                  return
+              if len(node['nodes']):
+                  finder(node['nodes'], node)
+
+      finder(root_window['nodes'])
+      return result[0]
+
+
+  def set_layout():
+      """Set the layout/split automatically for the currently focused window.
+
+      Depending on the current focused window width/height its changed to vertical or
+      horizontal.
+      """
+      current_win = i3.filter(nodes=[], focused=True)
+      for win in current_win:
+          parent = find_parent(win['id'])
+
+          if parent and "rect" in parent:
+              height = parent['rect']['height']
+              width = parent['rect']['width']
+
+              if height > width:
+                  new_layout = 'vertical'
+              else:
+                  new_layout = 'horizontal'
+
+              i3.split(new_layout)
+
+
+  def main():
+      process = subprocess.Popen(['xprop', '-root', '-spy'],
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE)
+      try:
+          while True:
+              on_layout_change(process, set_layout)
+      except ValueError:
+          return 1
+      return 0
+
+
+  WINDOW_FOCUS_EVENT = re.compile(b'^_NET_CLIENT_LIST_STACKING|^_NET_ACTIVE_WINDOW')
+
+
+  def on_layout_change(process, callback):
+      """Listen for window focus changes"""
+      line = process.stdout.readline()
+      if WINDOW_FOCUS_EVENT.match(line):
+          callback()
+
+  if __name__ == "__main__":
+      sys.exit(main())
+
 #+END_SRC
 * ubuntu
 ** Get rid of the nautilus desktop window
