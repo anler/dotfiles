@@ -1,3 +1,0 @@
-[[file:org-mode-logo.png]]
-
-My configuration files using a /literate-programming/ style.

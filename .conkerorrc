@@ -1,0 +1,97 @@
+// -*- mode: javascript -*-
+homepage = "http://conkeror.org/Tips";
+
+url_completion_use_history = true;
+
+session_pref('browser.history_expire_days', 30);
+
+remove_hook("download_added_hook", open_download_buffer_automatically);
+
+// add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
+// add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
+// remove_hook("mode_line_hook", mode_line_adder(clock_widget));
+// add_hook("mode_line_hook", mode_line_adder(downloads_status_widget));
+
+require("new-tabs.js");
+
+// theme_load_paths.unshift("/home/anler/.conkeror/themes");
+// theme_load("conkeror-theme-zenburn");
+
+key_kill_input_fields = true;
+
+// load urls in new buffers instead of new windows
+url_remoting_fn = load_url_in_new_buffer;
+
+cwd = get_home_directory();
+cwd.append("Downloads");
+
+// Warn closing window
+add_hook("window_before_close_hook",
+         function () {
+             var w = get_recent_conkeror_window();
+             var result = (w == null) ||
+                 "y" == (yield w.minibuffer.read_single_character_option(
+                     $prompt = "Quit Conkeror? (y/n)",
+                     $options = ["y", "n"]));
+             yield co_return(result);
+         });
+
+// Map numbers to switch tabs
+function define_switch_buffer_key (key, buf_num) {
+    define_key(default_global_keymap, key,
+               function (I) {
+                   switch_to_buffer(I.window,
+                                    I.window.buffers.get_buffer(buf_num));
+               });
+}
+for (let i = 0; i < 10; ++i) {
+    define_switch_buffer_key(String((i+1)%10), i);
+}
+
+// Undo kill buffer C-T
+// source: https://github.com/scottjad/restore_killed_buffer_url/blob/master/restore_killed_buffer_url.js
+var kill_buffer_original = kill_buffer_original || kill_buffer;
+
+var killed_buffers = [];
+
+kill_buffer = function (buffer, force) {
+    if (buffer.display_uri_string) {
+        killed_buffers.push({url: buffer.display_uri_string,
+                             title: buffer.title,
+                             history: buffer.web_navigation.sessionHistory});
+    }
+
+    kill_buffer_original(buffer,force);
+};
+
+interactive("restore-killed-buffer-url", "Loads url from a previously killed buffer",
+            function restore_killed_buffer_url (I) {
+                if (killed_buffers.length !== 0) {
+                    var killed_buffer = yield I.minibuffer.read(
+                        $prompt = "Restore killed buffer url:",
+                        $completer = new all_word_completer($completions = killed_buffers,
+                                                            $get_string = function (x) x.url,
+                                                            $get_description = function (x) x.title),
+                        $default_completion = killed_buffers[killed_buffers.length - 1],
+                        $auto_complete = "url",
+                        $auto_complete_initial = true,
+                        $auto_complete_delay = 0,
+                        $require_match = true
+                    );
+
+                    load_url_in_new_buffer(killed_buffer.url);
+
+                    var buf = I.window.buffers.current;
+                    buf.web_navigation.sessionHistory = killed_buffer.history;
+                    var original_index = buf.web_navigation.sessionHistory.index;
+                    buf.web_navigation.gotoIndex(original_index);
+
+                } else {
+                    I.window.minibuffer.message("No killed buffer urls");
+                }
+            });
+define_key(default_global_keymap, "C-T", "restore-killed-buffer-url");
+
+require("session.js");
+
+session_auto_save_auto_load = "prompt";
