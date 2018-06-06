@@ -108,10 +108,11 @@ mode "$mode_system" {
 
 bindsym $mod+Shift+e mode "$mode_system"
 
-set $mode_external_pos External screen is on (l)eft or (r)right or the internal one?
+set $mode_external_pos External screen on (l)eft, (r)right, or (o)ff
 mode "$mode_external_pos" {
-  bindsym r exec xrandr --output DP1 --mode 1920x1080 --right-of eDP1
-  bindsym l exec xrandr --output DP1 --mode 1920x1080 --left-of eDP1
+  bindsym r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of eDP1
+  bindsym l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of eDP1
+  bindsym o exec xrandr --output DP1 --off
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
