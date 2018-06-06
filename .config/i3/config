@@ -102,6 +102,11 @@ bindsym $mod+p exec rofi -show drun
 bindsym $mod+Shift+p exec rofi -show run
 
 mode "resize" {
+  bindsym d resize shrink width 10 px or 10 ppt
+  bindsym Shift+d resize shrink height 10 px or 10 ppt
+  bindsym i resize grow width 10 px or 10 ppt
+  bindsym Shift+i resize grow height 10 px or 10 ppt
+
   bindsym Left resize shrink width 10 px or 10 ppt
   bindsym Down resize grow height 10 px or 10 ppt
   bindsym Up resize shrink height 10 px or 10 ppt
