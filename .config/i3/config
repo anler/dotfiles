@@ -77,6 +77,9 @@ bindsym $mod+Shift+0 move container to workspace $w10
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
+# Open an empty container
+bindsym $mod+backslash open
+
 bindsym $mod+o exec rofi -show window
 bindsym $mod+p exec rofi -show drun
 bindsym $mod+Shift+p exec rofi -show run
