@@ -226,16 +226,17 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 gaps inner 10
 gaps outer 20
 
-bar {
-  status_command i3status
-  position top
-  colors {
-    statusline $text-color-bar
-    background $bg-color-bar
-    focused_workspace $bg-color $bg-color $text-color
-    inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-    urgent_workspace $urgent-bg-color $urgent-bg-color $text-color
-  }
-}
+# bar {
+#   status_command i3status
+#   position top
+#   colors {
+#     statusline $text-color-bar
+#     background $bg-color-bar
+#     focused_workspace $bg-color $bg-color $text-color
+#     inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#     urgent_workspace $urgent-bg-color $urgent-bg-color $text-color
+#   }
+# }
 
-# exec --no-startup-id $HOME/.config/polybar/launch.sh >> ~/.i3/log
+exec --no-startup-id $HOME/.config/polybar/launch
+# exec --no-startup-id $HOME/.config/polybar/autohide

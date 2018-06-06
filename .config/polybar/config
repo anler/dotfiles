@@ -1,0 +1,153 @@
+[bar/i3wmthemer_bar]
+width = 100%
+height = 27
+radius = 0
+fixed-center = false
+bottom = true
+
+background = #091c40
+foreground = #ffffff
+
+line-size = 3
+line-color = #ffffff
+
+border-size = 0
+border-color = #ffffff
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "Fantasque Sans Mono:pixelsize=10;1"
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
+font-2 = "Font Awesome 5 Brands:pixelsize=10;1"
+
+modules-left = i3
+modules-center = date
+modules-right = wlan eth powermenu
+
+tray-position = right
+;tray-padding =
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = #657b83
+label-mode-background = #272827
+
+label-focused = %index%
+label-focused-background = #b532b2
+label-focused-foreground = #ffffff
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-background = #302f56
+label-unfocused-foreground = #7E807E
+label-unfocused-padding = 2
+
+label-visible = %index%
+label-visible-background = #7E807E
+label-visible-foreground = #272827
+label-visible-padding = 2
+
+label-urgent = %index%
+label-urgent-background = #BA2922
+label-urgent-padding = 2
+
+[module/wlan]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-foreground = #ffffff
+format-connected-background = #091c40
+format-connected-padding = 2
+label-connected = %essid%
+
+format-disconnected =
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = #ffffff
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+
+format-connected-padding = 2
+format-connected-foreground = #ffffff
+format-connected-background = #091c40
+format-connected-prefix = " "
+format-connected-prefix-foreground = #ffffff
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-foreground = #091c40
+format-background = #c93b59
+format-padding = 2
+
+label = %date% %time%
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = #657b83
+label-close =  cancel
+label-close-foreground = #c93b59
+label-separator = |
+label-separator-foreground = #c93b59
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
