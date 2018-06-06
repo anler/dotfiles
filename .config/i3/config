@@ -210,9 +210,9 @@ exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapp
 # ----------------------- Eye candy ----------------------------
 set $bg-color-bar        #091c40
 set $text-color-bar      #c93b59
-set $bg-color            #d13852
+set $bg-color            #b532b2
 set $inactive-bg-color   #302f56
-set $text-color          #fddd49
+set $text-color          #ffffff
 set $inactive-text-color #666666
 set $urgent-bg-color     #e53935
 
