@@ -80,6 +80,23 @@ bindsym $mod+Shift+r restart
 # Open an empty container
 bindsym $mod+backslash open
 
+mode "move" {
+  bindsym k move up 20px
+  bindsym h move left 20px
+  bindsym j move down 20px
+  bindsym semicolon move right 20px
+
+  bindsym Up move up 20px
+  bindsym Left move left 20px
+  bindsym Down move down 20px
+  bindsym Right move right 20px
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym Mod4+Shift+m focus floating; mode "move"
+
+
 bindsym $mod+o exec rofi -show window
 bindsym $mod+p exec rofi -show drun
 bindsym $mod+Shift+p exec rofi -show run
