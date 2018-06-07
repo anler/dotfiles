@@ -91,6 +91,8 @@ mode "move" {
   bindsym Down move down 20px
   bindsym Right move right 20px
 
+  bindsym r mode "resize"
+
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
@@ -111,6 +113,8 @@ mode "resize" {
   bindsym Down resize grow height 10 px or 10 ppt
   bindsym Up resize shrink height 10 px or 10 ppt
   bindsym Right resize grow width 10 px or 10 ppt
+
+  bindsym m mode "move"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -238,5 +242,5 @@ gaps outer 20
 #   }
 # }
 
-exec --no-startup-id $HOME/.config/polybar/launch
+exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
