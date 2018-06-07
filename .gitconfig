@@ -1,0 +1,29 @@
+# -*- mode: gitconfig -*-
+[user]
+	name = Anler Hernández Peral
+	signingkey = 398FA8928C2E4AF5
+
+[github]
+	user = anler
+
+[alias]
+  st = status
+	co = checkout
+	cob = checkout -b
+	cm = commit -m
+	amend = commit --amend -m
+	aacm = !git add -A . && git commit -m
+	br = branch
+	d = diff
+	ds = diff --staged
+	f = !git ls-files | grep -i
+	l  = log --oneline --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn%Cgreen\\ %ad%Cblue]" --relative-date
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn%Cgreen\\ %ad%Cblue]" --decorate --numstat
+	la = !git config -l | grep alias | cut -c 7-
+	lg = log --graph --oneline --decorate=auto --relative-date
+
+[commit]
+	gpgsign = true
+
+[include]
+  path = .gitconfig.priv
