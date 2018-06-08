@@ -28,7 +28,7 @@ font-2 = "Font Awesome 5 Brands:pixelsize=10;1"
 
 modules-left = i3
 modules-center = date
-modules-right = wlan eth filesystem powermenu
+modules-right = wlan eth pavolume filesystem powermenu
 
 tray-position = right
 ;tray-padding =
@@ -173,3 +173,15 @@ fixed-values = true
 ; Spacing between entries
 ; Default: 2
 spacing = 4
+
+[module/pavolume]
+type = custom/script
+tail = true
+label = %output%
+exec = ~/.config/polybar/pavolume --listen
+click-right = exec pavucontrol
+click-left = ~/.config/polybar/pavolume --togmute
+scroll-up = ~/.config/polybar/pavolume --up
+scroll-down = ~/.config/polybar/pavolume --down
+; format-foreground = ${colors.foreground}
+; format-background = ${colors.background}
