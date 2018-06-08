@@ -16,5 +16,8 @@ configuration {
   bw: 0;
   padding: 400;
   eh: 1;
+  location: 1;
+  xoffset: 25;
+  yoffset: 10;
 }
 @import "./custom-theme.rasi"
