@@ -52,16 +52,17 @@ set $w0 10
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
-bindsym $mod+1 workspace $w1
-bindsym $mod+2 workspace $w2
-bindsym $mod+3 workspace $w3
-bindsym $mod+4 workspace $w4
-bindsym $mod+5 workspace $w5
-bindsym $mod+6 workspace $w6
-bindsym $mod+7 workspace $w7
-bindsym $mod+8 workspace $w8
-bindsym $mod+9 workspace $w9
-bindsym $mod+0 workspace $w10
+set $x_switch exec --no-startup-id $HOME/.config/i3/wk-switch.py
+bindsym $mod+1 $x_switch $w1
+bindsym $mod+2 $x_switch $w2
+bindsym $mod+3 $x_switch $w3
+bindsym $mod+4 $x_switch $w4
+bindsym $mod+5 $x_switch $w5
+bindsym $mod+6 $x_switch $w6
+bindsym $mod+7 $x_switch $w7
+bindsym $mod+8 $x_switch $w8
+bindsym $mod+9 $x_switch $w9
+bindsym $mod+0 $x_switch $w10
 
 bindsym $mod+Shift+1 move container to workspace $w1
 bindsym $mod+Shift+2 move container to workspace $w2
