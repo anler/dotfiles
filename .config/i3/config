@@ -216,20 +216,20 @@ exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natu
 exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 
 # ----------------------- Eye candy ----------------------------
-set $bg-color-bar        #091c40
+set $bg-color-bar        #0d1a3a
 set $text-color-bar      #c93b59
 set $bg-color            #b532b2
-set $inactive-bg-color   #302f56
+set $inactive-bg-color   #0d1a3a
 set $text-color          #ffffff
 set $inactive-text-color #666666
-set $urgent-bg-color     #e53935
+set $urgent-bg-color     #f9d72e
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+client.focused          $bg-color           $bg-color          $text-color          #f9d72e
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  #f9d72e
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #f9d72e
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #f9d72e
 
 gaps inner 10
 gaps outer 20
@@ -248,3 +248,7 @@ gaps outer 20
 
 exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
+
+exec --no-startup-id zeal
+exec --no-startup-id telegram-desktop
+exec --no-startup-id emojione-picker

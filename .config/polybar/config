@@ -7,7 +7,7 @@ radius = 0
 fixed-center = false
 bottom = true
 
-background = #091c40
+background = #0d1a3a
 foreground = #ffffff
 
 line-size = 3
@@ -47,8 +47,8 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #657b83
-label-mode-background = #272827
+label-mode-foreground = #0d1a3a
+label-mode-background = #f9d72e
 
 label-focused = %index%
 label-focused-background = #b532b2
@@ -61,12 +61,12 @@ label-unfocused-foreground = #7E807E
 label-unfocused-padding = 2
 
 label-visible = %index%
-label-visible-background = #091c40
+label-visible-background = #0d1a3a
 label-visible-foreground = #ffffff
 label-visible-padding = 2
 
 label-urgent = %index%
-label-urgent-background = #BA2922
+label-urgent-background = #d0253d
 label-urgent-padding = 2
 
 [module/wlan]
@@ -76,7 +76,7 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-foreground = #ffffff
-format-connected-background = #091c40
+format-connected-background = #0d1a3a
 format-connected-padding = 2
 label-connected = %essid%
 
@@ -87,7 +87,7 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = #ffffff
+ramp-signal-foreground = #b532b2
 
 [module/eth]
 type = internal/network
@@ -96,9 +96,9 @@ interval = 3.0
 
 format-connected-padding = 2
 format-connected-foreground = #ffffff
-format-connected-background = #091c40
+format-connected-background = #0d1a3a
 format-connected-prefix = " "
-format-connected-prefix-foreground = #ffffff
+format-connected-prefix-foreground = #b532b2
 label-connected = %local_ip%
 
 format-disconnected =
@@ -114,8 +114,8 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = 
-format-foreground = #091c40
-format-background = #c93b59
+format-foreground = #0d1a3a
+format-background = #d0253d
 format-padding = 2
 
 label = %date% %time%
@@ -130,7 +130,7 @@ format-spacing = 1
 label-open = 
 label-open-foreground = #657b83
 label-close =  cancel
-label-close-foreground = #c93b59
+label-close-foreground = #d0253d
 label-separator = |
 label-separator-foreground = #c93b59
 

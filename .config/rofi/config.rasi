@@ -4,19 +4,17 @@
 configuration {
   font: "Fantasque Sans Mono 16";
   show-icons: true;
-  terminal: "gnome-terminal";
+  terminal: "urxvt";
   window-command: "xkill -id {window}";
   sidebar-mode: true;
   matching: "fuzzy";
   hide-scrollbar: true;
   fake-transparency: false;
   fake-background: "screenshot";
-  width: 100;
   lines: 5;
-  columns: 2;
+  columns: 1;
   bw: 0;
   padding: 400;
   eh: 1;
 }
-
 @import "./custom-theme.rasi"
