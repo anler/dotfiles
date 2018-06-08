@@ -28,7 +28,7 @@ font-2 = "Font Awesome 5 Brands:pixelsize=10;1"
 
 modules-left = i3
 modules-center = date
-modules-right = wlan eth powermenu
+modules-right = wlan eth filesystem powermenu
 
 tray-position = right
 ;tray-padding =
@@ -155,3 +155,21 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 10
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 4
