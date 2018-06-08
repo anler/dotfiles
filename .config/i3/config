@@ -187,7 +187,7 @@ bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+minus move scratchpad
 
-bindsym $mod+minus [class="^(.(?<!URxvt|TelegramDesktop))*?$"] scratchpad show
+bindsym $mod+minus [class="^(.(?<!URxvt|Zeal|TelegramDesktop))*?$"] scratchpad show
 
 exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
 
@@ -197,6 +197,9 @@ bindsym $mod+grave [class="URxvt"] scratchpad show
 
 for_window [title="TelegramDesktop"] move scratchpad
 bindsym $mod+comma [class="TelegramDesktop"] scratchpad show
+
+for_window [title="Zeal"] move scratchpad
+bindsym $mod+period [class="Zeal"] scratchpad show
 
 bindsym $mod+n exec $filemanager
 
