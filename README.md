@@ -2,27 +2,27 @@
 
 My personal dotfiles.
 
-``` tex
+``` text
+                            
+██████████████████  ████████   anler@cygnus 
+██████████████████  ████████   ------------ 
+██████████████████  ████████   OS: Manjaro Linux x86_64 
+██████████████████  ████████   Host: 20L5CTO1WW ThinkPad T480 
+████████            ████████   Kernel: 4.14.47-1-MANJARO 
+████████  ████████  ████████   Uptime: 6 hours, 12 mins 
+████████  ████████  ████████   Packages: 1379 
+████████  ████████  ████████   Shell: zsh 5.5.1 
+████████  ████████  ████████   Resolution: 1920x1080 
+████████  ████████  ████████   WM: i3 
+████████  ████████  ████████   Theme: Arc-Breath-Dark [GTK2/3] 
+████████  ████████  ████████   Icons: Faba [GTK2/3] 
+████████  ████████  ████████   Terminal: urxvt 
+████████  ████████  ████████   Terminal Font: Fantasque Sans Mono 
+                               CPU: Intel i7-8550U (8) @ 4.000GHz 
+                               GPU: Intel UHD Graphics 620 
+                               Memory: 3043MiB / 15806MiB 
 
-                  ##			OS: Arch Linux x86_64
-                 ####			Hostname: cygnus
-                ######			Uptime: 5:56, 22 sec
-               ########			Kernel: 4.14.47-1-MANJARO
-              ##########		Shell: /usr/bin/zsh
-             ############		Packages: 1357
-            ##############		WM: i3
-           ################		GTK2 theme: Vertex-Dark
-          ##################		GTK2 icon theme: Adwaita
-         ####################		GTK2 font name: Cantarell 11
-        ######################		RAM: 4541M / 15806M (28%)
-       #########      #########		CPU: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
-      ##########      ##########	Efi: 28M / 256M (11%) (vfat)
-     ###########      ###########	Root: 30G / 83G (38%) (ext4)
-    ##########          ##########	
-   #######                  #######	
-  ####                          ####	
- ###                              ###	
-
+                                                       
 ```
 
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop.jpg)
