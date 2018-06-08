@@ -27,6 +27,10 @@ My personal dotfiles.
 
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop.jpg)
 
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/laptop.jpg)
+
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/keyboard.jpg)
+
 ## installation
 
 I use [Gnu Stow](https://www.gnu.org/software/stow/) to manage the dotfiles.
