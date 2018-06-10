@@ -8,10 +8,10 @@ fixed-center = false
 bottom = true
 
 background = #0d1a3a
-foreground = #ffffff
+foreground = #657b83
 
 line-size = 3
-line-color = #ffffff
+line-color = #ffffffe
 
 border-size = 0
 border-color = #ffffff
@@ -28,7 +28,7 @@ font-2 = "Font Awesome 5 Brands:pixelsize=10;1"
 
 modules-left = i3
 modules-center = date
-modules-right = wlan eth pavolume filesystem powermenu
+modules-right = wlan eth pavolume filesystem battery1 battery2 powermenu
 
 tray-position = right
 ;tray-padding =
@@ -185,3 +185,53 @@ scroll-up = ~/.config/polybar/pavolume --up
 scroll-down = ~/.config/polybar/pavolume --down
 ; format-foreground = ${colors.foreground}
 ; format-background = ${colors.background}
+
+[module/battery1]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP1
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 5
+
+label-charging = [external ↑ %percentage%%]
+label-discharging = [external ↓ %percentage%%]
+
+[module/battery2]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT1
+adapter = ADP1
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 5
+
+label-charging = [internal ↑ %percentage%%]
+label-discharging = [internal ↓ %percentage%%]
