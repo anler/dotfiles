@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+emacsclient --tty --socket-name $EMACS_SERVER_FILE --eval "(view-file \"$@\")"
