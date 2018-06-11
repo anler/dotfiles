@@ -199,11 +199,11 @@ for_window [title="^quake$"] border pixel 10
 bindsym $mod+grave [class="URxvt"] scratchpad show
 
 exec --no-startup-id telegram-desktop
-for_window [title="TelegramDesktop"] move scratchpad
+for_window [class="TelegramDesktop"] move scratchpad
 bindsym $mod+comma [class="TelegramDesktop"] scratchpad show
 
 exec --no-startup-id zeal
-for_window [title="Zeal"] move scratchpad
+for_window [class="Zeal"] move scratchpad
 bindsym $mod+period [class="Zeal"] scratchpad show
 
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
@@ -213,6 +213,8 @@ exec --no-startup-id feh --bg-scale ~/.wallpaper.jpg
 exec --no-startup-id redshift
 
 exec --no-startup-id emojione-picker
+
+exec --no-startup-id keybase ctl start
 
 # Thinkpad T480 trackpad
 exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
@@ -251,3 +253,4 @@ gaps outer 20
 
 exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
+exec --no-startup-id gnome-keyring-daemon
