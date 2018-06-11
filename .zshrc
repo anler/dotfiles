@@ -36,9 +36,6 @@ fi
 
 alias reload="echo Reloading .zshrc...; source ~/.zshrc"
 alias aur=aurman
-alias e="$EDITOR"
-alias ee="emacsclient -n --socket-name $EMACS_SERVER_FILE"
-
 alias -g L="|less"
 alias -g G="|grep -i"
 
