@@ -23,24 +23,26 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Custom settings
 #
 
-alias reload="echo Reloading .zshrc...; source ~/.zshrc"
-
-alias -g L="|less"
-alias -g G="|grep -i"
+export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
+export ALTERNATE_EDITOR=nano
+export EMACS_SERVER_FILE="/tmp/emacs$(id -u $LOGNAME)/server"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='emacs -Q --eval "(setq auto-save-default nil make-backup-files nil)"'
 else
-  export EDITOR='emacsclient -nw -s ~/.emacs.d/server'
+  export EDITOR="emacsclient --tty --socket-name $EMACS_SERVER_FILE"
 fi
 
-# ssh
-export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
+alias reload="echo Reloading .zshrc...; source ~/.zshrc"
+alias aur=aurman
+alias e="$EDITOR"
+alias ee="emacsclient -n --socket-name $EMACS_SERVER_FILE"
 
+alias -g L="|less"
+alias -g G="|grep -i"
 
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
