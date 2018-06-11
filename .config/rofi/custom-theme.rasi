@@ -131,16 +131,12 @@
   spacing:    0;
   text-color: @selected-normal-foreground;
 }
-#prompt {
-  spacing:    0;
-  color: @red;
-}
 #inputbar {
-  children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+  children: [ textbox-prompt-colon,entry,case-indicator ];
 }
 #textbox-prompt-colon {
   expand:     false;
-  str:        " =>";
+  str:        " ⤵";
   margin:     0px 0.3em 0em 0em ;
-  color: @red;
+  color:      @alternate-urgent-background;
 }
