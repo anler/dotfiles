@@ -91,7 +91,7 @@ ramp-signal-foreground = #b532b2
 
 [module/eth]
 type = internal/network
-interface = enp0s31f6
+interface = enp60s0u1u2
 interval = 3.0
 
 format-connected-padding = 2
