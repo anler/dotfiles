@@ -102,7 +102,7 @@ bindsym Mod4+Shift+m focus floating; mode "move"
 
 bindsym $mod+o exec rofi -show window
 bindsym $mod+p exec rofi -show drun
-bindsym $mod+Shift+p exec rofi -show run
+bindsym $mod+Shift+p exec rofi-pass
 
 mode "resize" {
   bindsym d resize shrink width 10 px or 10 ppt
