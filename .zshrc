@@ -13,7 +13,19 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git tmux gpg-agent)
 
 # ZSH_THEME="refined"
-ZSH_THEME="juanghurtado"
+# ZSH_THEME="juanghurtado"
+# ZSH_THEME="mgutz"
+# ZSH_THEME="funky"
+# ZSH_THEME="intheloop"
+# ZSH_THEME="gnzh"
+# ZSH_THEME="kphoen"
+# ZSH_THEME="trapd00r"
+# ZSH_THEME="dst"
+# ZSH_THEME="linuxonly"
+# ZSH_THEME="blinks"
+# ZSH_THEME="re5et"
+ZSH_THEME="alanpeabody"
+# ZSH_THEME="random"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -26,6 +38,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 export ALTERNATE_EDITOR=nano
 export EMACS_SERVER_FILE="/tmp/emacs$(id -u $LOGNAME)/server"
+export LESS=-FX
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
