@@ -63,12 +63,12 @@ URxvt.keysym.Control-0x2d: perl:font-size:decrease
 
 
 !! Fonts
-URxvt.font: xft:Fantasque Sans Mono:size=16
-URxvt*boldFont: xft:Fantasque Sans Mono:size=16
+URxvt.font: xft:Fantasque Sans Mono:size=16,xft:Symbola,xft:EmojiOne Color,xft:Noto Color Emoji
+URxvt*boldFont: xft:Fantasque Sans Mono:size=16,xft:Symbola,xft:EmojiOne Color,xft:Noto Color Emoji
 URxvt.allow_bold:           true
 URxvt*boldMode:             true
 ! Fix font space
-! URxvt*letterSpace:          -1
+URxvt*letterSpace:          1   ! https://github.com/powerline/fonts/issues/176#issuecomment-240252912
 
 ! Scrollbar
 URxvt.scrollStyle:          rxvt
