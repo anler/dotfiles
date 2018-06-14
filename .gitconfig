@@ -29,3 +29,5 @@
 
 [include]
   path = .gitconfig.priv
+[stash]
+	showPatch = true
