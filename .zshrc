@@ -49,6 +49,7 @@ fi
 
 alias reload="echo Reloading .zshrc...; source ~/.zshrc"
 alias aur=aurman
+
 alias -g L="|less"
 alias -g G="|grep -i"
 alias -g C="|xclip -sel clip"
@@ -60,3 +61,5 @@ alias -g C="|xclip -sel clip"
 
 # https://unix.stackexchange.com/questions/22834/how-to-uncompress-zlib-data-in-unix#49066
 zlibd() (printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" | cat - $@ | gzip -dc 2>/dev/null)
+
+open() (xdg-open $@ &)
