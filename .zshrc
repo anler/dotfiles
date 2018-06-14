@@ -57,3 +57,6 @@ alias -g C="|xclip -sel clip"
 [ -s "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
+# https://unix.stackexchange.com/questions/22834/how-to-uncompress-zlib-data-in-unix#49066
+zlibd() (printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" | cat - $@ | gzip -dc 2>/dev/null)
