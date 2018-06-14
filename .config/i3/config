@@ -152,9 +152,9 @@ bindsym $mod+Shift+s mode "$mode_external_pos"
 bindsym $mod+x move workspace to output right
 bindsym $mod+Shift+x move workspace to output left
 
-bindsym --release Print exec gnome-screenshot
-bindsym --release Shift+Print exec gnome-screenshot -a
-bindsym --release $mod+Sys_Req exec gnome-screenshot -w
+bindsym --release Print exec scrot -s -e 'xclip -selection clipboard -t "image/png" < $f && rm $f'
+bindsym --release Shift+Print exec gnome-screenshot -w -e shadow
+bindsym --release $mod+Sys_Req exec gnome-screenshot
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
