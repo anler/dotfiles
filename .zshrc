@@ -51,6 +51,7 @@ alias reload="echo Reloading .zshrc...; source ~/.zshrc"
 alias aur=aurman
 alias -g L="|less"
 alias -g G="|grep -i"
+alias -g C="|xclip -sel clip"
 
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh # This loads nvm
