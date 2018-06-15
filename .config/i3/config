@@ -123,9 +123,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (L) lock funny, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
   bindsym l exec --no-startup-id i3lock-fancy, mode "default"
+  bindsym Shift+l exec --no-startup-id i3lock -i $HOME/.config/i3/lock-bank.png
   bindsym e exec --no-startup-id i3-msg exit, mode "default"
   bindsym s exec --no-startup-id i3lock-fancy && systemctl suspend, mode "default"
   bindsym h exec --no-startup-id i3lock-fancy && systemctl hibernate, mode "default"
@@ -194,7 +195,8 @@ bindsym $mod+minus [class="^(.(?<!URxvt|Zeal|TelegramDesktop))*?$"] scratchpad s
 
 exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
 
-for_window [title="^quake$"] move scratchpad; resize shrink right 31px or 31 ppt
+for_window [class="^Thunar$"] floating enable
+
 for_window [title="^quake$"] border pixel 10
 bindsym $mod+grave [class="URxvt"] scratchpad show
 
