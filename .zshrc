@@ -23,13 +23,18 @@ plugins=(git tmux gpg-agent)
 # ZSH_THEME="dst"
 # ZSH_THEME="linuxonly"
 # ZSH_THEME="blinks"
-# ZSH_THEME="re5et"
-ZSH_THEME="alanpeabody"
+ZSH_THEME="re5et"
+# ZSH_THEME="alanpeabody"
 # ZSH_THEME="random"
 
 source $ZSH/oh-my-zsh.sh
 
+# Zsh plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/doc/find-the-command/ftc.zsh
+
+source $HOME/.local/share/zsh/plugins/zsh-z/z.zsh
 
 #
 # Custom settings
