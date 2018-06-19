@@ -68,3 +68,7 @@ alias -g C="|xclip -sel clip"
 zlibd() (printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" | cat - $@ | gzip -dc 2>/dev/null)
 
 open() (xdg-open $@ &)
+
+tmp() {
+  pushd $(mktemp -d)
+}
