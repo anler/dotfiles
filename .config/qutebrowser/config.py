@@ -36,7 +36,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # CSS border value for hints.
 # Type: String
-c.hints.border = '1px solid #E3BE23'
+c.hints.border = '1px solid #b532b2'
 
 # Padding (in pixels) for the statusbar.
 # Type: Padding
@@ -117,11 +117,11 @@ c.colors.statusbar.normal.bg = '#0d1a3a'
 
 # Foreground color of the statusbar in insert mode.
 # Type: QssColor
-c.colors.statusbar.insert.fg = '#0d1a3a'
+c.colors.statusbar.insert.fg = '#ffffff'
 
 # Background color of the statusbar in insert mode.
 # Type: QssColor
-c.colors.statusbar.insert.bg = '#f9d72e'
+c.colors.statusbar.insert.bg = '#b532b2'
 
 # Foreground color of the statusbar in passthrough mode.
 # Type: QssColor
