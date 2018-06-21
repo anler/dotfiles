@@ -196,6 +196,7 @@ bindsym $mod+minus [class="^(.(?<!URxvt|Zeal|TelegramDesktop))*?$"] scratchpad s
 exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
 
 for_window [class="^Thunar$"] floating enable
+for_window [title="Ediff"] floating enable
 
 for_window [title="^quake$"] move scratchpad; resize shrink right 31px or 31 ppt
 for_window [title="^quake$"] border pixel 10
