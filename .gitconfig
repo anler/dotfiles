@@ -23,6 +23,7 @@
 	lg = log --graph --oneline --decorate=auto --relative-date
 	ft = fetch
 	r = remote
+	find = !git-find-file
 
 [commit]
 	gpgsign = true

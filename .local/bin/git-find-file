@@ -1,0 +1,16 @@
+#!/bin/sh
+# -*- mode: sh -*-
+tmpdir=$(mktemp -td git-find.XXXX)
+trap "rm -r $tmpdir" EXIT INT TERM
+
+allrevs=$(git rev-list --all)
+# well, nearly all revs, we could still check the log if we have
+# dangling commits and we could include the index to be perfect...
+
+for rev in $allrevs
+do
+  git ls-tree --full-tree -r $rev >$tmpdir/$rev 
+done
+
+cd $tmpdir
+grep $1 * 
