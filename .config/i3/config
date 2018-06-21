@@ -100,8 +100,11 @@ mode "move" {
 bindsym Mod4+Shift+m focus floating; mode "move"
 
 
-bindsym $mod+o exec rofi -show window
-bindsym $mod+p exec rofi -show drun
+bindsym $mod+o exec $HOME/.config/i3/rofi-wrapper window
+
+bindsym $mod+c exec $HOME/.config/i3/rofi-wrapper calc
+bindsym $mod+p exec $HOME/.config/i3/rofi-wrapper drun
+bindsym $mod+b exec $HOME/.config/i3/rofi-wrapper run
 bindsym $mod+Shift+p exec rofi-pass
 
 mode "resize" {
