@@ -63,8 +63,8 @@ URxvt.keysym.Control-0x2d: perl:font-size:decrease
 
 
 !! Fonts
-URxvt.font: xft:Fantasque Sans Mono:size=16,xft:Symbola,xft:EmojiOne Color,xft:Noto Color Emoji
-URxvt*boldFont: xft:Fantasque Sans Mono:size=16,xft:Symbola,xft:EmojiOne Color,xft:Noto Color Emoji
+URxvt.font: xft:Fantasque Sans Mono:size=18,xft:Symbola,xft:EmojiOne Color,xft:Noto Color Emoji
+URxvt*boldFont: xft:Fantasque Sans Mono:size=18,xft:Symbola,xft:EmojiOne Color,xft:Noto Color Emoji
 URxvt.allow_bold:           true
 URxvt*boldMode:             true
 ! Fix font space
