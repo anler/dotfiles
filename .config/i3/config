@@ -214,7 +214,7 @@ exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocap
 
 exec --no-startup-id feh --bg-scale ~/.wallpaper.jpg
 
-exec --no-startup-id redshift -l 40.42:3.70 # Madrid
+exec --no-startup-id redshift
 
 exec --no-startup-id emojione-picker
 
