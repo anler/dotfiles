@@ -6,7 +6,7 @@ configuration {
   show-icons: true;
   terminal: "urxvt";
   window-command: "xkill -id {window}";
-  sidebar-mode: true;
+  sidebar-mode: false;
   matching: "fuzzy";
   hide-scrollbar: true;
   fake-transparency: false;
