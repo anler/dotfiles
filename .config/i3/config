@@ -142,11 +142,14 @@ mode "$mode_system" {
 
 bindsym $mod+Shift+e mode "$mode_system"
 
-set $mode_external_pos External screen on (l)eft, (r)right, or (o)ff
+set $mode_external_pos External screen on (l)eft, (r)ight, or (o)ff (uppercase for HDMI)
 mode "$mode_external_pos" {
   bindsym r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of eDP1
+  bindsym Shift+r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of HDMI2
   bindsym l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of eDP1
+  bindsym Shift+l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of HDMI2
   bindsym o exec xrandr --output DP1 --off
+  bindsym Shift+o exec xrandr --output HDMI2 --off
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
