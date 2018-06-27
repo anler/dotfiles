@@ -43,7 +43,7 @@ source $HOME/.local/share/zsh/plugins/zsh-z/z.zsh
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 export ALTERNATE_EDITOR=nano
 export EMACS_SERVER_FILE="/tmp/emacs$(id -u $LOGNAME)/server"
-export LESS=-F
+export LESS=-FRX
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
