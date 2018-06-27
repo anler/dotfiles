@@ -54,6 +54,7 @@ fi
 
 alias reload="echo Reloading .zshrc...; source ~/.zshrc"
 alias aur=aurman
+alias woman=man
 
 alias -g L="|less"
 alias -g LE="2>&1|less"
