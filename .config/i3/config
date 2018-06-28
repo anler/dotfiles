@@ -126,14 +126,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l) lock, (L) lock funny, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $lock betterlockscreen -l blur
+set $lock-fun i3lock -i $HOME/.config/i3/lock-bank.png
+set $mode_system System (l) lock, (L) lock funny, (E) logout, (s) suspend, (h) hibernate, (R) reboot, (S) shutdown
 mode "$mode_system" {
-  bindsym l exec --no-startup-id i3lock-fancy, mode "default"
-  bindsym Shift+l exec --no-startup-id i3lock -i $HOME/.config/i3/lock-bank.png
-  bindsym e exec --no-startup-id i3-msg exit, mode "default"
-  bindsym s exec --no-startup-id i3lock-fancy && systemctl suspend, mode "default"
-  bindsym h exec --no-startup-id i3lock-fancy && systemctl hibernate, mode "default"
-  bindsym r exec --no-startup-id systemctl reboot, mode "default"
+  bindsym l exec --no-startup-id $lock, mode "default"
+  bindsym Shift+l exec --no-startup-id $lock-fun, mode "default"
+  bindsym Shift+e exec --no-startup-id i3-msg exit, mode "default"
+  bindsym s exec --no-startup-id "$lock; systemctl suspend", mode "default"
+  bindsym h exec --no-startup-id "$lock; systemctl hibernate", mode "default"
+  bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
   bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
   bindsym Return mode "default"
@@ -144,12 +146,12 @@ bindsym $mod+Shift+e mode "$mode_system"
 
 set $mode_external_pos External screen on (l)eft, (r)ight, or (o)ff (uppercase for HDMI)
 mode "$mode_external_pos" {
-  bindsym r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of eDP1
-  bindsym Shift+r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of HDMI2
-  bindsym l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of eDP1
-  bindsym Shift+l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of HDMI2
-  bindsym o exec xrandr --output DP1 --off
-  bindsym Shift+o exec xrandr --output HDMI2 --off
+  bindsym r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of eDP1, mode "default"
+  bindsym Shift+r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of HDMI2, mode "default"
+  bindsym l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of eDP1, mode "default"
+  bindsym Shift+l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of HDMI2, mode "default"
+  bindsym o exec xrandr --output DP1 --off, mode "default"
+  bindsym Shift+o exec xrandr --output HDMI2 --off, mode "default"
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
@@ -218,7 +220,7 @@ bindsym $mod+period [class="Zeal"] scratchpad show
 
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 
-exec --no-startup-id feh --bg-scale ~/.wallpaper.jpg
+exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg
 
 exec --no-startup-id redshift
 
