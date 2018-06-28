@@ -1,1 +1,1 @@
-stow --target=$HOME --ignore=stow-files .
+stow --target=$HOME --ignore=stow-files --ignore=images .
