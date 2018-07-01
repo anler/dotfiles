@@ -190,6 +190,7 @@ new_window pixel 3
 new_float pixel 3
 
 bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec cool-retro-term
 
 workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
@@ -201,12 +202,12 @@ bindsym $mod+n exec $filemanager
 # ------------------- Startup programs ------------------------
 bindsym $mod+minus [class="^(.(?<!URxvt|Zeal|TelegramDesktop))*?$"] scratchpad show
 
-exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
+exec_always --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
 
-for_window [class="^Thunar$"] floating enable
+for_window [class="^Peek"] floating enable
 for_window [title="Ediff"] floating enable
 
-for_window [title="^quake$"] move scratchpad; resize shrink right 31px or 31 ppt
+for_window [title="^quake$"] move scratchpad; resize shrink height 300px; resize grow right 400px; move up 100px; move right 50px
 for_window [title="^quake$"] border pixel 10
 bindsym $mod+grave [class="URxvt"] scratchpad show
 
@@ -220,7 +221,8 @@ bindsym $mod+period [class="Zeal"] scratchpad show
 
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 
-exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg
+# exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg
+exec_always --no-startup-id betterlockscreen --wall dim
 
 exec --no-startup-id redshift
 

@@ -36,9 +36,8 @@ source /usr/share/doc/find-the-command/ftc.zsh
 
 source $HOME/.local/share/zsh/plugins/zsh-z/z.zsh
 
-#
-# Custom settings
-#
+source $HOME/.local/share/zsh/plugins/gopass-completion.zsh
+compdef _gopass gopass
 
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 export ALTERNATE_EDITOR=nano
