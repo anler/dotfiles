@@ -1,12 +1,16 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/anler/.oh-my-zsh
+export ZSH=/usr/share/oh-my-zsh
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.stack/programs/x86_64-linux/ghc-tinfo6-nopie-7.10.3/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
-export TERMINAL=gnome-terminal
+export TERMINAL=urxvt
 export LANG=en_US.UTF-8
 export GPG_TTY=$(tty)
+
+export XKB_DEFAULT_LAYOUT=us
+export XKB_DEFAULT_VARIANT=altgr-intl
+export XKB_DEFAULT_OPTIONS=ctrl:nocaps
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
@@ -52,7 +56,6 @@ else
 fi
 
 alias reload="echo Reloading .zshrc...; source ~/.zshrc"
-alias aur=aurman
 alias woman=man
 
 alias -g L="|less"

@@ -4,30 +4,28 @@ My personal dotfiles.
 
 ``` text
                             
-██████████████████  ████████   anler@cygnus 
-██████████████████  ████████   ------------ 
-██████████████████  ████████   OS: Manjaro Linux x86_64 
-██████████████████  ████████   Host: 20L5CTO1WW ThinkPad T480 
-████████            ████████   Kernel: 4.14.47-1-MANJARO 
-████████  ████████  ████████   Uptime: 6 hours, 12 mins 
-████████  ████████  ████████   Packages: 1379 
-████████  ████████  ████████   Shell: zsh 5.5.1 
-████████  ████████  ████████   Resolution: 1920x1080 
-████████  ████████  ████████   WM: i3 
-████████  ████████  ████████   Theme: Arc-Breath-Dark [GTK2/3] 
-████████  ████████  ████████   Icons: Faba [GTK2/3] 
-████████  ████████  ████████   Terminal: urxvt 
-████████  ████████  ████████   Terminal Font: Fantasque Sans Mono 
-                               CPU: Intel i7-8550U (8) @ 4.000GHz 
-                               GPU: Intel UHD Graphics 620 
-                               Memory: 3043MiB / 15806MiB 
-
-                                                       
+                   -`                    anler@cygnus 
+                  .o+`                   ------------ 
+                 `ooo/                   OS: Arch Linux x86_64 
+                `+oooo:                  Host: 20L5CTO1WW ThinkPad T480 
+               `+oooooo:                 Kernel: 4.17.3-1-ARCH 
+               -+oooooo+:                Uptime: 10 mins 
+             `/:-:++oooo+:               Packages: 770 (pacman), 2 (nix) 
+            `/++++/+++++++:              Shell: zsh 5.5.1 
+           `/++++++++++++++:             Resolution: 1920x1080 
+          `/+++ooooooooooooo/`           WM: i3 
+         ./ooosssso++osssssso+`          Theme: Vertex-Dark [GTK2/3] 
+        .oossssso-````/ossssss+`         Icons: Vertex-Icons [GTK2/3] 
+       -osssssso.      :ssssssso.        Terminal: urxvt 
+      :osssssss/        osssso+++.       Terminal Font: Fantasque Sans Mono 
+     /ossssssss/        +ssssooo/-       CPU: Intel i7-8550U (8) @ 4.000GHz 
+   `/ossssso+/:-        -:/+osssso+-     GPU: Intel UHD Graphics 620 
+  `+sso+:-`                 `.-/+oso:    Memory: 954MiB / 15805MiB 
+ `++:.                           `-/+/
+ .`                                 `/                           
 ```
 
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop2.jpg)
-
-![](https://raw.githubusercontent.com/anler/dotfiles/master/images/laptop.jpg)
 
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/keyboard.jpg)
 

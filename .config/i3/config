@@ -267,4 +267,4 @@ gaps outer 20
 
 exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
-exec --no-startup-id gnome-keyring-daemon
+# exec --no-startup-id gnome-keyring-daemon
