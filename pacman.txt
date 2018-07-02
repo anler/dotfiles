@@ -32,6 +32,7 @@ emacs 26.1-1
 emojione-picker-git 0.1.r37.gcb5f504-4
 expac 9-1
 fakeroot 1.22-1
+fasd 1.0.1-1
 feh 2.26.4-1
 file 5.33-3
 filesystem 2018.1-2
@@ -65,6 +66,7 @@ libtool 2.4.6+40+g6ca5e224-7
 licenses 20171006-1
 linux 4.17.3-1
 logrotate 3.14.0-1
+lsscsi 0.29-1
 lvm2 2.02.177-5
 lxappearance 0.6.3-1
 m4 1.4.18-1
@@ -154,6 +156,7 @@ w3m 0.5.3.git20180125-1
 which 2.21-2
 wireless_tools 30.pre9-2
 wpa_supplicant 1:2.6-11
+x11-ssh-askpass 1.2.4.1-6
 xcursor-comix 0.9.0-2
 xcursor-pixelfun 3.2-6
 xdo 0.5.7-1

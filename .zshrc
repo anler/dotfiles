@@ -39,10 +39,10 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/doc/find-the-command/ftc.zsh
 
-source $HOME/.local/share/zsh/plugins/zsh-z/z.zsh
-
 source $HOME/.local/share/zsh/plugins/gopass-completion.zsh
 compdef _gopass gopass
+
+eval "$(fasd --init auto)"
 
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 export ALTERNATE_EDITOR=nano
