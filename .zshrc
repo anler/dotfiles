@@ -7,6 +7,7 @@ export PATH=$HOME/.local/bin:$PATH
 export TERMINAL=urxvt
 export LANG=en_US.UTF-8
 export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 export XKB_DEFAULT_LAYOUT=us
 export XKB_DEFAULT_VARIANT=altgr-intl
