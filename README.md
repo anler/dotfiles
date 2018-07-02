@@ -26,6 +26,8 @@ My personal dotfiles.
 ```
 
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop.jpg)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop2.jpg)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop3.jpg)
 
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/keyboard.jpg)
 
