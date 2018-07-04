@@ -77,3 +77,9 @@ open() (xdg-open $@ &)
 tmp() {
   pushd $(mktemp -d)
 }
+
+loginfortune() {
+  fortune | cowsay -f $(cowsay -l | tail -n +2 | tr ' ' '\n' | shuf -n 1) | lolcat
+}
+
+loginfortune

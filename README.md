@@ -41,6 +41,20 @@ cd dotfiles
 stow --target=$HOME .
 ```
 
+## other
+
+### set default browser
+
+`xdg-settings set default-web-browser qutebrowser.desktop`
+
+## fixes
+
+### facebook/jest#3254
+
+``` shell
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.d/99-sysctl.conf && sudo sysctl --system
+```
+
 ## license
 
 [MIT](http://opensource.org/licenses/MIT)
