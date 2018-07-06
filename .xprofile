@@ -2,7 +2,7 @@
 
 setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 
-feh --bg-scale ~/.wallpaper.jpg
+feh --bg-scale ~/.wallpaper
 
 redshift &
 
