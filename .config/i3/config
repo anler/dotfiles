@@ -126,7 +126,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $lock betterlockscreen -l blur
+# set $lock betterlockscreen -l blur
+set $lock i3lock-fancy -p -t ''
 set $lock-fun i3lock -i $HOME/.config/i3/lock-bank.png
 set $mode_system System (l) lock, (L) lock funny, (E) logout, (s) suspend, (h) hibernate, (R) reboot, (S) shutdown
 mode "$mode_system" {
@@ -206,19 +207,13 @@ bindsym $mod+n exec emojione-picker
 
 bindsym $mod+minus [class="^(.(?<!URxvt|Zeal|TelegramDesktop))*?$"] scratchpad show
 
-exec --no-startup-id i3-msg "exec TMUX_AUTOSTART=no urxvt -title quake"
+exec --no-startup-id TMUX_AUTOSTART=no urxvt -name quake
 
 for_window [class="^Peek"] floating enable
 for_window [title="Ediff"] floating enable
 
-for_window [title="^quake$"] move scratchpad
-for_window [title="^quake$"] resize shrink width 10000px
-for_window [title="^quake$"] resize grow width 882px
-for_window [title="^quake$"] resize shrink height 10000px
-for_window [title="^quake$"] resize grow height 520px
-for_window [title="^quake$"] move right 400px
-for_window [title="^quake$"] move down 350px
-bindsym $mod+grave [class="URxvt"] scratchpad show
+for_window [instance="^quake$"] move scratchpad
+bindsym $mod+grave [instance="^quake$"] scratchpad show; [instance="^quake$"] fullscreen enable
 
 exec --no-startup-id telegram-desktop
 for_window [class="TelegramDesktop"] move scratchpad
@@ -232,14 +227,22 @@ exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
 
 # ----------------------- Eye candy ----------------------------
-
-set $bg-color-bar        #0d1a3a
+# ======================= Ghost theme
+# set $bg-color-bar        #0d1a3a
+# set $text-color-bar      #c93b59
+# set $bg-color            #b532b2
+# set $inactive-bg-color   #0d1a3a
+# set $text-color          #ffffff
+# set $inactive-text-color #666666
+# set $urgent-bg-color     #f9d72e
+# ======================= Mojave theme
+set $bg-color-bar        #261a18
 set $text-color-bar      #c93b59
-set $bg-color            #b532b2
-set $inactive-bg-color   #0d1a3a
-set $text-color          #ffffff
-set $inactive-text-color #666666
-set $urgent-bg-color     #f9d72e
+set $bg-color            #c07f46
+set $inactive-bg-color   #261a18
+set $text-color          #261a18
+set $inactive-text-color #c07f46
+set $urgent-bg-color     #cbb0ac
 
 # window colors
 #                       border              background         text                 indicator

@@ -26,9 +26,9 @@ My personal dotfiles.
 ```
 
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop.jpg)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop1.jpg)
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop2.jpg)
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop3.jpg)
-
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/images/keyboard.jpg)
 
 ## installation
@@ -42,6 +42,25 @@ stow --target=$HOME .
 ```
 
 ## other
+
+### color pallete
+
+#### Ghost theme
+
+- #493b6b
+- #fe207b
+- #0cfee0
+- #fea182
+
+#### Mojave theme
+
+- #261a18
+- #684632
+- #c07f46
+- #cbb0ac
+- #cec4c0
+- #79849f
+- #687592
 
 ### set default browser
 

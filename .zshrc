@@ -1,8 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.stack/programs/x86_64-linux/ghc-tinfo6-nopie-7.10.3/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.stack/programs/x86_64-linux/ghc-tinfo6-nopie-7.10.3/bin:$PATH
 
 export TERMINAL=urxvt
 export LANG=en_US.UTF-8
@@ -63,6 +62,7 @@ alias -g L="|less"
 alias -g LE="2>&1|less"
 alias -g G="|grep -i"
 alias -g C="|xclip -sel clip"
+alias -g X="chmod +x"
 
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh # This loads nvm
@@ -79,7 +79,7 @@ tmp() {
 }
 
 loginfortune() {
-  fortune -o | cowsay -f $(cowsay -l | tail -n +2 | tr ' ' '\n' | shuf -n 1) | lolcat
+  fortune | cowsay -f tux | lolcat
 }
 
 loginfortune

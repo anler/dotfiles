@@ -1,5 +1,17 @@
+[colors]
+black = #261a18
+white = #ffffff
+yellow = #c07f46
+red = #d0253d
+blue = #687592
+
 [bar/i3wmthemer_bar]
 monitor = ${env:MONITOR}
+
+background = ${colors.black}
+foreground = ${colors.white}
+line-color = ${colors.black}
+border-color = ${colors.black}
 
 width = 100%
 height = 27
@@ -7,31 +19,26 @@ radius = 0
 fixed-center = false
 bottom = true
 
-background = #0d1a3a
-foreground = #657b83
-
 line-size = 3
-line-color = #ffffffe
-
 border-size = 0
-border-color = #ffffff
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = "Fantasque Sans Mono:pixelsize=10;1"
-font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
-font-2 = "Font Awesome 5 Brands:pixelsize=10;1"
-
-modules-left = date
-modules-center = i3
-modules-right = eth eth-usbc wlan pavolume filesystem battery1 battery2 powermenu
+font-0 = "Fantasque Sans Mono:pixelsize=14;3"
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=14;3"
+font-2 = "Font Awesome 5 Brands:pixelsize=14;3"
+font-3 = "Noto Color Emoji:pixelsize=14;3"
+font-4 = "Symbola:pixelsize=14;3"
 
 tray-position = right
-;tray-padding =
+modules-left = i3
+modules-center = date
+; eth eth-usbc wlan pavolume filesystem battery1 battery2
+modules-right = pavolume
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -47,37 +54,37 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-mode-padding = 2
-label-mode-foreground = #0d1a3a
-label-mode-background = #f9d72e
 
 label-focused = %index%
-label-focused-background = #b532b2
-label-focused-foreground = #ffffff
+
 label-focused-padding = 2
 
 label-unfocused = %index%
-label-unfocused-background = #302f56
-label-unfocused-foreground = #7E807E
 label-unfocused-padding = 2
 
 label-visible = %index%
-label-visible-background = #0d1a3a
-label-visible-foreground = #ffffff
 label-visible-padding = 2
 
 label-urgent = %index%
-label-urgent-background = #d0253d
 label-urgent-padding = 2
+
+label-mode-foreground = ${colors.black}
+label-mode-background = ${colors.yellow}
+label-focused-background = ${colors.yellow}
+label-focused-foreground = ${colors.black}
+label-unfocused-background = ${colors.black}
+label-unfocused-foreground = ${colors.white}
+label-visible-background = ${colors.black}
+label-visible-foreground = ${colors.white}
+label-urgent-background = ${colors.red}
 
 [module/wlan]
 type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-foreground = #ffffff
-format-connected-background = #0d1a3a
-format-connected-padding = 2
+format-connected = <ramp-signal>
+
 label-connected = %essid%
 
 format-disconnected =
@@ -87,7 +94,6 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = #b532b2
 
 [module/eth-usbc]
 type = internal/network
@@ -95,10 +101,8 @@ interface = enp60s0u1u2
 interval = 3.0
 
 format-connected-padding = 2
-format-connected-foreground = #ffffff
-format-connected-background = #0d1a3a
+
 format-connected-prefix = " "
-format-connected-prefix-foreground = #b532b2
 label-connected = %local_ip%
 
 format-disconnected =
@@ -109,10 +113,7 @@ interface = enp0s31f6
 interval = 3.0
 
 format-connected-padding = 2
-format-connected-foreground = #ffffff
-format-connected-background = #0d1a3a
 format-connected-prefix = " "
-format-connected-prefix-foreground = #b532b2
 label-connected = %local_ip%
 
 format-disconnected =
@@ -127,48 +128,16 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
+format-foreground = ${colors.white}
+format-background = ${colors.blue}
+
 format-prefix = 
-format-foreground = #0d1a3a
-format-background = #d0253d
 format-padding = 2
 
 label = %date% %time%
 
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = #657b83
-label-close =  cancel
-label-close-foreground = #d0253d
-label-separator = |
-label-separator-foreground = #c93b59
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
 [settings]
 screenchange-reload = true
-
-[global/wm]
-margin-top = 0
-margin-bottom = 0
 
 [module/filesystem]
 type = internal/fs
@@ -178,7 +147,7 @@ mount-0 = /
 
 ; Seconds to sleep between updates
 ; Default: 30
-interval = 10
+interval = 300
 
 ; Display fixed precision values
 ; Default: false
@@ -197,8 +166,6 @@ click-right = exec pavucontrol
 click-left = ~/.config/polybar/pavolume --togmute
 scroll-up = ~/.config/polybar/pavolume --up
 scroll-down = ~/.config/polybar/pavolume --down
-; format-foreground = ${colors.foreground}
-; format-background = ${colors.background}
 
 [module/battery1]
 type = internal/battery
@@ -222,8 +189,8 @@ adapter = ADP1
 ; Default: 5
 poll-interval = 5
 
-label-charging = [external ↑ %percentage%%]
-label-discharging = [external ↓ %percentage%%]
+label-charging = E⇡
+label-discharging = E↯
 
 [module/battery2]
 type = internal/battery
@@ -247,5 +214,5 @@ adapter = ADP1
 ; Default: 5
 poll-interval = 5
 
-label-charging = [internal ↑ %percentage%%]
-label-discharging = [internal ↓ %percentage%%]
+label-charging = I⇡ %percentage%%
+label-discharging = I↯ %percentage%%
