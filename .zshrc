@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.cargo/bin:$HOME/.stack/programs/x86_64-linux/ghc-tinfo6-nopie-7.10.3/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.stack/programs/x86_64-linux/ghc-tinfo6-nopie-7.10.3/bin:$HOME/.local/bin:$PATH
 
 export TERMINAL=urxvt
 export LANG=en_US.UTF-8

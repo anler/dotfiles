@@ -2,9 +2,11 @@
 
 setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 
-feh --bg-scale ~/.wallpaper
+hsetroot -add "#555555" -addd "#261a18" 40 -addd "#261a18" 15 -gradient 0
 
 redshift &
+
+cbatticon &
 
 keybase ctl start
 

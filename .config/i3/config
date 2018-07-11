@@ -159,6 +159,49 @@ mode "$mode_external_pos" {
 
 bindsym $mod+Shift+s mode "$mode_external_pos"
 
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+  bindsym o      mode "$mode_gaps_outer"
+  bindsym i      mode "$mode_gaps_inner"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+  bindsym o      mode "$mode_gaps_outer"
+  bindsym i      mode "$mode_gaps_inner"
+  
+  bindsym plus  gaps inner current plus 5
+  bindsym minus gaps inner current minus 5
+  bindsym 0     gaps inner current set 0
+
+  bindsym Shift+plus  gaps inner all plus 5
+  bindsym Shift+minus gaps inner all minus 5
+  bindsym Shift+0     gaps inner all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+  bindsym o      mode "$mode_gaps_outer"
+  bindsym i      mode "$mode_gaps_inner"
+  
+  bindsym plus  gaps outer current plus 5
+  bindsym minus gaps outer current minus 5
+  bindsym 0     gaps outer current set 0
+
+  bindsym Shift+plus  gaps outer all plus 5
+  bindsym Shift+minus gaps outer all minus 5
+  bindsym Shift+0     gaps outer all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
 bindsym $mod+x move workspace to output right
 bindsym $mod+Shift+x move workspace to output left
 
@@ -185,13 +228,6 @@ bindsym $mod+d exec "amixer -D pulse sset Master '1%-'"
 bindsym $mod+m exec "amixer -D pulse sset Master 'toggle'"
 
 exec --no-startup-id compton -f
-
-# bindsym $mod+t border normal
-# bindsym $mod+y border pixel 3
-# bindsym $mod+u border none
-
-new_window pixel 1
-new_float pixel 1
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Return exec cool-retro-term
@@ -251,22 +287,16 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #f9d72e
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #f9d72e
 
-gaps inner 10
-gaps outer 20
-
-# bar {
-#   status_command i3status
-#   position top
-#   colors {
-#     statusline $text-color-bar
-#     background $bg-color-bar
-#     focused_workspace $bg-color $bg-color $text-color
-#     inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-#     urgent_workspace $urgent-bg-color $urgent-bg-color $text-color
-#   }
-# }
-
-# jagged background issues
-for_window [class=".*"] border pixel 1
+for_window [class="^.*"] border pixel 1
 hide_edge_borders both
 
+gaps inner 15
+gaps outer 20
+smart_borders on
+
+bindsym $mod+t border normal
+bindsym $mod+y border pixel 3
+bindsym $mod+u border none
+
+new_window pixel 1
+new_float pixel 1
