@@ -68,12 +68,12 @@ label-visible-padding = 2
 label-urgent = %index%
 label-urgent-padding = 2
 
-label-mode-foreground = ${colors.black}
-label-mode-background = ${colors.yellow}
-label-focused-background = ${colors.yellow}
-label-focused-foreground = ${colors.black}
+label-mode-foreground = ${colors.yellow}
+label-mode-background = ${colors.black}
+label-focused-background = ${colors.black}
+label-focused-foreground = ${colors.white}
 label-unfocused-background = ${colors.black}
-label-unfocused-foreground = ${colors.white}
+label-unfocused-foreground = ${colors.yellow}
 label-visible-background = ${colors.black}
 label-visible-foreground = ${colors.white}
 label-urgent-background = ${colors.red}
@@ -129,7 +129,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-foreground = ${colors.white}
-format-background = ${colors.blue}
+format-background = ${colors.black}
 
 format-prefix = 
 format-padding = 2
