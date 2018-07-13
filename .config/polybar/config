@@ -122,8 +122,8 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =
-date-alt = " %Y-%m-%d"
+date = "%a, %b %e"
+date-alt = 
 
 time = %H:%M
 time-alt = %H:%M:%S
@@ -131,10 +131,10 @@ time-alt = %H:%M:%S
 format-foreground = ${colors.white}
 format-background = ${colors.black}
 
-format-prefix = 
+; format-prefix = 
 format-padding = 2
 
-label = %date% %time%
+label = " %time% ⋅ %date%"
 
 [settings]
 screenchange-reload = true
