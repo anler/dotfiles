@@ -229,11 +229,10 @@ bindsym $mod+m exec "amixer -D pulse sset Master 'toggle'"
 
 exec --no-startup-id compton -f
 
-bindsym $mod+Return exec ZSH_TMUX_AUTOSTART=true i3-sensible-terminal
+bindsym $mod+Return exec urxvt -e zsh -c 'tmux new-session -A -s main'
 bindsym $mod+Shift+Return exec cool-retro-term
 
 workspace_auto_back_and_forth yes
-bindsym $mod+Tab exec $HOME/.config/i3/rofi-wrapper window
 
 bindsym $mod+Shift+minus move scratchpad
 
@@ -243,7 +242,7 @@ bindsym $mod+n exec emojione-picker
 
 bindsym $mod+minus [class="^(.(?<!URxvt|Zeal|TelegramDesktop))*?$"] scratchpad show
 
-exec --no-startup-id ZSH_TMUX_AUTOSTART=false urxvt -name quake
+exec --no-startup-id urxvt -name quake -e zsh -c 'tmux new-session -A -s quake'
 
 for_window [class="^Peek"] floating enable
 for_window [title="Ediff"] floating enable
@@ -259,7 +258,7 @@ exec --no-startup-id zeal
 for_window [class="Zeal"] move scratchpad
 bindsym $mod+period [class="Zeal"] scratchpad show
 
-exec_always alttab
+exec_always alttab -mk Super_L
 
 exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
@@ -276,10 +275,10 @@ exec_always --no-startup-id $HOME/.config/polybar/launch
 # ======================= Mojave theme
 set $bg-color-bar        #261a18
 set $text-color-bar      #c93b59
-set $bg-color            #c07f46
+set $bg-color            #261a18
 set $inactive-bg-color   #261a18
-set $text-color          #261a18
-set $inactive-text-color #c07f46
+set $text-color          #ffffff
+set $inactive-text-color #666666
 set $urgent-bg-color     #cbb0ac
 
 # window colors
