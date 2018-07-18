@@ -39,9 +39,9 @@ font-5 = "Symbola:pixelsize=14;3"
 
 tray-position = 
 modules-left = i3
-modules-center = 
+modules-center = spotify
 ; eth eth-usbc wlan pavolume filesystem battery1 battery2
-modules-right = temperature backlight wireless-network pavolume battery date
+modules-right = backlight wireless-network pavolume battery date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -316,3 +316,13 @@ animation-packetloss-0-foreground = #ffa64c
 animation-packetloss-1 = 
 animation-packetloss-1-foreground = ${bar/top.foreground}
 animation-packetloss-framerate = 500
+
+[module/spotify]
+type = custom/script
+interval = 5
+format-prefix = "  "  
+format = <label>
+exec = /home/anler/.config/polybar/spotify.py
+
+
+format-underline = ${colors.blue}
