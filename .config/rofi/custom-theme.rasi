@@ -7,7 +7,7 @@
 
 * {
   selected-normal-foreground:  #261a18;
-  foreground:                  #c07f46;
+  foreground:                  #00ffff;
   background:                  #261a18;
   normal-foreground:           @foreground;
   alternate-normal-background: #261a18;
@@ -23,9 +23,9 @@
   background:                  #261a18;
   alternate-normal-foreground: @foreground;
   normal-background:           @background;
-  lightfg:                     #c07f46;
-  selected-normal-background:  #c07f46;
-  border-color:                #c07f46;
+  lightfg:                     #00ffff;
+  selected-normal-background:  #00ffff;
+  border-color:                #00ffff;
   spacing:                     2;
   separatorcolor:              @background;
   urgent-background:           @background;

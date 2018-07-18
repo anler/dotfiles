@@ -7,7 +7,7 @@ hsetroot -fill .wallpaper
 
 redshift &
 
-cbatticon &
+# cbatticon &
 
 compton -f &
 

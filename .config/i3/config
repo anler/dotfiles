@@ -262,21 +262,12 @@ exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
 
 # ----------------------- Eye candy ----------------------------
-# ======================= Ghost theme
-# set $bg-color-bar        #0d1a3a
-# set $text-color-bar      #c93b59
-# set $bg-color            #b532b2
-# set $inactive-bg-color   #0d1a3a
-# set $text-color          #ffffff
-# set $inactive-text-color #666666
-# set $urgent-bg-color     #f9d72e
-# ======================= Mojave theme
 set $bg-color-bar        #261a18
 set $text-color-bar      #c93b59
 set $bg-color            #261a18
 set $inactive-bg-color   #261a18
-set $text-color          #ffffff
-set $inactive-text-color #666666
+set $text-color          #00ffff
+set $inactive-text-color #444444
 set $urgent-bg-color     #cbb0ac
 
 # window colors

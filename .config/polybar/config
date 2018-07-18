@@ -1,10 +1,11 @@
 [colors]
 black = #261a18
 dark = #444444
+orange = #ffa07a
 white = #ffffff
-yellow = #c07f46
+yellow = #edd400
 red = #d0253d
-blue = #687592
+blue = #00ffff
 
 [bar/i3wmthemer_bar]
 monitor = ${env:MONITOR}
@@ -33,13 +34,14 @@ font-0 = "Fantasque Sans Mono:pixelsize=14;3"
 font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=14;3"
 font-2 = "Font Awesome 5 Brands:pixelsize=14;3"
 font-3 = "Noto Color Emoji:pixelsize=14;3"
-font-4 = "Symbola:pixelsize=14;3"
+font-4 = MaterialIcons:size=14;3
+font-5 = "Symbola:pixelsize=14;3"
 
-tray-position = right
+tray-position = 
 modules-left = i3
-modules-center = date
+modules-center = 
 ; eth eth-usbc wlan pavolume filesystem battery1 battery2
-modules-right = pavolume
+modules-right = temperature backlight wireless-network pavolume battery date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -54,30 +56,38 @@ wrapping-scroll = false
 
 pin-workspaces = true
 
+label-mode = %mode%
 label-mode-padding = 2
-
-label-focused = %index%
-
+; label-focused = %index%
 label-focused-padding = 2
-
 label-unfocused = %index%
 label-unfocused-padding = 2
-
 label-visible = %index%
 label-visible-padding = 2
-
 label-urgent = %index%
 label-urgent-padding = 2
-
-label-mode-foreground = ${colors.dark}
-label-mode-background = ${colors.black}
-label-focused-background = ${colors.black}
-label-focused-foreground = ${colors.white}
+label-mode-foreground = ${colors.black}
+label-mode-background = ${colors.orange}
+label-focused-background = ${colors.blue}
+label-focused-foreground = ${colors.black}
 label-unfocused-background = ${colors.black}
 label-unfocused-foreground = ${colors.dark}
 label-visible-background = ${colors.black}
 label-visible-foreground = ${colors.white}
 label-urgent-background = ${colors.red}
+
+strip-wsnumbers = true
+fuzzy-match = true
+
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+
+ws-icon-default = 
 
 [module/wlan]
 type = internal/network
@@ -123,40 +133,32 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date = "%a, %b %e"
-date-alt = 
+date =
+date-alt = "%a, %b %e"
 
 time = %H:%M
-time-alt = %H:%M:%S
+time-alt = %H:%M
 
-format-foreground = ${colors.yellow}
-format-background = ${colors.black}
+format-foreground = ${colors.black}
+format-background = ${colors.blue}
 
 ; format-prefix = 
 format-padding = 2
 
-label = " %time% ⋅ %date%"
+label = "%time% %date%"
 
 [settings]
 screenchange-reload = true
 
 [module/filesystem]
 type = internal/fs
+interval = 25
 
-; Mountpoints to display
 mount-0 = /
 
-; Seconds to sleep between updates
-; Default: 30
-interval = 300
-
-; Display fixed precision values
-; Default: false
-fixed-values = true
-
-; Spacing between entries
-; Default: 2
-spacing = 4
+label-mounted =  %mountpoint%: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.white}
 
 [module/pavolume]
 type = custom/script
@@ -167,6 +169,8 @@ click-right = exec pavucontrol
 click-left = ~/.config/polybar/pavolume --togmute
 scroll-up = ~/.config/polybar/pavolume --up
 scroll-down = ~/.config/polybar/pavolume --down
+
+label-foreground = ${colors.white}
 
 [module/battery1]
 type = internal/battery
@@ -217,3 +221,98 @@ poll-interval = 5
 
 label-charging = I⇡ %percentage%%
 label-discharging = I↯ %percentage%%
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 5
+warn-temperature = 65
+
+format = <ramp> <label>
+;format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+;format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = HOT! %temperature%
+label-warn-foreground = #f00
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = #66
+
+[module/backlight]
+type = internal/backlight
+format = <ramp> <bar>
+
+card = intel_backlight
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-font = 3
+bar-indicator-foreground = #ff
+bar-fill = ─
+bar-fill-font = 3
+bar-fill-foreground = #c9665e
+bar-empty = ─
+bar-empty-font = 3
+bar-empty-foreground = #44
+
+[module/battery]
+type = internal/battery
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+bar-capacity-width = 10
+bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+bar-capacity-fill = █
+bar-capacity-fill-foreground = #ddffffff
+bar-capacity-fill-font = 3
+bar-capacity-empty = █
+bar-capacity-empty-font = 3
+bar-capacity-empty-foreground = #44ffffff
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/wireless-network]
+type = internal/network
+interface = wlp3s0
+interval = 1.0
+ping-interval = 10
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %local_ip%    %downspeed%    %upspeed%
+label-disconnected =    not connected
+label-disconnected-foreground = #66
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-framerate = 500
