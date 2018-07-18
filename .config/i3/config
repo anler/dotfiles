@@ -227,8 +227,6 @@ bindsym $mod+i exec "amixer -D pulse sset Master '3%+'"
 bindsym $mod+d exec "amixer -D pulse sset Master '1%-'"
 bindsym $mod+m exec "amixer -D pulse sset Master 'toggle'"
 
-exec --no-startup-id compton -f
-
 bindsym $mod+Return exec urxvt -e zsh -c 'tmux new-session -A -s main'
 bindsym $mod+Shift+Return exec cool-retro-term
 

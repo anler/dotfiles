@@ -9,6 +9,8 @@ redshift &
 
 cbatticon &
 
+compton -f &
+
 keybase ctl start
 
 conky &

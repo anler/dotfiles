@@ -1,5 +1,6 @@
 [colors]
 black = #261a18
+dark = #444444
 white = #ffffff
 yellow = #c07f46
 red = #d0253d
@@ -17,7 +18,7 @@ width = 100%
 height = 27
 radius = 0
 fixed-center = false
-bottom = true
+bottom = false
 
 line-size = 3
 border-size = 0
@@ -68,12 +69,12 @@ label-visible-padding = 2
 label-urgent = %index%
 label-urgent-padding = 2
 
-label-mode-foreground = ${colors.yellow}
+label-mode-foreground = ${colors.dark}
 label-mode-background = ${colors.black}
 label-focused-background = ${colors.black}
 label-focused-foreground = ${colors.white}
 label-unfocused-background = ${colors.black}
-label-unfocused-foreground = ${colors.yellow}
+label-unfocused-foreground = ${colors.dark}
 label-visible-background = ${colors.black}
 label-visible-foreground = ${colors.white}
 label-urgent-background = ${colors.red}
@@ -128,7 +129,7 @@ date-alt =
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-foreground = ${colors.white}
+format-foreground = ${colors.yellow}
 format-background = ${colors.black}
 
 ; format-prefix = 
