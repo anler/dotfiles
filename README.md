@@ -25,11 +25,11 @@ My personal dotfiles ⛩
  .`                                 `/                           
 ```
 
-![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop.jpg)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop1.jpg)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop2.jpg)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop3.jpg)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/images/keyboard.jpg)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop1.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop2.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/desktop3.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/images/keyboard.png)
 
 ## installation
 
@@ -45,26 +45,17 @@ stow --target=$HOME .
 
 ### color pallete
 
-#### Ghost theme
+[link](http://www.colourlovers.com/palette/970972/FLUOR)
 
-- #493b6b
-- #fe207b
-- #0cfee0
-- #fea182
-
-#### Mojave theme
-
-- #261a18
-- #684632
-- #c07f46
-- #cbb0ac
-- #cec4c0
-- #79849f
-- #687592
-
-### set default browser
-
-`xdg-settings set default-web-browser qutebrowser.desktop`
+- black: #261a18
+- orange:  #ffa07a
+- white: #ffffff
+- yellow: #dffc00
+- red: #d0253d
+- green: #38fc48
+- pink: #fa00ab
+- blue: #0de0fc
+- purple: #f938fc
 
 ## fixes
 

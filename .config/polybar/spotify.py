@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import dbus
+import logging
 
 trunclen = 25
 
@@ -23,5 +24,7 @@ try:
 
     output = artist + ': ' + song
     print(output)
+except dbus.DBusException as e:
+    print("Spotify")
 except Exception as e:
-    print(e)
+    logging.error(e)

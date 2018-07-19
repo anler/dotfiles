@@ -5,7 +5,10 @@ orange = #ffa07a
 white = #ffffff
 yellow = #edd400
 red = #d0253d
-blue = #00ffff
+green = #38fc48
+pink = #fa00ab
+blue = #0de0fc
+purple = #c476f1
 
 [bar/i3wmthemer_bar]
 monitor = ${env:MONITOR}
@@ -60,17 +63,17 @@ label-mode = %mode%
 label-mode-padding = 2
 ; label-focused = %index%
 label-focused-padding = 2
-label-unfocused = %index%
+; label-unfocused = %index%
 label-unfocused-padding = 2
-label-visible = %index%
+; label-visible = %index%
 label-visible-padding = 2
-label-urgent = %index%
+; label-urgent = %index%
 label-urgent-padding = 2
 label-mode-foreground = ${colors.black}
-label-mode-background = ${colors.orange}
+label-mode-background = ${colors.yellow}
 label-focused-background = ${colors.blue}
 label-focused-foreground = ${colors.black}
-label-unfocused-background = ${colors.black}
+label-unfocused-background = ${colors.pink}
 label-unfocused-foreground = ${colors.dark}
 label-visible-background = ${colors.black}
 label-visible-foreground = ${colors.white}
@@ -80,12 +83,13 @@ strip-wsnumbers = true
 fuzzy-match = true
 
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
+ws-icon-0 = 1;
 
+ws-icon-1 = 2;
 ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
+ws-icon-3 = 4;
+
+; ws-icon-0 = 1;
 
 ws-icon-default = 
 
@@ -254,13 +258,13 @@ ramp-2 = 
 bar-width = 10
 bar-indicator = |
 bar-indicator-font = 3
-bar-indicator-foreground = #ff
+bar-indicator-foreground = ${colors.white}
 bar-fill = ─
 bar-fill-font = 3
-bar-fill-foreground = #c9665e
+bar-fill-foreground = ${colors.pink}
 bar-empty = ─
 bar-empty-font = 3
-bar-empty-foreground = #44
+bar-empty-foreground = ${colors.black}
 
 [module/battery]
 type = internal/battery
@@ -325,4 +329,4 @@ format = <label>
 exec = /home/anler/.config/polybar/spotify.py
 
 
-format-underline = ${colors.blue}
+format-underline = ${colors.green}
