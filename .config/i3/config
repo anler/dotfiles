@@ -11,6 +11,7 @@ floating_modifier $mod
 workspace_layout tabbed
 
 workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+q kill
 
@@ -230,8 +231,6 @@ bindsym $mod+m exec "amixer -D pulse sset Master 'toggle'"
 bindsym $mod+Return exec urxvt -e zsh -c 'tmux new-session -A -s main'
 bindsym $mod+Shift+Return exec cool-retro-term
 
-workspace_auto_back_and_forth yes
-
 bindsym $mod+Shift+minus move scratchpad
 
 bindsym $mod+n exec emojione-picker
@@ -256,8 +255,6 @@ exec --no-startup-id zeal
 for_window [class="Zeal"] move scratchpad
 bindsym $mod+period [class="Zeal"] scratchpad show
 
-exec_always alttab -mk Super_L
-
 exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
 
@@ -277,7 +274,7 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color  #f9d72e
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #f9d72e
 
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 2
 hide_edge_borders both
 
 gaps inner 15

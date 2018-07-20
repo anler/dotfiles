@@ -33,12 +33,13 @@ padding-right = 0
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = "Fantasque Sans Mono:pixelsize=14;3"
+font-0 = "Fantasque Sans Mono:antialias=true:pixelsize=14;3"
 font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=14;3"
 font-2 = "Font Awesome 5 Brands:pixelsize=14;3"
-font-3 = "Noto Color Emoji:pixelsize=14;3"
+font-3 = Noto Sans CJK JP:size=10:antialias=true;0		# (Japanese) Band names, etc.
+; font-3 = "Noto Color Emoji:pixelsize=14;3"
 font-4 = MaterialIcons:size=14;3
-font-5 = "Symbola:pixelsize=14;3"
+; font-5 = "Symbola:pixelsize=14;3"
 
 tray-position = 
 modules-left = i3
@@ -84,10 +85,9 @@ fuzzy-match = true
 
 
 ws-icon-0 = 1;
-
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
 
 ; ws-icon-0 = 1;
 

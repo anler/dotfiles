@@ -11,6 +11,8 @@ redshift &
 
 compton -f &
 
+alttab &
+
 keybase ctl start
 
 conky &
