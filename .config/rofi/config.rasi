@@ -2,7 +2,7 @@
 /* -*- mode: css; -*- */
 
 configuration {
-  font: "Fantasque Sans Mono 22";
+  font: "Fantasque Sans Mono 18";
   show-icons: true;
   terminal: "urxvt";
   window-command: "xkill -id {window}";

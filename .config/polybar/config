@@ -45,7 +45,7 @@ tray-position =
 modules-left = i3
 modules-center = spotify
 ; eth eth-usbc wlan pavolume filesystem battery1 battery2
-modules-right = backlight wireless-network pavolume battery date
+modules-right = backlight wireless-network eth eth-usb pavolume battery date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -74,7 +74,7 @@ label-mode-foreground = ${colors.black}
 label-mode-background = ${colors.yellow}
 label-focused-background = ${colors.blue}
 label-focused-foreground = ${colors.black}
-label-unfocused-background = ${colors.pink}
+label-unfocused-background = ${colors.purple}
 label-unfocused-foreground = ${colors.dark}
 label-visible-background = ${colors.black}
 label-visible-foreground = ${colors.white}
@@ -92,23 +92,6 @@ ws-icon-3 = 4;
 ; ws-icon-0 = 1;
 
 ws-icon-default = 
-
-[module/wlan]
-type = internal/network
-interface = wlp3s0
-interval = 3.0
-
-format-connected = <ramp-signal>
-
-label-connected = %essid%
-
-format-disconnected =
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
 
 [module/eth-usbc]
 type = internal/network
@@ -261,7 +244,7 @@ bar-indicator-font = 3
 bar-indicator-foreground = ${colors.white}
 bar-fill = ─
 bar-fill-font = 3
-bar-fill-foreground = ${colors.pink}
+bar-fill-foreground = ${colors.purple}
 bar-empty = ─
 bar-empty-font = 3
 bar-empty-foreground = ${colors.black}
@@ -305,8 +288,9 @@ interval = 1.0
 ping-interval = 10
 
 format-connected = <ramp-signal> <label-connected>
+format-disconnected = 
 label-connected = %local_ip%    %downspeed%    %upspeed%
-label-disconnected =    not connected
+label-disconnected = 
 label-disconnected-foreground = #66
 
 ramp-signal-0 = 

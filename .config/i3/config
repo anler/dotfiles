@@ -237,7 +237,9 @@ bindsym $mod+n exec emojione-picker
 
 # ------------------- Scratchpads & Startup apps ------------------------
 
-bindsym $mod+minus [class="^(.(?<!URxvt|Zeal|TelegramDesktop))*?$"] scratchpad show
+exec_always alttab
+
+bindsym $mod+minus [instance="^(.(?<!quake|zeal|telegram-desktop))*?$"] scratchpad show
 
 exec --no-startup-id urxvt -name quake -e zsh -c 'tmux new-session -A -s quake'
 
@@ -259,31 +261,33 @@ exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id $HOME/.config/polybar/autohide
 
 # ----------------------- Eye candy ----------------------------
-set $bg-color-bar        #261a18
-set $text-color-bar      #c93b59
-set $bg-color            #261a18
-set $inactive-bg-color   #261a18
-set $text-color          #00ffff
-set $inactive-text-color #444444
-set $urgent-bg-color     #cbb0ac
+set $black #261a18
+set $orange  #ffa07a
+set $white #ffffff
+set $yellow #dffc00
+set $red #d0253d
+set $green #38fc48
+set $pink #fa00ab
+set $blue #0de0fc
+set $purple #f938fc
 
 # window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #f9d72e
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color  #f9d72e
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color  #f9d72e
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #f9d72e
+#                       border, background, text, indicator
+client.focused          $black $black $white $yellow
+client.unfocused        $black $black $black $yellow
+client.focused_inactive $black $black $black $yellow
+client.urgent           $red  $red  $white $yellow
 
 for_window [class="^.*"] border pixel 2
 hide_edge_borders both
 
-gaps inner 15
-gaps outer 20
+gaps inner 5
+gaps outer 10
 smart_borders on
 
 bindsym $mod+t border normal
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel 2
 bindsym $mod+u border none
 
-new_window pixel 1
-new_float pixel 1
+new_window pixel 2
+new_float pixel 2

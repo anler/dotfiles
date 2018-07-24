@@ -18,14 +18,14 @@
   alternate-urgent-background: #f9d72e;
   active-foreground:           #ffffff;
   lightbg:                     @foreground;
-  selected-active-foreground:  #ffffff;
+  selected-active-foreground:  @background;
   alternate-active-background: @background;
   background:                  #261a18;
   alternate-normal-foreground: @foreground;
   normal-background:           @background;
   lightfg:                     #00ffff;
   selected-normal-background:  #00ffff;
-  border-color:                #00ffff;
+  border-color:                #000000;
   spacing:                     2;
   separatorcolor:              @background;
   urgent-background:           @background;
@@ -33,8 +33,8 @@
   alternate-urgent-foreground: @urgent-foreground;
   background-color:            @background;
   alternate-active-foreground: @active-foreground;
-  active-background:           #c07f46;
-  selected-active-background:  #c07f46;
+  active-background:           #00ffff;
+  selected-active-background:  #00ffff;
 }
 #window {
   background-color: @background;
@@ -46,7 +46,7 @@
   padding: 0;
 }
 #message {
-  border:       2px 0px 0px ;
+  border:       4px 0px 0px ;
   border-color: @separatorcolor;
   padding:      1px ;
 }
