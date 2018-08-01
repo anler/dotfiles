@@ -44,8 +44,7 @@ font-4 = MaterialIcons:size=14;3
 tray-position = 
 modules-left = i3
 modules-center = spotify
-; eth eth-usbc wlan pavolume filesystem battery1 battery2
-modules-right = backlight wireless-network eth eth-usb pavolume battery date
+modules-right = backlight wireless-network eth eth-usb pavolume battery-external battery-internal date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -84,12 +83,13 @@ strip-wsnumbers = true
 fuzzy-match = true
 
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 
-; ws-icon-0 = 1;
+; ws-icon-0 = 1;
 
 ws-icon-default = 
 
@@ -127,9 +127,9 @@ time = %H:%M
 time-alt = %H:%M
 
 format-foreground = ${colors.black}
-format-background = ${colors.blue}
+format-background = ${colors.green}
 
-; format-prefix = 
+format-prefix = " "
 format-padding = 2
 
 label = "%time% %date%"
@@ -158,56 +158,6 @@ scroll-up = ~/.config/polybar/pavolume --up
 scroll-down = ~/.config/polybar/pavolume --down
 
 label-foreground = ${colors.white}
-
-[module/battery1]
-type = internal/battery
-
-; This is useful in case the battery never reports 100% charge
-full-at = 99
-
-; Use the following command to list batteries and adapters:
-; $ ls -1 /sys/class/power_supply/
-battery = BAT0
-adapter = ADP1
-
-; If an inotify event haven't been reported in this many
-; seconds, manually poll for new values.
-;
-; Needed as a fallback for systems that don't report events
-; on sysfs/procfs.
-;
-; Disable polling by setting the interval to 0.
-;
-; Default: 5
-poll-interval = 5
-
-label-charging = E⇡
-label-discharging = E↯
-
-[module/battery2]
-type = internal/battery
-
-; This is useful in case the battery never reports 100% charge
-full-at = 99
-
-; Use the following command to list batteries and adapters:
-; $ ls -1 /sys/class/power_supply/
-battery = BAT1
-adapter = ADP1
-
-; If an inotify event haven't been reported in this many
-; seconds, manually poll for new values.
-;
-; Needed as a fallback for systems that don't report events
-; on sysfs/procfs.
-;
-; Disable polling by setting the interval to 0.
-;
-; Default: 5
-poll-interval = 5
-
-label-charging = I⇡ %percentage%%
-label-discharging = I↯ %percentage%%
 
 [module/temperature]
 type = internal/temperature
@@ -249,7 +199,43 @@ bar-empty = ─
 bar-empty-font = 3
 bar-empty-foreground = ${colors.black}
 
-[module/battery]
+[module/battery-internal]
+battery = BAT1
+
+type = internal/battery
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+bar-capacity-width = 10
+bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+bar-capacity-fill = █
+bar-capacity-fill-foreground = #ddffffff
+bar-capacity-fill-font = 3
+bar-capacity-empty = █
+bar-capacity-empty-font = 3
+bar-capacity-empty-foreground = #44ffffff
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/battery-external]
+battery = BAT0
+
 type = internal/battery
 full-at = 98
 
