@@ -1,9 +1,9 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.cargo/bin:$HOME/.stack/programs/x86_64-linux/ghc-tinfo6-nopie-7.10.3/bin:$HOME/.local/bin:$PATH
 
-export TERMINAL=urxvt
+export TERMINAL=gnome-terminal
 export LANG=en_US.UTF-8
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -14,7 +14,7 @@ export XKB_DEFAULT_OPTIONS=ctrl:nocaps
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git tmux gpg-agent)
+plugins=(git tmux gpg-agent pass)
 
 # ZSH_THEME="refined"
 # ZSH_THEME="juanghurtado"
@@ -34,14 +34,7 @@ ZSH_THEME="re5et"
 source $ZSH/oh-my-zsh.sh
 
 # Zsh plugins
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/doc/find-the-command/ftc.zsh
-
-source $HOME/.local/share/zsh/plugins/gopass-completion.zsh
-compdef _gopass gopass
-
-eval "$(fasd --init auto)"
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 export ALTERNATE_EDITOR=nano
@@ -64,8 +57,8 @@ alias -g G="|grep -i"
 alias -g C="|xclip -sel clip"
 alias -g X="chmod +x"
 
-[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
@@ -77,9 +70,3 @@ open() (xdg-open $@ &)
 tmp() {
   pushd $(mktemp -d)
 }
-
-loginfortune() {
-  fortune | cowsay -f tux | lolcat
-}
-
-loginfortune

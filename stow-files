@@ -1,1 +1,1 @@
-stow --target=$HOME --ignore=stow-files --ignore=images .
+stow --target=$HOME --ignore=stow-files --ignore=images . --ignore=README.md --ignore=.git --ignore=.gitignore
