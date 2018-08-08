@@ -36,6 +36,9 @@ source $ZSH/oh-my-zsh.sh
 # Zsh plugins
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# depends on fasd being installed
+eval "$(fasd --init auto)"
+
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 export ALTERNATE_EDITOR=nano
 export EMACS_SERVER_FILE="/tmp/emacs$(id -u $LOGNAME)/server"
@@ -60,6 +63,7 @@ alias -g X="chmod +x"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 # https://unix.stackexchange.com/questions/22834/how-to-uncompress-zlib-data-in-unix#49066
