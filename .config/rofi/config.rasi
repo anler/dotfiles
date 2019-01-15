@@ -1,0 +1,21 @@
+/* -*- mode: css; -*- */
+configuration {
+  font: "Iosevka Slab 14";
+  show-icons: false;
+  terminal: "urxvt";
+  window-command: "xkill -id {window}";
+  sidebar-mode: false;
+  matching: "fuzzy";
+  hide-scrollbar: true;
+  fake-transparency: false;
+  fake-background: "screenshot";
+  lines: 5;
+  columns: 1;
+  bw: 0;
+  padding: 400;
+  eh: 1;
+  location: 1;
+  xoffset: 450;
+  yoffset: 350;
+}
+@import "./theme.rasi"

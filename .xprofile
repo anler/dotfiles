@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+redshift &
+hsetroot -solid '#000000'
+unclutter -b
+compton -b
+# xscreensaver &
+
+setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
+
+# Configure Thinkpad T480 trackpad
+xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1

@@ -1,0 +1,401 @@
+# mode: rainbow-mode
+set $mod Mod4
+set $border 2
+set $filemanager urxvt -e zsh -c 'nnn'
+set $groundterm groundterm
+set $terminal urxvt -name groundterm
+set $terminal-tmux urxvt -name groundterm -e zsh -c 'tmux new-session -A -s m'
+set $quake urxvt -name quake -e zsh -c 'tmux new-session -A -s q'
+set $lock betterlockscreen -l
+set $browser Mozilla Firefox
+set $editor Emacs 26.1
+
+font pango: Iosevka Slab 9
+
+focus_wrapping force
+
+floating_modifier $mod
+
+workspace_layout tabbed
+
+workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth
+
+bindsym $mod+q kill
+
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen
+
+bindsym $mod+g layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+# workspace defines
+set $w1 ⚀
+set $w2 ⚁
+set $w3 ⚂
+set $w4 ⚃
+set $w5 ⚄
+set $w6 ⚅
+# set $w7 7
+# set $w8 8
+# set $w9 9
+# set $w0 10
+
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+
+set $x_switch exec --no-startup-id $HOME/.config/i3/wk-switch.py
+
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+# bindsym $mod+7 workspace $w7
+# bindsym $mod+8 workspace $w8
+# bindsym $mod+9 workspace $w9
+# bindsym $mod+0 workspace $w10
+
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+# bindsym $mod+Shift+7 move container to workspace $w7
+# bindsym $mod+Shift+8 move container to workspace $w8
+# bindsym $mod+Shift+9 move container to workspace $w9
+# bindsym $mod+Shift+0 move container to workspace $w10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Open an empty container
+bindsym $mod+backslash open
+
+mode "move" {
+  bindsym k move up 20px
+  bindsym h move left 20px
+  bindsym j move down 20px
+  bindsym semicolon move right 20px
+
+  bindsym Up move up 20px
+  bindsym Left move left 20px
+  bindsym Down move down 20px
+  bindsym Right move right 20px
+
+  bindsym r mode "resize"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym Mod4+Shift+m focus floating; mode "move"
+
+
+bindsym $mod+o exec $HOME/.config/i3/rofi-wrapper window
+
+bindsym $mod+c exec $HOME/.config/i3/rofi-wrapper calc
+bindsym $mod+p exec $HOME/.config/i3/rofi-wrapper drun
+bindsym $mod+b exec $HOME/.config/i3/rofi-wrapper run
+bindsym $mod+Shift+p exec rofi-pass
+
+mode "resize" {
+  bindsym d resize shrink width 10 px or 10 ppt
+  bindsym Shift+d resize shrink height 10 px or 10 ppt
+  bindsym i resize grow width 10 px or 10 ppt
+  bindsym Shift+i resize grow height 10 px or 10 ppt
+
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  bindsym m mode "move"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# set $lock i3lock-fancy -p -t ''
+set $mode_system System (l) lock, (E) logout, (s) screensaver, (S) suspend, (h) hibernate, (R) reboot, (S) shutdown
+mode "$mode_system" {
+  bindsym l exec --no-startup-id $lock, mode "default"
+  bindsym Shift+e exec --no-startup-id i3-msg exit, mode "default"
+  bindsym s exec --no-startup-id "xscreensaver-command -activate", mode "default"
+  bindsym Shift+s exec --no-startup-id "$lock; systemctl suspend", mode "default"
+  bindsym h exec --no-startup-id "$lock; systemctl hibernate", mode "default"
+  bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
+  bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+e mode "$mode_system"
+
+set $mode_external_pos External screen on (l)eft, (r)ight, or (o)ff (uppercase for HDMI)
+mode "$mode_external_pos" {
+  bindsym r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of eDP1, mode "default"
+  bindsym Shift+r exec xrandr --output DP1 --primary --mode 1920x1080 --right-of HDMI2, mode "default"
+  bindsym l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of eDP1, mode "default"
+  bindsym Shift+l exec xrandr --output DP1 --primary --mode 1920x1080 --left-of HDMI2, mode "default"
+  bindsym o exec xrandr --output DP1 --off, mode "default"
+  bindsym Shift+o exec xrandr --output HDMI2 --off, mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+s mode "$mode_external_pos"
+
+set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym h      mode "$mode_gaps_horiz"
+        bindsym v      mode "$mode_gaps_verti"
+        bindsym t      mode "$mode_gaps_top"
+        bindsym r      mode "$mode_gaps_right"
+        bindsym b      mode "$mode_gaps_bottom"
+        bindsym l      mode "$mode_gaps_left"
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_horiz" {
+        bindsym plus  gaps horizontal current plus 5
+        bindsym minus gaps horizontal current minus 5
+        bindsym 0     gaps horizontal current set 0
+
+        bindsym Shift+plus  gaps horizontal all plus 5
+        bindsym Shift+minus gaps horizontal all minus 5
+        bindsym Shift+0     gaps horizontal all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_verti" {
+        bindsym plus  gaps vertical current plus 5
+        bindsym minus gaps vertical current minus 5
+        bindsym 0     gaps vertical current set 0
+
+        bindsym Shift+plus  gaps vertical all plus 5
+        bindsym Shift+minus gaps vertical all minus 5
+        bindsym Shift+0     gaps vertical all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_top" {
+        bindsym plus  gaps top current plus 5
+        bindsym minus gaps top current minus 5
+        bindsym 0     gaps top current set 0
+
+        bindsym Shift+plus  gaps top all plus 5
+        bindsym Shift+minus gaps top all minus 5
+        bindsym Shift+0     gaps top all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_right" {
+        bindsym plus  gaps right current plus 5
+        bindsym minus gaps right current minus 5
+        bindsym 0     gaps right current set 0
+
+        bindsym Shift+plus  gaps right all plus 5
+        bindsym Shift+minus gaps right all minus 5
+        bindsym Shift+0     gaps right all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_bottom" {
+        bindsym plus  gaps bottom current plus 5
+        bindsym minus gaps bottom current minus 5
+        bindsym 0     gaps bottom current set 0
+
+        bindsym Shift+plus  gaps bottom all plus 5
+        bindsym Shift+minus gaps bottom all minus 5
+        bindsym Shift+0     gaps bottom all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_left" {
+        bindsym plus  gaps left current plus 5
+        bindsym minus gaps left current minus 5
+        bindsym 0     gaps left current set 0
+
+        bindsym Shift+plus  gaps left all plus 5
+        bindsym Shift+minus gaps left all minus 5
+        bindsym Shift+0     gaps left all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+x move workspace to output right
+bindsym $mod+Shift+x move workspace to output left
+
+bindsym --release Print exec scrot -s -e 'xclip -selection clipboard -t "image/png" < $f && rm $f'
+bindsym --release Shift+Print exec scrot -u -e 'xclip -selection clipboard -t "image/png" < $f && rm $f'
+bindsym --release $mod+Print exec scrot -e 'xclip -selection clipboard -t "image/png" < $f && rm $f'
+bindsym --release $mod+Shift+Print exec scrot -d 2 -e 'xclip -selection clipboard -t "image/png" < $f && rm $f'
+
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
+bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+Shift+greater exec playerctl next
+bindsym $mod+Shift+less exec playerctl previous
+bindsym $mod+Shift+slash exec playerctl play-pause
+
+bindsym $mod+i exec "amixer -D pulse sset Master '3%+'"
+bindsym $mod+d exec "amixer -D pulse sset Master '1%-'"
+bindsym $mod+m exec "amixer -D pulse sset Master 'toggle'"
+
+bindsym $mod+Shift+d exec $HOME/.config/i3/show-date
+
+bindsym $mod+Return exec $terminal-tmux
+bindsym $mod+Shift+Return exec $terminal
+
+bindsym $mod+Shift+minus move scratchpad
+
+bindsym $mod+n exec $filemanager
+
+# ------------------- Scratchpads & Startup apps ------------------------
+
+# exec_always alttab -frame "#000000" -font "xft:Inconsolata" -d 2 -bg "#261a18" -fg "#f938fc"
+
+exec --no-startup-id albert
+exec --no-startup-id cbatticon BAT0
+exec --no-startup-id cbatticon BAT1
+exec --no-startup-id $quake
+
+for_window [class="^Peek"] floating enable
+for_window [title="Ediff"] floating enable
+
+bindsym $mod+minus [instance="^(.(?<!quake))*?$"] scratchpad show
+
+for_window [instance="^quake$"] move scratchpad
+bindsym $mod+grave [instance="^quake$"] scratchpad show; [instance="^quake$"] fullscreen enable
+
+# exec --no-startup-id telegram-desktop
+# for_window [class="TelegramDesktop"] move scratchpad
+# bindsym $mod+comma [instance="telegram-desktop"] scratchpad show
+bindsym $mod+period exec xdotool search "$editor" windowactivate
+bindsym $mod+comma exec xdotool search "$browser" windowactivate
+bindsym $mod+slash exec xdotool search --classname "$groundterm" windowactivate
+
+# for_window [class="TelegramDesktop"] floating enable
+for_window [instance="Media viewer"] fullscreen enable
+
+# ----------------------- Eye candy ----------------------------
+for_window [class="^.*"] border pixel $border
+for_window [class="albert"] border none
+hide_edge_borders both
+
+gaps inner 15
+gaps outer 80
+gaps horizontal 250
+
+workspace $w1 gaps outer 0
+
+smart_gaps inverse_outer
+smart_borders on
+
+bindsym $mod+t border normal
+bindsym $mod+y border pixel $border
+bindsym $mod+u border none
+
+new_window pixel $border
+new_float pixel $border
+
+# window colors
+# class                 border  bground text    indicator child_border
+client.focused          #FFFFFF #FFFFFF #000000 #2D2D2D   #FFFFFF
+client.focused_inactive #FFFFFF #000000 #FFFFFF #000000   #2D2D2D
+client.unfocused        #FFFFFF #000000 #FFFFFF #FFFFFF   #2D2D2D
+client.urgent           #FFFFFF #FFFFFF #000000 #000000   #000000
+client.placeholder      #FFFFFF #000000 #FFFFFF #FFFFFF   #2D2D2D
+
+client.background       #000000
+
+bar {
+  mode hide
+  hidden_state hide
+  modifier none
+  position bottom
+  # status_command i3status
+
+  colors {
+    background #000000
+    statusline #ffffff
+    separator  #000000
+
+    focused_workspace  #ffffff #ffffff #000000
+    active_workspace   #000000 #000000 #444444
+    inactive_workspace #000000 #000000 #ffffff
+    urgent_workspace   #900000 #900000 #FFFFFF
+    binding_mode       #ffffff #ffffff #000000
+  }
+}

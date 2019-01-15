@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+case "$1" in
+  "window")
+    rofi -show window -theme-str "#prompt { enabled: false; } #textbox-prompt-colon {str: \"Window:\";}"
+    ;;
+  "calc")
+    rofi -show calc -theme-str "#prompt { enabled: false; } #textbox-prompt-colon {str: \"Calc:\";}"
+    ;;
+  "drun")
+    rofi -show drun -theme-str "#prompt { enabled: false; } #textbox-prompt-colon {str: \"Run:\";}"  -no-sort
+    ;;
+  "run")
+    rofi -show run -theme-str "#prompt { enabled: false; } #textbox-prompt-colon {str: \"Execute:\";}"  -no-sort
+    ;;
+esac

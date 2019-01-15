@@ -1,0 +1,12 @@
+[Unit]
+Description=Lock X session on lid switch
+Before=sleep.target
+
+[Service]
+User=anler
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/betterlockscreen
+
+[Install]
+WantedBy=sleep.target
