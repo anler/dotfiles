@@ -5,7 +5,7 @@ redshift &
 hsetroot -solid '#000000'
 unclutter -b
 compton -b
-# xscreensaver &
+xscreensaver -nosplash &
 
 setxkbmap -layout us -variant altgr-intl -option ctrl:nocaps
 

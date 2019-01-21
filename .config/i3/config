@@ -2,15 +2,17 @@
 set $mod Mod4
 set $border 2
 set $filemanager urxvt -e zsh -c 'nnn'
+set $altfilemanager thunar
 set $groundterm groundterm
 set $terminal urxvt -name groundterm
 set $terminal-tmux urxvt -name groundterm -e zsh -c 'tmux new-session -A -s m'
 set $quake urxvt -name quake -e zsh -c 'tmux new-session -A -s q'
 set $lock betterlockscreen -l
+set $screensaver xscreensaver-command -lock
 set $browser Mozilla Firefox
 set $editor Emacs 26.1
 
-font pango: Iosevka Slab 9
+font pango: Iosevka Slab 14
 
 focus_wrapping force
 
@@ -47,16 +49,16 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # workspace defines
-set $w1 ⚀
-set $w2 ⚁
-set $w3 ⚂
-set $w4 ⚃
-set $w5 ⚄
-set $w6 ⚅
-# set $w7 7
-# set $w8 8
-# set $w9 9
-# set $w0 10
+set $w1 1
+set $w2 2
+set $w3 3
+set $w4 4
+set $w5 5
+set $w6 6
+set $w7 7
+set $w8 8
+set $w9 9
+set $w0 10
 
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
@@ -69,10 +71,10 @@ bindsym $mod+3 workspace $w3
 bindsym $mod+4 workspace $w4
 bindsym $mod+5 workspace $w5
 bindsym $mod+6 workspace $w6
-# bindsym $mod+7 workspace $w7
-# bindsym $mod+8 workspace $w8
-# bindsym $mod+9 workspace $w9
-# bindsym $mod+0 workspace $w10
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w10
 
 bindsym $mod+Shift+1 move container to workspace $w1
 bindsym $mod+Shift+2 move container to workspace $w2
@@ -80,10 +82,10 @@ bindsym $mod+Shift+3 move container to workspace $w3
 bindsym $mod+Shift+4 move container to workspace $w4
 bindsym $mod+Shift+5 move container to workspace $w5
 bindsym $mod+Shift+6 move container to workspace $w6
-# bindsym $mod+Shift+7 move container to workspace $w7
-# bindsym $mod+Shift+8 move container to workspace $w8
-# bindsym $mod+Shift+9 move container to workspace $w9
-# bindsym $mod+Shift+0 move container to workspace $w10
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -137,13 +139,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # set $lock i3lock-fancy -p -t ''
-set $mode_system System (l) lock, (E) logout, (s) screensaver, (S) suspend, (h) hibernate, (R) reboot, (S) shutdown
+set $mode_system System (l) lock, (x) screensaver, (E) logout, (s) suspend, (h) hibernate, (R) reboot, (S) shutdown
 mode "$mode_system" {
   bindsym l exec --no-startup-id $lock, mode "default"
+  bindsym x exec --no-startup-id $screensaver, mode "default"
   bindsym Shift+e exec --no-startup-id i3-msg exit, mode "default"
-  bindsym s exec --no-startup-id "xscreensaver-command -activate", mode "default"
-  bindsym Shift+s exec --no-startup-id "$lock; systemctl suspend", mode "default"
-  bindsym h exec --no-startup-id "$lock; systemctl hibernate", mode "default"
+  bindsym s exec --no-startup-id "systemctl suspend", mode "default"
+  bindsym h exec --no-startup-id "systemctl hibernate", mode "default"
   bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
   bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
@@ -321,6 +323,7 @@ bindsym $mod+Shift+Return exec $terminal
 bindsym $mod+Shift+minus move scratchpad
 
 bindsym $mod+n exec $filemanager
+bindsym $mod+Shift+n exec $altfilemanager
 
 # ------------------- Scratchpads & Startup apps ------------------------
 
@@ -334,7 +337,7 @@ exec --no-startup-id $quake
 for_window [class="^Peek"] floating enable
 for_window [title="Ediff"] floating enable
 
-bindsym $mod+minus [instance="^(.(?<!quake))*?$"] scratchpad show
+bindsym $mod+minus [instance="^(.(?<!quake))*?$"] scratchpad show; [instance="^quake$"] move scratchpad; 
 
 for_window [instance="^quake$"] move scratchpad
 bindsym $mod+grave [instance="^quake$"] scratchpad show; [instance="^quake$"] fullscreen enable

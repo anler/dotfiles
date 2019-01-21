@@ -5,13 +5,14 @@
 > --Leonardo da Vinci
 
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-115841_1920x1080_scrot.png)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-115907_1920x1080_scrot.png)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-115929_1920x1080_scrot.png)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-115950_1920x1080_scrot.png)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-120112_1920x1080_scrot.png)
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-124213_1920x1080_scrot.png)
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-130914_1920x1080_scrot.png)
-![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-232928_1920x1080_scrot.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-152711_1920x1080_scrot.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-152748_1920x1080_scrot.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-170807_1920x1080_scrot.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-170841_1920x1080_scrot.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-170854_1920x1080_scrot.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-170931_1920x1080_scrot.png)
 
 ## installation
 
