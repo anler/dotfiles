@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+stow --target=$HOME --verbose --ignore img --ignore stow $@ .
