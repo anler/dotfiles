@@ -4,6 +4,11 @@
 >
 > --Leonardo da Vinci
 
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/syntax.jpg)
+
+## Screenshots
+
+### Applications
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-115841_1920x1080_scrot.png)
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-124213_1920x1080_scrot.png)
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-15-130914_1920x1080_scrot.png)
@@ -12,7 +17,13 @@
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-170807_1920x1080_scrot.png)
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-170841_1920x1080_scrot.png)
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-170854_1920x1080_scrot.png)
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-22-172252_1920x1080_scrot.png)
+
+### Lock screen
 ![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-21-170931_1920x1080_scrot.png)
+
+### Screen saver
+![](https://raw.githubusercontent.com/anler/dotfiles/master/img/2019-01-22-104113_1920x1080_scrot.png)
 
 ## installation
 
