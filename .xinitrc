@@ -43,4 +43,8 @@ fi
 # eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 # export SSH_AUTH_SOCK
 
-exec i3
+# exec i3
+if [[ "$(tty)" == '/dev/tty1' ]]; then
+    # Avoid executing i3 when X11 has already been started.
+    exec i3
+fi
