@@ -12,7 +12,7 @@ set $screensaver xscreensaver-command -lock
 set $browser Mozilla Firefox
 set $editor Emacs 26.1
 
-font pango: Iosevka Slab 14
+font pango: Pragmata Pro 14
 
 focus_wrapping force
 
@@ -377,8 +377,8 @@ new_float pixel $border
 # class                 border  bground text    indicator child_border
 client.focused          #FFFFFF #FFFFFF #000000 #2D2D2D   #FFFFFF
 client.focused_inactive #FFFFFF #000000 #FFFFFF #000000   #2D2D2D
-client.unfocused        #FFFFFF #000000 #FFFFFF #FFFFFF   #2D2D2D
-client.urgent           #FFFFFF #FFFFFF #000000 #000000   #000000
+client.unfocused        #000000 #000000 #FFFFFF #FFFFFF   #2D2D2D
+client.urgent           #900000 #900000 #000000 #000000   #000000
 client.placeholder      #FFFFFF #000000 #FFFFFF #FFFFFF   #2D2D2D
 
 client.background       #000000
