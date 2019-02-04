@@ -115,38 +115,75 @@ URxvt.pointerBlank:         false
 
 ! Monochrome Xresources palette
 ! special
-urxvt*.foreground:   #ffffff
-urxvt*.background:   #000000
-urxvt*.cursorColor:  #ffffff
+! urxvt*.foreground:   #ffffff
+! urxvt*.background:   #000000
+! urxvt*.cursorColor:  #ffffff
+
+! ! black
+! urxvt*.color0:       #090300
+! urxvt*.color8:       #afafaf
+
+! ! red
+! urxvt*.color1:       #db2d20
+! urxvt*.color9:       #db2d20
+
+! ! green
+! urxvt*.color2:       #8d8d8d
+! urxvt*.color10:      #8d8d8d
+
+! ! yellow
+! urxvt*.color3:       #404040
+! urxvt*.color11:      #404040
+
+! ! blue
+! urxvt*.color4:       #ffffff
+! urxvt*.color12:      #ffffff
+
+! ! magenta
+! urxvt*.color5:       #ffffff
+! urxvt*.color13:      #ffffff
+
+! ! cyan
+! urxvt*.color6:       #404040
+! urxvt*.color14:      #404040
+
+! ! white
+! urxvt*.color7:       #a5a2a2
+! urxvt*.color15:      #f7f7f7
+
+! Isotope dark theme
+*.foreground:   #d0d0d0
+*.background:   #000000
+*.cursorColor:  #d0d0d0
 
 ! black
-urxvt*.color0:       #090300
-urxvt*.color8:       #afafaf
+*.color0:       #000000
+*.color8:       #808080
 
 ! red
-urxvt*.color1:       #db2d20
-urxvt*.color9:       #db2d20
+*.color1:       #ff0000
+*.color9:       #ff0000
 
 ! green
-urxvt*.color2:       #8d8d8d
-urxvt*.color10:      #8d8d8d
+*.color2:       #33ff00
+*.color10:      #33ff00
 
 ! yellow
-urxvt*.color3:       #404040
-urxvt*.color11:      #404040
+*.color3:       #ff0099
+*.color11:      #ff0099
 
 ! blue
-urxvt*.color4:       #ffffff
-urxvt*.color12:      #ffffff
+*.color4:       #0066ff
+*.color12:      #0066ff
 
 ! magenta
-urxvt*.color5:       #ffffff
-urxvt*.color13:      #ffffff
+*.color5:       #cc00ff
+*.color13:      #cc00ff
 
 ! cyan
-urxvt*.color6:       #404040
-urxvt*.color14:      #404040
+*.color6:       #00ffff
+*.color14:      #00ffff
 
 ! white
-urxvt*.color7:       #a5a2a2
-urxvt*.color15:      #f7f7f7
+*.color7:       #d0d0d0
+*.color15:      #ffffff

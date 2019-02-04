@@ -7,7 +7,7 @@
    Modified: Mon Feb 12 2018 06:06:47 PST -0800
    ========================================================================== */
 * {
-  selected-active-foreground: #0d8888;
+  selected-active-foreground: #666666;
 }
 
 window {
@@ -62,7 +62,7 @@ element.normal.active {
 
 element.selected.normal {
     background-color: @selected-normal-background;
-    text-color:       purple;
+    text-color:       @selected-active-foreground;
 }
 
 element.selected.urgent {
