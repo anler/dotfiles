@@ -181,8 +181,8 @@ URxvt.pointerBlank:         false
 *.color13:      #cc00ff
 
 ! cyan
-*.color6:       #00ffff
-*.color14:      #00ffff
+*.color6:       #0066ff
+*.color14:      #0066ff
 
 ! white
 *.color7:       #d0d0d0

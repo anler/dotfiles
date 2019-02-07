@@ -7,7 +7,7 @@ set $groundterm groundterm
 set $terminal urxvt -name groundterm
 set $terminal-tmux urxvt -name groundterm -e zsh -c 'tmux new-session -A -s m'
 set $quake urxvt -name quake -e zsh -c 'tmux new-session -A -s q'
-set $lock betterlockscreen -l
+set $lock betterlockscreen -l -b
 set $screensaver xscreensaver-command -lock
 set $browser Mozilla Firefox
 set $editor Emacs 26.1
